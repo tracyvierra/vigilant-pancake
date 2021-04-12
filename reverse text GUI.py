@@ -1,3 +1,4 @@
+#Reverse Text (in Python) by Tracy V
 import PySimpleGUI as sg
 
 # Define the window's contents

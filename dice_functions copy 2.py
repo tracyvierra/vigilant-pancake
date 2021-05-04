@@ -13,6 +13,7 @@ def dice_roll():
         print("Your " + str(NUM_SIDES) + " sided roll is: " + str(die_roll))
         total += die_roll
     
+     
     print("")   
     print("Total = " + str(total))
     print("")

@@ -19,12 +19,12 @@ def dice_roll():
     return total
     
 def roll_again():
-    roll_again = input("roll again? ")
-    while roll_again == "y":
+    answer = input("roll again? ")
+    while answer == "y":
         print("")
         dice_roll()
         roll_again = input("roll again? ")
-    if roll_again == "n":       
+    if answer == "n":       
         print("")
         print("Thank you for playing!")
         print("")
@@ -32,7 +32,9 @@ def roll_again():
         print("")
         print("please enter Yes (y) or No (n). ")
         print("")
-
+        answer = input("roll again? ")
+        if answer == "y":
+            dice_roll()
 
 print("")
 print("Welcome to Tracy's Dice roller app!")

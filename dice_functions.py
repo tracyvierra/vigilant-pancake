@@ -32,6 +32,7 @@ def roll_again():
         print("")
         print("please enter Yes (y) or No (n). ")
         print("")
+        
 
 
 print("Welcome to Tracy's Dice roller app!")
@@ -39,5 +40,7 @@ print("")
 
 dice_roll()
 roll_again()
+while roll_again == "y":
+    dice_roll()
 
 

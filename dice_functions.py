@@ -17,16 +17,24 @@ def dice_roll():
     print("")   
     print("Total = " + str(total))
     print("")
-    roll_again = input("roll again? ")
-    while roll_again == "Yes" or "Y":
-        dice_roll()
-    if roll_again == "No" or "N":
-        print("Thank you for playing!")
-    else:
-        print("please enter Yes (Y) or No (N). ")
+    
 
 print("Welcome to Tracy's Dice roller app!")
 print("")
 
 dice_roll()
+
+roll_again = input("roll again? ")
+while roll_again == "y":
+    print("")
+    dice_roll()
+    roll_again = input("roll again? ")
+if roll_again == "n":       #Something is wrong here ,it never does the No or other conditions .
+    print("")
+    print("Thank you for playing!")
+    print("")
+else:
+    print("")
+    print("please enter Yes (y) or No (n). ")
+    print("")
 

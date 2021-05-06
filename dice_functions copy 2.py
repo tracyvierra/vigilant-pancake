@@ -24,7 +24,7 @@ def roll_again():
         print("")
         dice_roll()
         roll_again = input("roll again? ")
-    if roll_again == "n":       #Something is wrong here ,the or operand is not working for me here.
+    if roll_again == "n":       
         print("")
         print("Thank you for playing!")
         print("")
@@ -32,6 +32,7 @@ def roll_again():
         print("")
         print("please enter Yes (y) or No (n). ")
         print("")
+        
         
 
 print("")

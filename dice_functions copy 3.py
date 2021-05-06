@@ -9,7 +9,7 @@ def dice_roll():
     print("")
 
     for i in range(NUM_DICE):
-        die_roll = int(random.randint(MIN_SIDES,NUM_SIDES))
+        die_roll = int(random.randint(MIN_SIDES,MAX_SIDES))
         print("Your " + str(NUM_SIDES) + " sided roll is: " + str(die_roll))
         total += die_roll
     
@@ -23,7 +23,7 @@ def roll_again():
     while answer == "y":
         print("")
         dice_roll()
-        roll_again = input("roll again? ")
+        answer = input("roll again? ")
     if answer == "n":       
         print("")
         print("Thank you for playing!")
@@ -33,8 +33,11 @@ def roll_again():
         print("please enter Yes (y) or No (n). ")
         print("")
         answer = input("roll again? ")
-        if answer == "y":
+        while answer == "y":
             dice_roll()
+    roll_again()
+    
+
 
 print("")
 print("Welcome to Tracy's Dice roller app!")

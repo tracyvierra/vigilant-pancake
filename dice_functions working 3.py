@@ -6,6 +6,7 @@ def dice_roll():
     MIN_SIDES = 1
     MAX_SIDES = NUM_SIDES
     total = 0
+
     print("")
 
     for i in range(NUM_DICE):
@@ -18,29 +19,30 @@ def dice_roll():
     print("")
     return total
     
-def roll_again():
-    answer = input("roll again? ")
-    while answer == "y":
-        print("")
-        dice_roll()
-        roll_again = input("roll again? ")
-    if answer == "n":       
-        print("")
-        print("Thank you for playing!")
-        print("")
-    else:
-        print("")
-        print("please enter Yes (y) or No (n). ")
-        print("")
-        answer = input("roll again? ")
-        if answer == "y":
-            dice_roll()
+
+
 
 print("")
 print("Welcome to Tracy's Dice roller app!")
 print("")
 
 dice_roll()
-roll_again()
-while roll_again == "y":
+
+answer = input("roll again? ")
+
+while answer == "y":
+    print("")
     dice_roll()
+    answer = input("roll again? ")
+if answer == "n":       
+    print("")
+    print("Thank you for playing!")
+    print("")
+else:
+    print("")
+    print("please enter Yes (y) or No (n). ")
+    print("")
+    answer = input("roll again? ")
+    while answer == "y":
+        dice_roll()
+        

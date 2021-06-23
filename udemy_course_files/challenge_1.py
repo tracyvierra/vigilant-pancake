@@ -12,4 +12,5 @@ if age <= 17 or age >= 30:
     print(" ")
 else:
     print("Welcome to the Holiday Trip!   Please follow Gopher and Julie ...")
+    print("\a")
     print(" ")

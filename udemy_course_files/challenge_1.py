@@ -1,3 +1,8 @@
+'''ask for name and age
+check if person is the right age to go on an 18-30 holiday 
+(they must be over 18 and under 30)
+If they are eligible print a welcome message, if not a polit message refusing them entry.
+'''
 name = input("Please enter your name: ")
 age = int(input("Please enter your age: "))
 

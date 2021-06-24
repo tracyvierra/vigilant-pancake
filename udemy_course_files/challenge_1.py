@@ -5,12 +5,13 @@ If they are eligible print a welcome message, if not a polit message refusing th
 '''
 print(" ")
 name = input("Please enter your name: ")
-age = int(input("Please enter your age: "))
+age = int(input("Please enter your age, {0}: ".format(name)))
+print(" ")
 
 if age <= 17 or age >= 30:
     print("Sorry, {0} you are not in the correct age range for this Holiday trip.".format(name))
     print(" ")
 else:
-    print("Welcome to the Holiday Trip!   Please follow Gopher and Julie ...")
+    print("Welcome to the Holiday Trip, {0}!   Please follow Gopher and Julie ...".format(name))
     print("\a")
     print(" ")

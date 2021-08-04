@@ -5,4 +5,4 @@ def highest_even(li):
       evens.append(item)
   return max(evens)
 
-print(highest_even([10,1,2,3,4,8]))
+print(highest_even([10,1,12,2,3,4,8]))

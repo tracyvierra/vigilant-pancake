@@ -1,0 +1,16 @@
+STEPS TO FIND OUT NO RATE LIMIT ON FORGET PASSWORD PAGE
+1.Open Burp Suite
+2: Choose your Target: Acronis.com
+3. Open Mozila Firefox
+4. Get to target website
+5. Register with an account
+6. Click on Forgot Password Page
+7. Enter your email id
+8. Before click make sure your burp suite interceptor is on
+9. Then click on submit
+10. Capture the request and attack on 0.5 
+11. You need to report it.
+12. Collect all the evidence and Steps to reproduce for reporting the vulnerability. Check for reference
+https://hackerone.com/reports/751604
+
+

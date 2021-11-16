@@ -1,0 +1,47 @@
+#What is a Vulnerability 
+
+Hello Team I found that there is no rate limit protection on "Login Interface" Which allows attackers to brute-force the <Admin|User> Account on the website.
+
+
+
+#Discription
+
+While Testing i came to know that the login form [ URL ] which is an <user|Admin> Interfaces has not Rate limit protection and can be bruteforced but Attackers. 
+
+
+
+#Confirmation
+
+I bruteforced more than 10k password with 100 Threads which is more than enough. So basically there is nothing to stop the huge number of HTTP requests.
+
+
+#Probability of Bruteforce
+
+As Django  has "Admin" username with which can be bruteforced to get complete access to the admin interface.
+
+
+#Reproduciblity 
+
+1-Open browser and visit the login page.
+2-Login using "admin" as username and "Anything" as password.
+3-Intercept the request with burp.
+4-Send it to intruder.
+5-Add Payloads [Passwords].
+6-Start the attack.
+
+
+#Impact of the issue
+
+I believe the subdomain is hosting some sensitive content inside the below directory as they seems interesting by their names. So the attack can have serious impact if an attacker successfully bruteforced the Admin Account.
+
+/admin (Status: 301)
+/assets (Status: 301)
+/static (Status: 301)
+/emails (Status: 301)
+/tickets (Status: 301)
+/employees (Status: 301)
+
+#Proof of concept
+
+
+Thank you.

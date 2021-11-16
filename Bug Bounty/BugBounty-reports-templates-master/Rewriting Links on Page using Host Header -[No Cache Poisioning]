@@ -1,0 +1,71 @@
+#Introduction
+Hello mate I am imran Parray! Hope you are doing well
+After playing around the host header in your web app <TARGET> i came to know Rewriting of links
+and URLs in cached pages to arbitrary strings by unauthenticated HTTP clients.
+
+
+#Discription
+
+It is common practice for web programmers and web frameworks to rely on the value of the HTTP Host
+header to write links. This is for convenience, so that the same software will run on localhost,
+various testing servers, subdomains, secondary domains, etc, without modification. For example:
+
+<a href="<?=$_SERVER['HTTP_HOST']?>/login">Login</a>
+
+Looks familiar? This turns out to be a very, very bad idea in any language. The HTTP Host header
+is arbitrary text controlled by the client, but common practice treats it as though it were a safe
+environment variable. 
+
+The second half of the vulnerability comes when there is HTTP caching going on somewhere on the path
+between the site and users. This could be a caching proxy run by the site itself, or downstream in ISP proxies,
+content delivery networks (CDNs), syndicators, etc. This allows an attacker to potentially rewrite URLs on any
+page he wishes, and embed that exploited page in caches that may be beyond the control of the victim site.
+
+
+#Example
+
+$ telnet <TARGET> 80
+Trying 1.2.3.4...
+Connected to <TARGET>.
+Escape character is '^]'.
+GET /foo/bar.html HTTP/1.1
+User-Agent: Mozilla
+Host: evilsite.com#
+
+HTTP/1.1 200 OK
+Date: Wed, 10 Jun 2008 00:27:45 GMT
+Server: Apache
+Cache-Control: max-age=60
+Expires: Wed, 17 Jun 2008 00:27:45 GMT
+Content-Length: 2959
+Content-Type: text/html; charset=iso-8859-1
+
+<html>
+  <head>
+    <title>Foo : Bar</title>
+  </head>
+  <body>
+    <a href="http://evilsite.com#/">Home</a>
+    <a href="http://evilsite.com#/about">About</a>
+    <a href="http://evilsite.com#/login">Login</a>
+
+[...snip...]
+
+<hr>
+<address>Apache Server at evilsite.com# Port 80</address>
+</body></html>
+
+
+#Risk
+
+An attacker might be able to poison a website URL by sending an HTTP request to the site that causes
+the affected backend to respond with an attacker-controlled response. The malicious response object would be
+stored in the site’s cache [if cache is enabled at any point] at a poisoned URL. Now any used visits the poisoned URL,
+where they would be served malicious content.
+
+#Mitigation: 
+
+Do NOT use the value of the Host header for anything. If you must, apply very strict filters to only
+allow valid FQDNs, and then whitelist the FQDNs you allow. Treat it as you would any arbitrary data coming from
+the outside. If your webserver is configured to output the value of the Host header (as in the example, and as 
+by default in many webservers), disable that configuration.

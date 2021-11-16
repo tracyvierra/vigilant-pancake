@@ -1,0 +1,17 @@
+#What is the vulnerability
+
+There is a session management vulnerability in your website. i.e. user's session is not expiring immediately after the logout.
+
+#Discription
+
+When an user logs in The session is created and when the user logs out the user session should be destroyed/Cleared on Service side but in this case the when the user logs out the session is not invalidated on server side results in an session fixation vulnerability
+
+
+#Reproducibility
+
+1-Login to your account on [ https://rumbo.kiwi.com/ ]
+2-Go to https://rumbo.kiwi.com/en/ in browser
+3-Now intercept the request in the browser and sent it to repeater
+4-Logout From the Account
+5-Go to Burp and Send the request again you will get the same response as authanticated user.
+

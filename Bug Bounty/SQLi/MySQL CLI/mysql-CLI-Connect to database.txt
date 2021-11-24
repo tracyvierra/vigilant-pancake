@@ -1,0 +1,20 @@
+mysql -h ip adress  -u username -ppassword
+example-1:
+username: admin123
+password: 1234@@password
+
+mysql -h 127.0.0.1 -u admin123 -p1234@@password
+
+Important Note: We use space after -u while we don't use space after -p
+
+example-2: 
+username: Mostafa234
+password: empty
+
+mysql -h 10.10.10.10 -u mostafa234 -p
+
+example-3:
+username: Mike_admin123
+password: security@@456##
+
+mysql -h 10.10.10.10 -u Mike_admin123 -psecurity@@456##

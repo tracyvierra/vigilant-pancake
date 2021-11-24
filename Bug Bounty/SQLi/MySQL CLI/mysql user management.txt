@@ -1,0 +1,37 @@
+List users:
+> select * from mysql.user;
+> select user,host from mysql.user;
+> select * from information_schema.user_privileges;
+> show grants for 'admin'@'%';
+> show grants for 'root'@'localhost';
+> show grants for current_user;
+------------------------------------------------------------------------------
+
+Pattern: CREATE USER 'new_user_name'@'10.8.0.5' IDENTIFIED BY 'user_password';
+
+Example: CREATE USER 'smith'@'%' IDENTIFIED BY 'smith@456';
+-------------------------------------------------------------------------------
+Pattern: GRANT permission_type ON privilege_level TO 'new_user_name'@'host_name';
+
+Example: GRANT permission_type ON privilege_level TO 'smith'@'%';
+--------------------------------------------------------------------------------
+GRANT ALL PRIVILEGES ON *.* TO new_user_name@host_name;
+--------------------------------------------------------------------------------
+GRANT ALL PRIVILEGES ON database_name.table_name TO user_name@host_name;
+--------------------------------------------------------------------------------
+GRANT 
+SELECT (column1,column2), 
+UPDATE(column3),
+INSERT (column4) 
+ON database_name
+TO user_name@host_name;
+---------------------------------------
+REVOKE ALL PRIVILEGES 
+ON database_name.table_name 
+FROM user_name@host_name;
+---------------------------------------
+Note: make sure to reload all the privileges by running:
+> FLUSH PRIVILEGES;
+
+----------------------------------------
+

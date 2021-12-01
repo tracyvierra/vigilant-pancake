@@ -1,0 +1,25 @@
+1- select version();
+2- select version like '8%';
+    select database();
+3- select user();
+    select user() like '%admin%';
+    select user like '%root%';
+4- select current_user();
+5- show grants;
+6- select @@datadir;
+    select @@tmpdir;
+7- select * from mysql.user;
+    select user,password,host from mysql.user;
+8- select length(database());
+
+9- select substr(database(),1,1);---> first letter
+    select substr(database(),2,1);----> second letter
+    select substr(database(),3,1);-----> third letter
+    select substr(database(),4,1);-----> fourth letter
+
+10- select user from mysql.user limit 0,1;----> first row---Limit function starts from 0
+      select user from mysql.user limit 1,1;-----> second row
+      select user from mysql.user limit 2,1;-------> third row
+
+11- select sleep(10);
+

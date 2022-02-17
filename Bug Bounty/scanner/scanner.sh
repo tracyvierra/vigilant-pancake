@@ -1,6 +1,6 @@
 #!/bin/bash
-source ./scan.lib
-PATH_TO_DIRSEARCH="/Users/vickieli/tools/dirsearch"
+source ./scan.fun
+PATH_TO_DIRSEARCH="/home/spiff/tools/dirsearch"
 getopts "m:" OPTION
 MODE=$OPTARG
 for i in "${@:$OPTIND:$#}"

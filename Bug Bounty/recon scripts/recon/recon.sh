@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./scan.lib
+source ./scan.func
 PATH_TO_DIRSEARCH="/Users/vickieli/tools/dirsearch"
 getopts "m:" OPTION
 MODE=$OPTARG

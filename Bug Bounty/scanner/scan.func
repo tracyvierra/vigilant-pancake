@@ -1,12 +1,15 @@
 #!/bin/bash
 nmap_scan()
 {
- nmap $DOMAIN > $DIRECTORY/nmap
+ nmap -sS $DOMAIN > $DIRECTORY/nmap
  echo "The results of nmap scan are stored in $DIRECTORY/nmap."
 }
 dirsearch_scan()
 {
  $PATH_TO_DIRSEARCH -u $DOMAIN -e php >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -m POST >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -m GET >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -r >> $DIRECTORY/dirsearch
  echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch."
 }
 crt_scan()

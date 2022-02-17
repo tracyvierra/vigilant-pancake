@@ -20,10 +20,24 @@ do
  crt-only) 
  crt_scan
  ;;
+ assetfinder-only)
+ assetfinder_scan
+ ;;
+ waybackurls-only)
+ waybackurls_scan
+ ;;
+ subfinder-only)
+ subfinder_scan
+ ;;
+
  *) 
  nmap_scan
  dirsearch_scan
  crt_scan
+ assetfinder_scan
+ waybackurls_scan
+ subfinder_scan
+
  ;; 
  esac
  echo "Generating recon report for $DOMAIN..."
@@ -41,4 +55,17 @@ do
  echo "Results for crt.sh:" >> $DIRECTORY/report
  jq -r ".[] | .name_value" $DIRECTORY/crt >> $DIRECTORY/report
  fi
+ if [ -f $DIRECTORY/assetfinder ];then
+ echo "Results for Dirsearch:" >> $DIRECTORY/report
+ cat $DIRECTORY/assetfinder >> $DIRECTORY/report
+ fi
+ if [ -f $DIRECTORY/waybackurls ];then
+ echo "Results for waybackurls:" >> $DIRECTORY/report
+ cat $DIRECTORY/waybackurls >> $DIRECTORY/report
+ fi
+ if [ -f $DIRECTORY/subfinder ];then
+ echo "Results for subfinder:" >> $DIRECTORY/report
+ cat $DIRECTORY/subfinder >> $DIRECTORY/report
+ fi
+
 done

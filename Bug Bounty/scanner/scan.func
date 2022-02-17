@@ -14,3 +14,18 @@ crt_scan()
  curl "https://crt.sh/?q=$DOMAIN&output=json" -o $DIRECTORY/crt
  echo "The results of cert parsing is stored in $DIRECTORY/crt."
 }
+assetfinder_scan()
+{
+ assetfinder $DOMAIN -subs-only -timeout 10 -threads 10 -silent | tee $DIRECTORY/assetfinder
+ echo "The results of assetfinder scan are stored in $DIRECTORY/assetfinder."
+}
+waybackurls_scan()
+{
+ waybackurls $DOMAIN -o $DIRECTORY/waybackurls
+ echo "The results of waybackurls scan are stored in $DIRECTORY/waybackurls."
+}
+subfinder_scan() 
+{
+ subfinder -d $DOMAIN -o $DIRECTORY/subfinder
+ echo "The results of subfinder scan are stored in $DIRECTORY/subfinder."
+}

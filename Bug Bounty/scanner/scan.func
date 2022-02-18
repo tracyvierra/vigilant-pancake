@@ -6,10 +6,10 @@ nmap_scan()
 }
 dirsearch_scan()
 {
- $PATH_TO_DIRSEARCH -u $DOMAIN -e php >> $DIRECTORY/dirsearch
- $PATH_TO_DIRSEARCH -u $DOMAIN -m POST >> $DIRECTORY/dirsearch
- $PATH_TO_DIRSEARCH -u $DOMAIN -m GET >> $DIRECTORY/dirsearch
- $PATH_TO_DIRSEARCH -u $DOMAIN -r >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -e php --no-color >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -m POST --no-color >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -m GET --no-color >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -r --no-color >> $DIRECTORY/dirsearch
  echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch."
 }
 crt_scan()

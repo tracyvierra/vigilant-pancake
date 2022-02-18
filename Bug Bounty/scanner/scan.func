@@ -8,7 +8,7 @@ nmap_scan()
 }
 dirsearch_scan()
 {
- $PATH_TO_DIRSEARCH -u $DOMAIN -e php --no-color | tee -a $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -e php,html,xml,json,js --no-color | tee -a $DIRECTORY/dirsearch
  $PATH_TO_DIRSEARCH -u $DOMAIN -m POST --no-color | tee -a  $DIRECTORY/dirsearch
  $PATH_TO_DIRSEARCH -u $DOMAIN -m GET --no-color | tee -a $DIRECTORY/dirsearch
  $PATH_TO_DIRSEARCH -u $DOMAIN -r --no-color | tee -a $DIRECTORY/dirsearch

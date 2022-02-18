@@ -1,15 +1,15 @@
 #!/bin/bash
 nmap_scan()
 {
- nmap -sS $DOMAIN > $DIRECTORY/nmap
+ nmap -Pn --script vuln $DOMAIN > $DIRECTORY/nmap
  echo "The results of nmap scan are stored in $DIRECTORY/nmap."
 }
 dirsearch_scan()
 {
- $PATH_TO_DIRSEARCH -u $DOMAIN -e php --no-color >> $DIRECTORY/dirsearch
- $PATH_TO_DIRSEARCH -u $DOMAIN -m POST --no-color >> $DIRECTORY/dirsearch
- $PATH_TO_DIRSEARCH -u $DOMAIN -m GET --no-color >> $DIRECTORY/dirsearch
- $PATH_TO_DIRSEARCH -u $DOMAIN -r --no-color >> $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -e php --no-color | tee -a $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -m POST --no-color | tee -a  $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -m GET --no-color | tee -a $DIRECTORY/dirsearch
+ $PATH_TO_DIRSEARCH -u $DOMAIN -r --no-color | tee -a $DIRECTORY/dirsearch
  echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch."
 }
 crt_scan()

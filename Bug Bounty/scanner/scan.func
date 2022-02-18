@@ -1,7 +1,9 @@
 #!/bin/bash
 nmap_scan()
 {
- nmap -Pn --script vuln $DOMAIN > $DIRECTORY/nmap
+ nmap -Pn --script vuln $DOMAIN | tee -a $DIRECTORY/nmap
+ nmap -sS $DOMAIN | tee -a $DIRECTORY/nmap
+ nmap -sV $DOMAIN | tee -a $DIRECTORY/nmap 
  echo "The results of nmap scan are stored in $DIRECTORY/nmap."
 }
 dirsearch_scan()

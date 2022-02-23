@@ -1,0 +1,4 @@
+do search for :
+
+inurl:".php?id="
+

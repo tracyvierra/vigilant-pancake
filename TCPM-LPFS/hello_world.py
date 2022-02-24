@@ -15,3 +15,14 @@ if num % 2 == 0:    # if the number is even a 0 is returned, if the number is od
     print(f'{num} is even')
 else:
     print(f'{num} is odd')
+
+
+# to check if a number is positive or negative:
+number=int(input("Enter a number: "))
+if number > 0:
+    print(f'{number} is positive')
+elif number < 0:
+    print(f'{number} is negative')
+else:
+    print(f'{number} is zero')
+

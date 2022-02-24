@@ -1,0 +1,181 @@
+5 steps the shell takes when processing the command line:
+
+1) Tokenization
+2) Command Identification
+3) Shell Expansions
+4) Quote Removal
+5) Redirection
+______________________________________
+
+4 Stages of Expansion:
+
+Stage 1: Brace Expansion
+Stage 2: 
+	* Parameter Expansion
+	* Arithmetic Expansion
+	* Command Expansion
+	* Tilde Expansion
+Stage 3: Word Splitting
+Stage 4: Globbing (file name expansion)
+______________________________________
+
+Data Streams: 
+	* Stream 0 = Standard Input (stdin)
+	* Stream 1 = Standard Output (stdout)   
+	* Stream 2 = Standard Error (stderr)
+
+______________________________________
+
+OPERATOR EXAMPLE MEANING
+-eq [ 2 -eq 2 ] Successful if the two numbers are equal
+
+-ne [ 2 -ne 2 ] Successful if the two numbers are not equal
+
+= [ $a = $b ] Successful if the two strings are equal
+
+!= [ $a != $b ] Successful if the two strings are not equal
+
+-z [ -z $c ] Successful if a string is empty
+
+-n [ -n $c ] Successful if a string is not empty
+
+-e [ -e /path/to/file ] Successful if a file system entry
+/path/to/file exists
+
+-f [ -f /path/to/file ] Successful if a file system entry
+/path/to/file exists and is a regular file
+
+-d [ -d /path/to/file ] Successful if a file system entry
+/path/to/file exists and is a directory
+
+-x [ -x /path/to/file ] Successful if a file system entry
+/path/to/file exists and is executable by the current user
+
+______________________________________
+
+GETOPTS 
+
+getopts - how to get command line options passed. 'get' the 'opt'ions
+
+example:
+
+while getopts "A:b" variable; do
+	case "$variable" in
+		A)
+			commands
+		;;
+		b)
+			commands
+		;;
+		\?)
+			commands
+		;;
+	esac
+done
+
+# Usage:
+# ./timer_project.sh -m <minutes> -s <seconds>
+
+while getopts "m:s:" opt; do
+	case "$opt" in
+		m) # number of minutes
+			minutes=$OPTARG
+			;;
+		s) # number of seconds
+			seconds=$OPTARG
+			;;
+		\?)
+			Echo "Invalid option provided"
+	;;
+	esac
+	
+
+done
+
+total_seconds=$((minutes * 60 + seconds))
+echo "Total seconds: $total_seconds"
+echo 
+while [ $total_seconds -ne 0 ]; do
+	echo "$total_seconds seconds remaining"
+	sleep 1
+	total_seconds=$((total_seconds - 1))
+done 
+echo "Timer done at $(date +%m-%d-%Y_%H:%M:%S)!"
+
+______________________________________
+
+ITERATING OVER THE CONTENTS OF FILES
+
+Syntax for process substitution
+
+<(command) # You can run one command...
+<(command1 | command2 | ... | commandN) #... Or an entire pipeline
+
+while read line; do
+commands...
+done < <(command)
+
+while read line; do
+commands...
+done < file
+
+Example Script: Iterating over a file line by line, and
+printing each line out
+
+#!/bin/bash
+while read line; do
+echo "$line"
+done < file1.txt
+
+Example Script: Iterating over each line of output from a
+command
+
+#!/bin/bash
+while read line; do
+echo "$line"
+done < <(ls $HOME)
+
+______________________________________
+
+examples of logic checking for file (or directory) exists:
+
+
+if [ ! -d 1234 ]; then  # if the directory 1234 does not exist then make the directory.
+	mkdir 1234
+fi
+
+[ -d 1234 ] || mkdir 1234  # logic check using the or operator.  check if the directory exists, this fails and runs the second command.
+
+______________________________________
+
+Remote connection:
+
+for remote connections in scripts be sure to setup keys:
+
+How to configure SSH Public key-based authentication for a Linux/Unix
+The steps and commands are as follows:
+
+On your local system type: ssh-keygen
+Install public key into remote server: ssh-copy-id user@remote-server-ip-name
+Use ssh for password less login: ssh user@remote-server-ip-name
+
+______________________________________
+
+Output to both the screen and write to a file:
+
+command | tee -a "$log_file"
+
+______________________________________
+
+______________________________________
+
+______________________________________
+
+______________________________________
+
+______________________________________
+
+______________________________________
+
+
+

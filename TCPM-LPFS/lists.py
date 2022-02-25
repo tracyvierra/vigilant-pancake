@@ -19,3 +19,6 @@ print(len(fruits))
 
 fruits.insert(2, "Strawberry")
 print(fruits)
+
+print(fruits[2])
+

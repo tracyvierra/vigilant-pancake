@@ -30,3 +30,9 @@ fruits = ["apple", "banana", "cherry"]
 
 for x in fruits:
 	    print(x, end=" ")
+
+print()
+
+for x in range(5):
+    print("I am a programmer ")
+

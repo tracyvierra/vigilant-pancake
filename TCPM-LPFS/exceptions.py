@@ -16,3 +16,8 @@ except:
     # handle the error
     ZeroDivisionError
     print("You can't divide by zero")
+
+finally:
+    # do something regardless of the error
+    print("I'm done")
+

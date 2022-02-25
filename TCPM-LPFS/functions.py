@@ -58,3 +58,19 @@ print("Outside the function : ", total)
 
 print(" ")
 
+
+# pass one functions results to another function
+def add(a,b):
+    return a+b
+
+def square(a):
+    return a**2
+
+print(square(add(3,4)))
+print(square(add(2,3)))
+
+print(" ")
+
+
+
+

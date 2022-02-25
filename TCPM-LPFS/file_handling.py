@@ -32,3 +32,7 @@ print(second_line)
 file4.close() # close file
 
 
+file = open("demo4.txt", 'w') # open file in write mode
+file.write("This is a test entry into the file.") # write to file
+file.writelines(["\nThis is writelines entry into the file.", "\nThis is another test entry into the file."]) # write to file
+file.close() # close file

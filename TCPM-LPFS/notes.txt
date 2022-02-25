@@ -379,7 +379,64 @@ access_mode: The access_mode determines the mode in which the file has to be ope
  does not exist, it creates a new file for writing.
 __________________________________________
 
+Notes for section 5:
 
+Dictionaries in Python:
+ Dictionary data structure in Python. A Dictionary (or "dict") is a way to store data just like a list,   but instead of using only numbers to get the data, you can use almost anything.
+ 
+  Example:
+  dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+  Accessing Values in Dictionary:
+
+To access dictionary elements, you can use the familiar square brackets along with the key to obtain its value.
+print ("dict['Name']: ", dict['Name'])
+print ("dict['Age']: ", dict['Age'])
+
+Updating Dictionary
+
+You can update a dictionary by adding a new entry or a key-value pair, modifying an existing entry, or deleting an existing entry.
+
+example −
+
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+dict['Age'] = 8; # update existing entry
+dict['School'] = "DPS School"; # Add new entry
+
+Delete Dictionary Elements
+
+You can either remove individual dictionary elements or clear the entire contents of a dictionary.You can also delete entire dictionary in a single operation.
+
+del dict['Name']; # remove entry with key 'Name'
+dict.clear();     # remove all entries in dict
+del dict ;        # delete entire dictionary
+
+Built-in Dictionary Functions & Methods −
+
+Python includes the following dictionary functions
+
+len(dict): Gives the total length of the dictionary. This would be equal to the number of items in the dictionary.    
+
+str(dict): Produces a printable string representation of a dictionary
+    
+
+type(variable): Returns the type of the passed variable. If passed variable is dictionary, then it would return a dictionary type.
+
+
+
+Tuples in Python
+A tuple is a sequence of immutable Python objects. Tuples are sequences, just like lists. The differences between tuples and lists are, the tuples cannot be changed unlike lists and tuples use parentheses, whereas lists use square brackets.
+
+Creating a tuple is as simple as putting different comma-separated values. Optionally you can put these comma-separated values between parentheses also. For example −
+
+tup1 = ('physics', 'chemistry', 1997, 2000);
+tup2 = (1, 2, 3, 4, 5 );
+tup3 = "a", "b", "c", "d";
+
+Accessing Values in Tuples:
+
+To access values in tuple, use the square brackets for slicing along with the index or indices to obtain value available at that index.
+ print ("tup1[0]: ", tup1[0])
 __________________________________________
 
 

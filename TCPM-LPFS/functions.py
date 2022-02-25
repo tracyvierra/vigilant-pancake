@@ -15,7 +15,9 @@ def square_root(x):
 print(" ")
 
 function1()
+
 print(" ")
+
 print(square_root(2))
 print(square_root(6))
 print(square_root(9))

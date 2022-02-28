@@ -512,12 +512,31 @@ These iterators are called generator objects. On the surface they look like func
 Instead of return statements you will find inside of the body of a generator only yield statements, i.e. one or more yield statements.
 __________________________________________
 
+Join a list to a string:
+
+print(":".join(["Apple", "Banana", "Mango"])
+
+Replace item in a string: 
+
+print("Hello There".replace("There", "World"))
+
+or
+
+newstring = "Hello There"
+print(newstring.replace("There", "World"))      # This will return a string with Hello World instead of Hello There, without changing the original string.
+
+Check if a string starts or ends with a particular word:
+
+newstring = "This is a string"
+print(newstring.startswith("This"))     # This will return true as This is the first word in the string.
+print(newstring.endswith("string"))     # This will return true as This is the last word in the string.
+
+__________________________________________
+
+
 
 __________________________________________
 
 
 __________________________________________
-
-___
-_______________________________________
 

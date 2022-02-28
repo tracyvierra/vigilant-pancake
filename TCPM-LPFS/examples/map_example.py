@@ -14,4 +14,15 @@ newlist = [1, 2, 3, 4, 5]
 result = list(map(add, newlist))		# map applies the function to each element in the list
 print(result)
 
+# _____________________________________
+
+# def add(x):
+#     return x + 2
+
+newlist = [1, 2, 3, 4, 5]
+
+result = list(map(lambda x: x + 2, newlist))		# map applies the lambda to each element in the list
+print(result)
+
+
 

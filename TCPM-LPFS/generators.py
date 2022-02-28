@@ -15,3 +15,14 @@ def function():
 for x in function():
     print(x)
 
+# 
+
+
+def even_numbers(X):
+    for x in range(X):
+        if x % 2 == 0:
+            yield x
+print(" ")
+print(list(even_numbers(20)))
+print(" ")
+

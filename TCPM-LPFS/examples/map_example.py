@@ -11,7 +11,7 @@ def add(x):
 
 newlist = [1, 2, 3, 4, 5]
 
-changed_list = list(map(add, newlist))		# map applies the function to each element in the list
-print(changed_list)
+result = list(map(add, newlist))		# map applies the function to each element in the list
+print(result)
 
 

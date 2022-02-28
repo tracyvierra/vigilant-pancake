@@ -18,6 +18,6 @@ print(" ")
 
 prod = input("Please enter a product to see the price and number of stock available: ")
 
-print(products.get(prod))
+print(products.get(prod, "Product not found"))
 
 

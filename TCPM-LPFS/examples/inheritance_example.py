@@ -6,7 +6,7 @@
 
 # Usage:
 
-class Student:
+class Student:              # base class
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -19,7 +19,7 @@ class Student:
         print(self.name)
         print(self.age)
 
-class ScienceStudent(Student):
+class ScienceStudent(Student):  # derived class
     def science(self):
         print("this is a science method")
 

@@ -16,6 +16,8 @@ if re.match(pattern, "grey"):
 else:
 	print("No match!")
 
+print("_______________________")
+
 pattern2 = r"^gr..$"			# using ^ to match beginning of string, $ to match end of string
 if re.match(pattern2, "gray"):
 	print("Match gray!")
@@ -23,6 +25,8 @@ if re.match(pattern2, "grey"):
 	print("Match grey!")
 else:
 	print("No match!")
+
+print("_______________________")
 
 pattern3 = r"^gr{a||e}y$"		# using {a || e} to match a or e	
 if re.match(pattern3, "gray"):
@@ -32,7 +36,7 @@ if re.match(pattern3, "grey"):
 else:
 	print("No match!")
 
-
+print("_______________________")
 
 pattern5 = r"^gr[a,e]y$"		# using [a,e] to match 2 specific characters
 if re.match(pattern5, "gray"):
@@ -42,6 +46,7 @@ if re.match(pattern5, "grey"):
 else:
 	print("No match!")
 
+print("_______________________")
 
 pattern6 = r"[A-Z][A-Z][0-9]"		# using [A-Z] to match any capital letter, [0-9] to match any number
 if re.match(pattern6, "ABC123"):
@@ -59,6 +64,7 @@ if re.match(pattern6, "GB4"):
 else:
 	print("No match!")
 
+print("_______________________")
 
 pattern7 = r"eggs(bacon)*"		# using * to match 0 or more of the preceding pattern	
 if re.match(pattern7, "eggsbacon"):
@@ -86,6 +92,7 @@ if re.match(pattern7, "tracyvierra"):
 else:
 	print("No match!")
 
+print("_______________________")
 
 pattern8 = r"eggs(bacon)*"		# using + to match 1 or more of the preceding pattern
 if re.match(pattern8, "eggsbacon"):
@@ -107,6 +114,8 @@ if re.match(pattern8, "tracyvierra"):
 	print("Match tracyvierra")
 else:
 	print("No match!")
+
+print("_______________________")
 
 pattern9 = r"eggs(bacon)?"		# using ? to match 0 or 1 of the preceding pattern
 if re.match(pattern9, "eggsbacon"):
@@ -133,3 +142,33 @@ if re.match(pattern9, "bacon"):
 	print("Match bacon!")
 else:
 	print("No match!")
+
+print("_______________________")
+
+pattern10 = r"bread(eggs)*bread"		# using () to group patterns
+if re.match(pattern10, "breadeggseggsbread"):
+	print("Match breadeggseggseggsbread!")
+else:
+	print("No match!")
+
+if re.match(pattern10, "bread eggs eggs eggs bread"):
+	print("Match bread eggs eggs eggs bread!")
+else:
+	print("No match!")
+
+if re.match(pattern10, "breadbread"):
+	print("Match bread bread!")
+else:
+	print("No match!")
+
+if re.match(pattern10, "breadeggsbread"):
+	print("Match bread eggs bread!")
+else:
+	print("No match!")
+
+print("_______________________")
+
+
+
+
+print("_______________________")

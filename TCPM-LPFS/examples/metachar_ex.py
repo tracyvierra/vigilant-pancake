@@ -60,3 +60,76 @@ else:
 	print("No match!")
 
 
+pattern7 = r"eggs(bacon)*"		# using * to match 0 or more of the preceding pattern	
+if re.match(pattern7, "eggsbacon"):
+	print("Match eggsbacon!")
+else:
+	print("No match!")
+
+if re.match(pattern7, "eggs"):
+	print("Match eggs!")
+else:
+	print("No match!")
+
+if re.match(pattern7, "eggsbaconbacon"):
+	print("Match eggsbaconbacon!")
+else:
+	print("No match!")
+
+if re.match(pattern7, "eggsbaconbaconbacon"):
+	print("Match eggsbaconbaconbacon!")
+else:
+	print("No match!")
+
+if re.match(pattern7, "tracyvierra"):
+	print("Match tracyvierra!")
+else:
+	print("No match!")
+
+
+pattern8 = r"eggs(bacon)*"		# using + to match 1 or more of the preceding pattern
+if re.match(pattern8, "eggsbacon"):
+	print("Match eggsbacon!")
+else:
+	print("No match!")
+
+if re.match(pattern8, "eggs"):
+	print("Match eggs!")
+else:
+	print("No match!")
+
+if re.match(pattern8, "eggsbaconbacon"):
+	print("Match eggsbaconbacon!")
+else:
+	print("No match!")
+
+if re.match(pattern8, "tracyvierra"):
+	print("Match tracyvierra")
+else:
+	print("No match!")
+
+pattern9 = r"eggs(bacon)?"		# using ? to match 0 or 1 of the preceding pattern
+if re.match(pattern9, "eggsbacon"):
+	print("Match eggsbacon!")
+else:
+	print("No match!")
+
+if re.match(pattern9, "eggs"):
+	print("Match eggs!")
+else:
+	print("No match!")
+
+if re.match(pattern9, "eggsbaconbacon"):
+	print("Match eggsbaconbacon!")
+else:
+	print("No match!")
+
+if re.match(pattern9, "tracyvierra"):
+	print("Match tracyvierra")
+else:
+	print("No match!")
+
+if re.match(pattern9, "bacon"):
+	print("Match bacon!")
+else:
+	print("No match!")

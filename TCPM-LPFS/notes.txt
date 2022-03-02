@@ -638,6 +638,13 @@ student1.display()
 
 __________________________________________
 
+Regular Expressions:
+
+Used to maniputlate various types of string data. 
+
+import re # to allow regular exressions to work in python.
+
+
 
 __________________________________________
 

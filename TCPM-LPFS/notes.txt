@@ -569,12 +569,16 @@ Object: A unique instance of a data structure that's defined by its class. An ob
         return n * factorial(n-1)
         
 Sets in Python:
-A set contains an unordered collection of unique and immutable objects. The set data type is,  as the name implies, a Python implementation of the sets as they are known from mathematics. This explains, why sets unlike lists or tuples can't have multiple  occurrences of the same element. 
+A set contains an unordered collection of unique and immutable objects. 
+The set data type is,  as the name implies, a Python implementation of the sets as they are known from mathematics. 
+This explains, why sets unlike lists or tuples can't have multiple occurrences of the same element. 
 
 
  
 Operator overloading:
-The assignment of more than one function to a particular operator.Suppose you have created a Vector class to represent two-dimensional vectors, what happens when you use the plus operator to add them? Most likely Python will yell at you.
+The assignment of more than one function to a particular operator.
+Suppose you have created a Vector class to represent two-dimensional vectors, what happens when you use the plus operator 
+to add them? Most likely Python will yell at you.
 
 You could, however, define the __add__ method in your class to perform vector addition and then the plus operator would behave as per expectation −
 

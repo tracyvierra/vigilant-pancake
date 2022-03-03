@@ -16,7 +16,7 @@ print(re.search(pattern, string))	# returns Match object by scanning the whole s
 print(re.findall(pattern, string))	# returns list of Match objects
 
 print(" ")
-
+print("-------------------------------------")
 if re.match(pattern, string):
 	print("Match!")
 else:
@@ -33,25 +33,103 @@ else:
 	print("No match!")
 
 print(" ")
-
+print("-------------------------------------")
 #
 #
 
 # Metacharacters - *, +, {...}, . , ^ , $
 
-if re.match(r"ab*c", "abc"):	# * matches zero or more of the preceding character
+print("The * metacharacter: ")
+
+if re.match(r"ab*c", "abc"):		# * matches zero or more of the preceding character
 	print("Match!")
 else:
 	print("No match!")
 
-if re.match(r"ab.c", "ab1c"):	# . matches any character except newline
+if re.match(r"ab*c", "ac"):		# * matches zero or more of the preceding character
 	print("Match!")
 else:
 	print("No match!")
 
-if re.match(r"ab.c", "ab\nc"):	# . matches any character except newline
+print("-------------------------------------")	
+
+print(" The + metacharacter: ")
+
+if re.match(r"ab+c", "abbbc"):		# + matches one or more of the preceding character
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"ab+c", "ac"):		# + matches one or more of the preceding character
+	print("Match!")
+else:
+	print("No match!")
+
+print("-------------------------------------")
+
+print("The {} metacharacter: ")
+
+if re.match(r"ab{2}c", "abbbc"):	# {n} matches exactly n of the preceding character
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"ab{2}c", "abbc"):		# {n} matches exactly n of the preceding character
+	print("Match!")
+else:
+	print("No match!")
+
+print("-------------------------------------")
+
+print("The . metacharacter: ")
+
+if re.match(r"ab.c", "ab1c"):		# . matches any character except newline
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"ab.c", "ab\nc"):		# . matches any character except newline
+	print("Match!")
+else:
+	print("No match!")
+
+print("-------------------------------------")
+
+print("The ^ metacharacter: ")
+
+if re.match(r"^abc", "abc"):		# ^ matches the beginning of the string
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"^c", "c"):		# ^ matches the beginning of the string
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"ab^c", "abc"):		# ^ matches the beginning of the string
 	print("Match!")
 else:
 	print("No match!")
 
 
+print("-------------------------------------")
+
+print("The $ metacharacter: ")
+
+if re.match(r"abc$", "abc"):		# $ matches the end of the string
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"ab$", "abc"):		# $ matches the end of the string
+	print("Match!")
+else:
+	print("No match!")
+
+
+print("-------------------------------------")
+
+
+
+print("-------------------------------------")

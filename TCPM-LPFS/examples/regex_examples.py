@@ -130,6 +130,22 @@ else:
 
 print("-------------------------------------")
 
+print("The ? metacharacter: ")
 
+if re.match(r"ab?c", "abc"):		# ? matches zero or one of the preceding character
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"ab?c", "ac"):		# ? matches zero or one of the preceding character
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(r"ab?c", "abbc"):		# ? matches zero or one of the preceding character
+	print("Match!")
+else:
+	print("No match!")
 
 print("-------------------------------------")
+

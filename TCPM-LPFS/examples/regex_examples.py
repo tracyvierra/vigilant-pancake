@@ -171,7 +171,23 @@ else:
 
 
 print("-------------------------------------")
+print ("The [] metacharacter: ")
 
+string3 = "Python is fun to learn and use.  I love Python."
+pattern = r"[Pp]ython"		# matches Python or python
+
+if re.match(pattern, string3):
+	print("Match!")
+else:
+	print("No match!")
+
+string4 = "Python"
+pattern = r"[a-z]"		# matches any lowercase letter
+
+if re.match(pattern, string4):
+	print("Match!")
+else:
+	print("No match!")
 
 
 print("-------------------------------------")

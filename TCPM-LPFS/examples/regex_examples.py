@@ -149,3 +149,29 @@ else:
 
 print("-------------------------------------")
 
+
+
+print("-------------------------------------")
+
+print("match a phone number: ")
+
+string = "5647884335"
+string2 = "508-475-9845"
+pattern = r"^\d{3}-?\d{3}-?\d{4}$"	# matches a phone number
+
+if re.match(pattern, string):
+	print("Match!")
+else:
+	print("No match!")
+
+if re.match(pattern, string2):
+	print("Match!")
+else:
+	print("No match!")
+
+
+print("-------------------------------------")
+
+
+
+print("-------------------------------------")

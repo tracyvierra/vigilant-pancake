@@ -33,12 +33,6 @@ display.grid(row=1, column=0, columnspan=6, sticky=W+E)	# Add it to the window
 
 # adding the first row buttons
 
-# button_1 = Button(root, text="1", padx=20, pady=20)
-# button_1.grid(row=2, column=0)
-# button_2 = Button(root, text="2", padx=20, pady=20)
-# button_2.grid(row=2, column=1)
-# button_3 = Button(root, text="3", padx=20, pady=20)
-# button_3.grid(row=2, column=2)
 
 Button(root, text="1", command=lambda :get_variables(1), padx=5, pady=5).grid(row=2, column=0)
 Button(root, text="2", command=lambda :get_variables(2), padx=5, pady=5).grid(row=2, column=1)
@@ -47,12 +41,6 @@ Button(root, text="3", command=lambda :get_variables(3), padx=5, pady=5).grid(ro
 
 # adding the second row buttons
 
-# button_4 = Button(root, text="4", padx=20, pady=20)
-# button_4.grid(row=3, column=0)
-# button_5 = Button(root, text="5", padx=20, pady=20)
-# button_5.grid(row=3, column=1)
-# button_6 = Button(root, text="6", padx=20, pady=20)
-# button_6.grid(row=3, column=2)
 
 Button(root, text="4", command=lambda :get_variables(4), padx=5, pady=5).grid(row=3, column=0)
 Button(root, text="5", command=lambda :get_variables(5), padx=5, pady=5).grid(row=3, column=1)
@@ -61,12 +49,6 @@ Button(root, text="6", command=lambda :get_variables(6), padx=5, pady=5).grid(ro
 
 # adding the third row buttons
 
-# button_7 = Button(root, text="7", padx=20, pady=20)
-# button_7.grid(row=4, column=0)
-# button_8 = Button(root, text="8", padx=20, pady=20)
-# button_8.grid(row=4, column=1)
-# button_9 = Button(root, text="9", padx=20, pady=20)
-# button_9.grid(row=4, column=2)
 
 Button(root, text="7", command=lambda :get_variables(7), padx=5, pady=5).grid(row=4, column=0)
 Button(root, text="8", command=lambda :get_variables(8), padx=5, pady=5).grid(row=4, column=1)

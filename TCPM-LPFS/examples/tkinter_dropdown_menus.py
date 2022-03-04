@@ -14,19 +14,26 @@ def function1():
 def function2():
 	print("You have saved the project.")
 
+def function3():
+	print("Last command has been undone.")
+
 root = Tk()
 
-myMenu = Menu(root)
+myMenu = Menu(root)	
 root.config(menu=myMenu)
 
 subMenu = Menu(myMenu)
 
-myMenu.add_cascade(label="File", menu=subMenu)
+myMenu.add_cascade(label="File", menu=subMenu)			
 
-subMenu.add_command(label="New Project...", command=function1)
+subMenu.add_command(label="New Project...", command=function1)		
 subMenu.add_command(label="Save", command=function2)
 subMenu.add_separator()
 subMenu.add_command(label="Exit", command=root.quit)
+
+editMenu = Menu(myMenu)
+myMenu.add_cascade(label="Edit", menu=editMenu)
+editMenu.add_command(label="Undo", command=function3)
 
 
 root.mainloop()

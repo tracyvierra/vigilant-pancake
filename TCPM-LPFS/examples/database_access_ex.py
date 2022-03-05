@@ -8,15 +8,26 @@
 
 import psycopg2
 
-conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
-cur = conn.cursor()
-cur.execute('''CREATE TABLE new_students(ID SERIAL, NAME TEXT, AGE TEXT, ADDRESS TEXT);''')
-cur.execute('''INSERT INTO new_students(NAME, AGE, ADDRESS) VALUES('Tracy Vierra', '52', '123 Main St');''')
-cur.execute('''INSERT INTO new_students(NAME, AGE, ADDRESS) VALUES('John Smith', '23', '456 Main St');''')
-cur.execute('''INSERT INTO new_students(NAME, AGE, ADDRESS) VALUES('Jane Doe', '34', '789 Main St');''')
-cur.execute('''SELECT * FROM new_students;''')
-conn.commit()
-conn.close()
-print("Opened database successfully")
+def create_table():
+	conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
+	cur = conn.cursor()
+	cur.execute('''CREATE TABLE new_students(ID SERIAL, NAME TEXT, AGE TEXT, ADDRESS TEXT);''')
 
+	conn.commit()
+	conn.close()
+	print("Table created successfully in PostgreSQL ")
+
+def insert_data():
+	conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
+	cur = conn.cursor()
+	cur.execute('''INSERT INTO new_students (NAME, AGE, ADDRESS) VALUES (%s, %s, %s);''', ('Jerry', '21', '1123 Main St.'))
+	cur.execute('''INSERT INTO new_students (NAME, AGE, ADDRESS) VALUES (%s, %s, %s);''', ('Tom', '25', '1456 Main St.'))
+	cur.execute('''INSERT INTO new_students (NAME, AGE, ADDRESS) VALUES (%s, %s, %s);''', ('Mary', '26', '7819 Main St.'))
+
+	conn.commit()
+	conn.close()
+	print("Records created successfully in PostgreSQL ")
+
+
+insert_data()
 

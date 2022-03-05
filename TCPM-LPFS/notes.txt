@@ -648,8 +648,22 @@ import re # to allow regular exressions to work in python.
 
 __________________________________________
 
+PostgreSQL database:
+
+\l to list databases
+create database databasename;    creates a database.
+drop database databasename;      deletes, or drops a database
+
+\d to list tables
+create table tablename(table_fields datatype);      creates a table with fields nad their types.
+create table students(name text, address text, age int, address int);       examples
+
+
+
+
 
 __________________________________________
+
 
 
 __________________________________________

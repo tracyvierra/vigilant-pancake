@@ -9,61 +9,48 @@
 import psycopg2
 
 def create_table():
-	conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
-	cur = conn.cursor()
-	cur.execute('''CREATE TABLE new_students(ID SERIAL, NAME TEXT, AGE TEXT, ADDRESS TEXT);''')
+	try:
+		conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
+		cur = conn.cursor()
+		cur.execute('''CREATE TABLE new_students(ID SERIAL, NAME TEXT, AGE TEXT, ADDRESS TEXT);''')
 
-	conn.commit()
-	conn.close()
-	print("Table created successfully in PostgreSQL ")
-
+		conn.commit()
+		conn.close()
+		print("Table created successfully in PostgreSQL ")
+	except (Exception, psycopg2.DatabaseError) as error:
+		print(error)
+		
 def insert_data():
 	conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
 	cur = conn.cursor()
-	cur.execute('''INSERT INTO new_students (NAME, AGE, ADDRESS) VALUES (%s, %s, %s);''', ('Jerry', '21', '1123 Main St.'))
-	cur.execute('''INSERT INTO new_students (NAME, AGE, ADDRESS) VALUES (%s, %s, %s);''', ('Tom', '25', '1456 Main St.'))
-	cur.execute('''INSERT INTO new_students (NAME, AGE, ADDRESS) VALUES (%s, %s, %s);''', ('Mary', '26', '7819 Main St.'))
+	name = input("Enter name: ")
+	age = input("Enter age: ")
+	address = input("Enter address: ")
+
+	query = '''INSERT INTO new_students (NAME, AGE, ADDRESS) VALUES (%s, %s, %s);'''
+	cur.execute(query,(name,age,address))
 
 	conn.commit()
 	conn.close()
-	print("Records created successfully in PostgreSQL ")
+	print("Record inserted successfully into new_students table")
+	print(" ")
 
 
-def input_create_table():
-	dbname = input("Enter the name of the database: ")
-	username = input('Enter the username: ')
-	password = input('Enter the password: ')
-	host = input('Enter the host: ')
-	port = input('Enter the port: ')
-	
-	table_name = input("Enter table name: ")
-	
-	conn = psycopg2.connect(database=dbname, user=username, password=password, host=host, port=port)
-	cur = conn.cursor()
-	cur.execute('''CREATE TABLE dbname();''')
-	conn.commit()
-	conn.close()
-	print("Table created successfully in PostgreSQL ")
 
-	num_columns = int(input("Enter the number of columns: "))
-	while num_columns != 0:
-		column_name = input("Enter the column name: ")
-		column_type = input("Enter the column type: ")
-		cur = conn.cursor()
-		cur.execute('''INSERT INTO table_name (column_name) VALUES (%s, %s, %s);''', ('Tom', '25', '1456 Main St.'))
-		
-		num_columns = num_columns - 1
-	
-	# conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
-	conn = psycopg2.connect(database=dbname, user=username, password=password, host=host, port=port)
 
-	cur = conn.cursor()
-	cur.execute('''CREATE TABLE table_name(ID SERIAL, NAME TEXT, AGE TEXT, ADDRESS TEXT);''')
-
-	conn.commit()
-	conn.close()
-	print("Table created successfully in PostgreSQL ")
-
-	
+while True:
+	print("1. Create table")
+	print("2. Insert data")
+	print("3. Exit")
+	print(" ")
+	choice = int(input("Enter choice: "))
+	if choice == 1:
+		create_table()
+	elif choice == 2:
+		insert_data()
+	elif choice == 3:
+		break
+	else:
+		print("Invalid choice")
 
 

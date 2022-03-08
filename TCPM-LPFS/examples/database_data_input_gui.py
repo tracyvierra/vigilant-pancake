@@ -46,6 +46,37 @@ button.grid(row=4, column=1)
 button_clear = Button(frame, text="Clear", command=lambda: clear_data())
 button_clear.grid(row=5, column=1)
 
+
+label_search = Label(frame, text="Search:")
+label_search.grid(row=8, column=0)
+
+id_search = Entry(frame)
+id_search.grid(row=8, column=1)
+button_search = Button(frame, text="Search", command=lambda: search_data(id_search.get()))
+button_search.grid(row=9, column=1)
+
+
+def search_data(id):
+	try:
+		conn = psycopg2.connect(database="studentdb", user="postgres", password="Tr1cky1!", host="localhost", port="5432")
+		cur = conn.cursor()
+		id = id_search.get()
+		query = '''SELECT * FROM new_students WHERE ID = %s;'''
+		cur.execute(query,(id,))
+		row = cur.fetchone()
+		print(" ")
+		print("ID: ", row[0])
+		print("Name: ", row[1])
+		print("Age: ", row[2])
+		print("Address: ", row[3])
+		print(" ")
+		conn.commit()
+		conn.close()
+	except (Exception, psycopg2.DatabaseError) as error:
+		print(error)
+
+
+
 def clear_data():
 	entry_name.delete(0, END)
 	entry_age.delete(0, END)

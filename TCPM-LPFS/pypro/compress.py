@@ -17,5 +17,7 @@ print(compressed_data)
 compressed_file = open("compressed.txt", 'w').write(compressed_data.decode('utf-8'))	
 print(compressed_file)
 
+decompressed_data = zlib.decompress(base64.b64decode(compressed_data))
+print(decompressed_data)
 
 

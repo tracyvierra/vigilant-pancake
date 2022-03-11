@@ -6,6 +6,7 @@
 
 # Usage:
 
+from turtle import right
 from gtts import gTTS
 import os
 import tkinter as tk
@@ -38,6 +39,10 @@ button_convert = tk.Button(text='Convert', command= lambda:convert(entry.get(), 
 button_convert.configure(background='green', foreground='white')
 canvas1.create_window(150, 60, window=button_convert)
 canvas1.pack()
+
+button_exit = tk.Button(root, text="Exit", command=lambda: root.destroy())
+button_exit.configure(background='red', foreground='black')
+button_exit.pack(padx=5, pady=5)
 
 
 root.mainloop()

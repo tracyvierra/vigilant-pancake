@@ -72,7 +72,3 @@ window.mainloop()
 
 
 
-# text = open('demo.txt', 'r').read()
-
-# gTTS(text=text, lang='en').save("hello.mp3")
-# os.system("start hello.mp3")

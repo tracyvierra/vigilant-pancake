@@ -32,9 +32,13 @@ def compression(i,o):
 def decompression(i,o):
 	decompress(i,o)
 
-def open_file():
+def open_file_input():
     input_file = fd.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("all files","*.*"),("text files","*.txt")))
     input_entry.insert(0, input_file)
+
+def open_file_output():
+    output_file = fd.asksaveasfilename(initialdir = "/",title = "Select file",filetypes = (("all files","*.*"),("text files","*.txt")))
+    output_entry.insert(0, output_file)
 
 def clear_fields():
     input_entry.delete(0,tk.END)
@@ -43,7 +47,7 @@ def clear_fields():
 
 window = tk.Tk()
 window.title("Compression engine")
-window.geometry("400x400")
+window.geometry("300x150")
 
 input_entry = tk.Entry(window)
 output_entry = tk.Entry(window)
@@ -60,13 +64,17 @@ output_entry.grid(row=2, column=1)
 button_compress = tk.Button(window, text="Compress", command=lambda: compress(input_entry.get(), output_entry.get()))
 button_decompress = tk.Button(window, text="Decompress", command=lambda: decompress(input_entry.get(), output_entry.get()))
 
-button_compress.grid(row=3, column=0)
-button_decompress.grid(row=3, column=1)
+button_compress.grid(row=6, column=0)
+button_decompress.grid(row=6, column=1)
 
 button_clear = tk.Button(window, text="Clear", command=lambda: clear_fields())
 button_clear.grid(row=2, column=4)
 
+button_file_input = tk.Button(window, text="Input file", command=lambda: open_file_input())
+button_file_input.grid(row=3, column=0)
 
+button_file_output = tk.Button(window, text="Output file", command=lambda: open_file_output())
+button_file_output.grid(row=3, column=1)
 
 
 

@@ -53,9 +53,11 @@ button_clear = tk.Button(window, text="Clear", command=lambda: clear_fields())
 button_clear.grid(row=2, column=4)
 
 button_file_input = tk.Button(window, text="Input file", command=lambda: open_file_input())
+button_file_input.configure(background='cyan')
 button_file_input.grid(row=3, column=0)
 
 button_file_output = tk.Button(window, text="Output file", command=lambda: open_file_output())
+button_file_output.configure(background='cyan')
 button_file_output.grid(row=3, column=1)
 
 button_convert = tk.Button(window, text="Convert", command=lambda: convert(input_entry.get(), output_entry.get()))
@@ -63,6 +65,7 @@ button_convert.configure(background='green', foreground='white')
 button_convert.grid(row=6, column=0)
 
 button_exit = tk.Button(window, text="Exit", command=lambda: window.destroy())
+button_exit.configure(background='red', foreground='black')
 button_exit.grid(row=6, column=1)
 
 window.mainloop()

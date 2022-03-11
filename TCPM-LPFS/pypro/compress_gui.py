@@ -6,6 +6,7 @@
 
 # Usage:
 
+from fileinput import filename
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
@@ -31,21 +32,9 @@ def compression(i,o):
 def decompression(i,o):
 	decompress(i,o)
 
-# def select_file():
-#     filetypes = (
-#         ('text files', '*.txt'),
-#         ('All files', '*.*')
-#     )
-
-#     filename = fd.askopenfilename(
-#         title='Open a file to compress',
-#         initialdir='/',
-#         filetypes=filetypes)
-
-#     showinfo(
-#         title='Selected File',
-#         message=filename
-#     )
+def open_file():
+    input_file = fd.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("all files","*.*"),("text files","*.txt")))
+    input_entry.insert(0, input_file)
 
 def clear_fields():
     input_entry.delete(0,tk.END)
@@ -77,13 +66,7 @@ button_decompress.grid(row=3, column=1)
 button_clear = tk.Button(window, text="Clear", command=lambda: clear_fields())
 button_clear.grid(row=2, column=4)
 
-# open_button = ttk.Button(
-#     window,
-#     text='Open a File',
-#     command=select_file
-# )
 
-# open_button.grid(row=5, column=0)
 
 
 
@@ -92,5 +75,26 @@ window.mainloop()
 
 
 
+# def select_file():
+#     filetypes = (
+#         ('text files', '*.txt'),
+#         ('All files', '*.*')
+#     )
 
+#     filename = fd.askopenfilename(
+#         title='Open a file to compress',
+#         initialdir='/',
+#         filetypes=filetypes)
 
+#     showinfo(
+#         title='Selected File',
+#         message=filename
+#     )
+
+# open_button = ttk.Button(
+#     window,
+#     text='Open a File',
+#     command=select_file
+# )
+
+# open_button.grid(row=5, column=0)

@@ -35,6 +35,7 @@ def convert(input_file, output_file):
 window = tk.Tk()
 window.title("Text 2 Speech")
 window.geometry("300x150")
+# window.configure(background='grey')
 
 input_entry = tk.Entry(window)
 output_entry = tk.Entry(window)

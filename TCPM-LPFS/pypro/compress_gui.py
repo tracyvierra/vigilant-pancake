@@ -52,7 +52,6 @@ def clear_fields():
     output_entry.delete(0,tk.END)
 
 
-
 window = tk.Tk()
 window.title("Compression engine")
 window.geometry("400x400")

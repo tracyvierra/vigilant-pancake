@@ -9,7 +9,7 @@
 from gtts import gTTS
 import os
 
-text = "Hello, this is a text to speech example"
+text = open('demo.txt', 'r').read()
 
 gTTS(text=text, lang='en').save("hello.mp3")
 os.system("start hello.mp3")

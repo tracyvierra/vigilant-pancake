@@ -31,21 +31,26 @@ def compression(i,o):
 def decompression(i,o):
 	decompress(i,o)
 
-def select_file():
-    filetypes = (
-        ('text files', '*.txt'),
-        ('All files', '*.*')
-    )
+# def select_file():
+#     filetypes = (
+#         ('text files', '*.txt'),
+#         ('All files', '*.*')
+#     )
 
-    filename = fd.askopenfilename(
-        title='Open a file to compress',
-        initialdir='/',
-        filetypes=filetypes)
+#     filename = fd.askopenfilename(
+#         title='Open a file to compress',
+#         initialdir='/',
+#         filetypes=filetypes)
 
-    showinfo(
-        title='Selected File',
-        message=filename
-    )
+#     showinfo(
+#         title='Selected File',
+#         message=filename
+#     )
+
+def clear_fields():
+    input_entry.delete(0,tk.END)
+    output_entry.delete(0,tk.END)
+
 
 
 window = tk.Tk()
@@ -70,7 +75,8 @@ button_decompress = tk.Button(window, text="Decompress", command=lambda: decompr
 button_compress.grid(row=3, column=0)
 button_decompress.grid(row=3, column=1)
 
-
+button_clear = tk.Button(window, text="Clear", command=lambda: clear_fields())
+button_clear.grid(row=2, column=4)
 
 # open_button = ttk.Button(
 #     window,

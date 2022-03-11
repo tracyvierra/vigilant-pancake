@@ -64,8 +64,8 @@ output_label.grid(row = 0, column = 1)
 input_entry.grid(row=2, column=0)
 output_entry.grid(row=2, column=1)
 
-button_compress = tk.Button(window, text="Compress", command=lambda: compression(input_entry.get(), output_entry.get()))
-button_decompress = tk.Button(window, text="Decompress", command=lambda: decompression(input_entry.get(), output_entry.get()))
+button_compress = tk.Button(window, text="Compress", command=lambda: compress(input_entry.get(), output_entry.get()))
+button_decompress = tk.Button(window, text="Decompress", command=lambda: decompress(input_entry.get(), output_entry.get()))
 
 button_compress.grid(row=3, column=0)
 button_decompress.grid(row=3, column=1)

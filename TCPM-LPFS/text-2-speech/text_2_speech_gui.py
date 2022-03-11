@@ -6,6 +6,7 @@
 
 # Usage:
 
+from turtle import bgcolor
 from gtts import gTTS
 import os
 import tkinter as tk
@@ -57,9 +58,11 @@ button_file_output = tk.Button(window, text="Output file", command=lambda: open_
 button_file_output.grid(row=3, column=1)
 
 button_convert = tk.Button(window, text="Convert", command=lambda: convert(input_entry.get(), output_entry.get()))
+button_convert.configure(background='green', foreground='white')
 button_convert.grid(row=6, column=0)
 
-
+button_exit = tk.Button(window, text="Exit", command=lambda: window.destroy())
+button_exit.grid(row=6, column=1)
 
 window.mainloop()
 

@@ -31,3 +31,5 @@
 *.dSYM/
 *.su
 .vscode/settings.json
+*.pyc
+

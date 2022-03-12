@@ -62,7 +62,9 @@ input_entry.grid(row=2, column=0)
 output_entry.grid(row=2, column=1)
 
 button_compress = tk.Button(window, text="Compress", command=lambda: compress(input_entry.get(), output_entry.get()))
+button_compress.configure(background="green", foreground="white")
 button_decompress = tk.Button(window, text="Decompress", command=lambda: decompress(input_entry.get(), output_entry.get()))
+button_decompress.configure(background="green", foreground="white")
 
 button_compress.grid(row=6, column=0)
 button_decompress.grid(row=6, column=1)
@@ -71,12 +73,16 @@ button_clear = tk.Button(window, text="Clear", command=lambda: clear_fields())
 button_clear.grid(row=2, column=4)
 
 button_file_input = tk.Button(window, text="Input file", command=lambda: open_file_input())
+button_file_input.configure(background="cyan", foreground="black")
 button_file_input.grid(row=3, column=0)
 
 button_file_output = tk.Button(window, text="Output file", command=lambda: open_file_output())
+button_file_output.configure(background="cyan", foreground="black")
 button_file_output.grid(row=3, column=1)
 
-
+button_exit = tk.Button(window, text="Exit", command=window.destroy)
+button_exit.configure(background="red", foreground="black")
+button_exit.grid(row=7, column=4)
 
 
 window.mainloop()

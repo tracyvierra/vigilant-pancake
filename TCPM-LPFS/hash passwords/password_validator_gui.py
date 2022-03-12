@@ -36,11 +36,7 @@ def hash_password(password):
 
 def validate(password):
     hashed = b'$2b$12$inUWKlF.24S/qsPLJNr91.uC.NtxVPke7na9fnirXdbQBvQhnJ7q6'
-    # return bcrypt.checkpw(password, hash)
-    # password = password.encode()
     password = bytes(password, encoding="utf-8")
-
-    # bcrypt.checkpw(entered_password, hashed)
 
     if bcrypt.checkpw(password, hashed):
         print("Password is correct")

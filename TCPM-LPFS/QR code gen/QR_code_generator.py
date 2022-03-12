@@ -55,6 +55,8 @@ canvas.create_window(200, 250, window=button)
 button_clear = tk.Button(root, text = "Clear", command = lambda: clear_all())
 canvas.create_window(200, 300, window=button_clear)
 
+button_exit = tk.Button(root, text = "Exit", command = lambda: sys.exit())
+button_exit.pack(padx=5, pady=5)
 
 
 root.mainloop()

@@ -18,10 +18,9 @@ for (idx, val) in enumerate(number):
 		odd_sum += int(val)
 	else:
 		double_list.append(int(val) * 2)
-		
+
 		
 
 print(double_list)
 print(odd_sum)
 
-	

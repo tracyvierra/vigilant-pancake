@@ -7,14 +7,15 @@
 # Usage:
 
 # from sysconfig import get_path
-import moviepy as mp
+import moviepy
 import tkinter as tk
 from tkinter import *
-from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
 from pytube import YouTube
 from moviepy.editor import *
+import shutil
+
 
 
 
@@ -23,6 +24,12 @@ def download_video():
 	download_path = path_label.cget("text")
 	mp4 = YouTube(video_path).streams.get_highest_resolution().download(download_path)
 	video_clip = VideoFileClip(mp4)
+	# code for mp3 conversion
+	audio_file = video_clip.audio
+	audio_file.write_audiofile("audio.mp3")
+	audio_file.close()
+	shutil.move("audio.mp3", download_path)
+	# code for mp3 conversion
 	video_clip.close()
 	messagebox.showinfo("Download Complete", "Video downloaded to " + download_path)
 

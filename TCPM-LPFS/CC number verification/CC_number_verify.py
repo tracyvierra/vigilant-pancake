@@ -12,6 +12,7 @@ odd_sum = 0
 double_list = []
 even_sum = 0
 number = list(card_num)
+double_string = ""
 
 for (idx, val) in enumerate(number):
 	if idx % 2 != 0:
@@ -19,8 +20,26 @@ for (idx, val) in enumerate(number):
 	else:
 		double_list.append(int(val) * 2)
 
-		
+# converting the list back to a string.
+double_string = ""
+for x in double_list:
+	double_string += str(x)
 
-print(double_list)
-print(odd_sum)
+# Converting the string back to a list.
+double_list = list(double_string)
+
+for x in double_list:
+	even_sum += int(x)
+
+net_sum = odd_sum + even_sum
+if net_sum % 10 == 0:
+	print("The number is valid.")
+else:
+	print("The number is invalid.")
+
+
+# print(double_list)
+# print(double_string)
+# print(odd_sum)
+# print(even_sum)
 

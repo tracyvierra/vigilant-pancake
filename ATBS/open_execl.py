@@ -6,7 +6,7 @@
 
 # Usage:
 
-from termios import B1000000
+
 import openpyxl
 import os
 
@@ -21,9 +21,10 @@ workbook.get_sheet_names()
 
 cell = sheet['A1']
 cell.value
-print(str(cell.value))
-print(str(sheet['A1'].value))	# if you don't want to save the cell 
-print(str(sheet['B1'].value))		
-print(str(sheet['C1'].value))
+# print(str(cell.value))
+# print(str(sheet['A1'].value))	# if you don't want to save the cell 
+# print(str(sheet['B1'].value))		
+# print(str(sheet['C1'].value))
 
-
+for i in range(1, 8):
+	print(i, sheet.cell(row=i, column=2).value)

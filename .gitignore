@@ -32,6 +32,6 @@
 *.su
 .vscode/settings.json
 *.pyc
-*.mp3
 *.png
+*.mp3
 

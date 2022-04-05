@@ -54,11 +54,13 @@ def date():
 	speak("The current date is " + date)
 
 
-voice = int(input("Select voice: 1. male 2. female: "))
+voice = int(input("Enter number to select voice for Jarvis: 1. male 2. female: "))
 getvoices(voice)
 
 time()
 date()
+
+
 
 	
 # while True:

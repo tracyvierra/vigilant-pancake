@@ -25,11 +25,33 @@ import urllib.parse 		# url parse
 import urllib.error 		# url error
 import urllib.request 		# url request
 
-
-
-print("Hello, I am Jarvis. How can I help you?")
-
 engine = pyttsx3.init()
-engine.say("Hello, I am Jarvis. How can I help you?")
-engine.runAndWait()
+
+
+# print("Hello, I am Jarvis. How can I help you?")
+# engine.say("Hello, I am Jarvis. How can I help you?")
+# engine.runAndWait()
+
+
+def speak(audio):
+	engine.say(audio)
+	engine.runAndWait()
+
+def getvoices(voice):
+	voices = engine.getProperty('voices')
+	# print(voices[1].id)
+	if voice == 1:
+		engine.setProperty('voice', voices[0].id)
+	if voice == 2:
+		engine.setProperty('voice', voices[1].id)
+	
+while True:
+	voice = int(input("Select voice: 1. male 2. female: "))
+	getvoices(voice)
+	audio = "Hello, I am Jarvis. How can I help you?"
+	speak(audio)
+
+
+
+
 

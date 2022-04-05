@@ -53,23 +53,78 @@ def date():
 	date = datetime.datetime.now().strftime("%d-%m-%Y")
 	speak("The current date is " + date)
 
+def greeting():
+	hour = int(datetime.datetime.now().hour)
+	if hour >= 0 and hour < 12:
+		speak("Good Morning!")
+	elif hour >= 12 and hour < 18:
+		speak("Good Afternoon!")
+	elif hour >= 18 and hour < 24:
+		speak("Good Evening!")
 
-voice = int(input("Enter number to select voice for Jarvis: 1. male 2. female: "))
+def takeCommandCMD():
+	query = input("Please tell me how I can help? : ")
+	return query
+
+def sendEmail(to, subject, content):
+	server = smtplib.SMTP('smtp.gmail.com', 587)
+	server.ehlo()
+	server.starttls()
+	server.login('tracyv', 'Tr1cky1!')
+	server.sendmail(from_addr='tracyv@gmail.com', to_addrs=to, msg=content)
+
+
+def wishme():
+	greeting()
+	time()
+	date()
+	speak("Jarvis at your service, please tell me how I can help?")
+
+voice = int(input('Enter number to select voice for Jarvis: \n1. Male \n2. Female \n'))
 getvoices(voice)
 
-time()
-date()
 
 
 
-	
-# while True:
-# 	voice = int(input("Select voice: 1. male 2. female: "))
-# 	getvoices(voice)
-# 	audio = "Hello, I am Jarvis. How can I help you?"
-# 	speak(audio)
-
-
-
-
-
+if __name__ == '__main__':
+	wishme()
+	while True:
+		query = takeCommandCMD().lower()
+		if 'time' in query:
+			time()
+		elif 'date' in query:
+			date()
+		elif 'wikipedia' in query:
+			speak("Searching Wikipedia...")
+			query = query.replace("wikipedia", "")
+			results = wikipedia.summary(query, sentences=2)
+			speak("According to Wikipedia")
+			print(results)
+			speak(results)
+		elif 'open youtube' in query:
+			webbrowser.open("youtube.com")
+		elif 'open google' in query:
+			webbrowser.open("google.com")
+		elif 'open stackoverflow' in query:
+			webbrowser.open("stackoverflow.com")
+		elif 'play music' in query:
+			music_dir = 'D:\\Non Critical\\songs\\Favorite Songs2'
+			songs = os.listdir(music_dir)
+			print(songs)
+			os.startfile(os.path.join(music_dir, songs[0]))
+		elif 'open code' in query:
+			codePath = 'D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
+			os.startfile(codePath)
+		elif 'email to nicole' in query:
+			try:
+				speak("What should I say?")
+				content = takeCommandCMD()
+				to = "buggirl_2057@yahoo.com"
+				subject = "My Swee!"
+				sendEmail(to, subject, content)
+				speak("Email has been sent!")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend Nicole is not responding")
+		
+			

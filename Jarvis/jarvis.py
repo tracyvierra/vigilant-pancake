@@ -6,7 +6,6 @@
 
 # Usage:
 
-from turtle import clear
 import speech_recognition as sr # speech recognition
 import pyttsx3 			# text to speech
 import datetime 		# date and time	

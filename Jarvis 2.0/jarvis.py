@@ -49,10 +49,16 @@ def time():
 	time = datetime.datetime.now().strftime("%I:%M:%S")
 	speak("The current time is " + time)
 
+def date():
+	date = datetime.datetime.now().strftime("%d-%m-%Y")
+	speak("The current date is " + date)
+
+
 voice = int(input("Select voice: 1. male 2. female: "))
 getvoices(voice)
 
 time()
+date()
 
 	
 # while True:

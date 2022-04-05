@@ -126,32 +126,32 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry my friend Nicole is not responding")
-		elif 'roll a six sided die' in query:
-			speak("Rolling the dice...")
+		elif 'roll a six sided' in query:
+			speak("Rolling the six sided die...")
 			roll = random.randint(1, 6)
 			speak("The result is " + str(roll))
-		elif 'roll a eight sided die' in query:
-			speak("Rolling the dice...")
+		elif 'roll a eight sided' in query:
+			speak("Rolling the eight sided die...")
 			roll = random.randint(1, 8)
 			speak("The result is " + str(roll))
-		elif 'roll a ten sided die' in query:
-			speak("Rolling the dice...")
+		elif 'roll a ten sided' in query:
+			speak("Rolling the ten sided die...")
 			roll = random.randint(1, 10)
 			speak("The result is " + str(roll))
-		elif 'roll a twelve sided die' in query:
-			speak("Rolling the dice...")
+		elif 'roll a twelve sided' in query:
+			speak("Rolling the twelve sided die...")
 			roll = random.randint(1, 12)
 			speak("The result is " + str(roll))
-		elif 'roll a twenty sided die' in query:
-			speak("Rolling the dice...")
+		elif 'roll a twenty sided' in query:
+			speak("Rolling the twenty sided die...")
 			roll = random.randint(1, 20)
 			speak("The result is " + str(roll))
-		elif 'roll a hundred sided die' in query:
-			speak("Rolling the dice...")
+		elif 'roll a hundred sided' in query:
+			speak("Rolling the one hundred sided die...")
 			roll = random.randint(1, 100)
 			speak("The result is " + str(roll))
-		elif 'roll a percentile die' in query:
-			speak("Rolling the dice...")
+		elif 'roll a percentile' in query:
+			speak("Rolling the percentile die...")
 			roll = random.randint(1, 100)
 			speak("The result is " + str(roll) + "%")
 		

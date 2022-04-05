@@ -126,5 +126,34 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry my friend Nicole is not responding")
+		elif 'roll a six sided die' in query:
+			speak("Rolling the dice...")
+			roll = random.randint(1, 6)
+			speak("The result is " + str(roll))
+		elif 'roll a eight sided die' in query:
+			speak("Rolling the dice...")
+			roll = random.randint(1, 8)
+			speak("The result is " + str(roll))
+		elif 'roll a ten sided die' in query:
+			speak("Rolling the dice...")
+			roll = random.randint(1, 10)
+			speak("The result is " + str(roll))
+		elif 'roll a twelve sided die' in query:
+			speak("Rolling the dice...")
+			roll = random.randint(1, 12)
+			speak("The result is " + str(roll))
+		elif 'roll a twenty sided die' in query:
+			speak("Rolling the dice...")
+			roll = random.randint(1, 20)
+			speak("The result is " + str(roll))
+		elif 'roll a hundred sided die' in query:
+			speak("Rolling the dice...")
+			roll = random.randint(1, 100)
+			speak("The result is " + str(roll))
+		elif 'roll a percentile die' in query:
+			speak("Rolling the dice...")
+			roll = random.randint(1, 100)
+			speak("The result is " + str(roll) + "%")
+		
 		
 			

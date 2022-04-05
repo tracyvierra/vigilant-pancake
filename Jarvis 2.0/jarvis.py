@@ -44,12 +44,22 @@ def getvoices(voice):
 		engine.setProperty('voice', voices[0].id)
 	if voice == 2:
 		engine.setProperty('voice', voices[1].id)
+
+def time():
+	time = datetime.datetime.now().strftime("%I:%M:%S")
+	speak("The current time is " + time)
+
+voice = int(input("Select voice: 1. male 2. female: "))
+getvoices(voice)
+
+time()
+
 	
-while True:
-	voice = int(input("Select voice: 1. male 2. female: "))
-	getvoices(voice)
-	audio = "Hello, I am Jarvis. How can I help you?"
-	speak(audio)
+# while True:
+# 	voice = int(input("Select voice: 1. male 2. female: "))
+# 	getvoices(voice)
+# 	audio = "Hello, I am Jarvis. How can I help you?"
+# 	speak(audio)
 
 
 

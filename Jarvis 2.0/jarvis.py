@@ -178,8 +178,78 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry my friend email is not responding")
+		elif 'weather' in query:
+			speak("What is the city?")
+			city = takeCommandMIC()
+			speak("What is the country?")
+			country = takeCommandMIC()
+			url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=271d1234d3f497eed5b1d80a07b3fcd1"
+			json_data = requests.get(url).json()
+			temp = json_data['main']['temp']
+			temp = temp - 273.15
+			temp = (temp * (9/5)) + 32
+			temp = round(temp, 2)
+			speak("The temperature in " + city + " is " + str(temp) + " degrees farenheit")
+		elif 'create list' in query:
+			speak("What is the name of the list?")
+			name = takeCommandMIC()
+			speak("What should I put in the list?")
+			content = takeCommandMIC()
+			list_name = name + ".txt"
+			with open(list_name, 'w') as f:
+				f.write(content)
+			speak("List has been created")
+		elif 'read list' in query:
+			speak("What is the name of the list?")
+			name = takeCommandMIC()
+			list_name = name + ".txt"
+			with open(list_name, 'r') as f:
+				content = f.read()
+				print(content)
+				speak(content)
+		elif 'delete list' in query:
+			speak("What is the name of the list?")
+			name = takeCommandMIC()
+			list_name = name + ".txt"
+			os.remove(list_name)
+			speak("List has been deleted")
+		elif 'create text file' in query:
+			speak("What is the name of the file?")
+			name = takeCommandMIC()
+			speak("What should I put in the file?")
+			content = takeCommandMIC()
+			file_name = name + ".txt"
+			with open(file_name, 'w') as f:
+				f.write(content)
+			speak("File has been created")
+		elif 'read text file' in query:
+			speak("What is the name of the file?")
+			name = takeCommandMIC()
+			file_name = name + ".txt"
+			with open(file_name, 'r') as f:
+				content = f.read()
+				print(content)
+				speak(content)
+		elif 'delete text file' in query:
+			speak("What is the name of the file?")
+			name = takeCommandMIC()
+			file_name = name + ".txt"
+			os.remove(file_name)
+			speak("File has been deleted")
+		elif 'create folder' in query:
+			speak("What is the name of the folder?")
+			name = takeCommandMIC()
+			os.mkdir(name)
+			speak("Folder has been created")
+		elif 'delete folder' in query:
+			speak("What is the name of the folder?")
+			name = takeCommandMIC()
+			os.rmdir(name)
+			speak("Folder has been deleted")
 		
 		
+		
+
 		
 		
 		

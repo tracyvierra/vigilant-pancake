@@ -6,6 +6,7 @@
 
 # Usage:
 
+
 import speech_recognition as sr # speech recognition
 import pyttsx3 			# text to speech
 import datetime 		# date and time	
@@ -66,15 +67,31 @@ def takeCommandCMD():
 	query = input("Please tell me how I can help? : ")
 	return query
 
-def sendEmail(to, subject, content):
+def takeCommandMIC():
+	r = sr.Recognizer()
+	with sr.Microphone() as source:
+		print("Listening...")
+		r.pause_threshold = 1
+		audio = r.listen(source)
+	try:
+		print("Recognizing...")
+		query = r.recognize_google(audio, language='en-US')
+		print(f"User said: {query}\n")
+	except Exception as e:
+		print(e)
+		print("Say that again please...")
+		return "None"
+	return query
+
+
+def sendEmail(to, content):
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.ehlo()
 	server.starttls()
-	server.login('tracyv', 'Tr1cky1!')
-	server.sendmail(from_addr='tracyv@gmail.com', to_addrs=to, msg=content)
-
+	
 
 def wishme():
+	speak("Welcome back sir!")
 	greeting()
 	time()
 	date()
@@ -89,7 +106,7 @@ getvoices(voice)
 if __name__ == '__main__':
 	wishme()
 	while True:
-		query = takeCommandCMD().lower()
+		query = takeCommandMIC().lower()
 		if 'time' in query:
 			time()
 		elif 'date' in query:

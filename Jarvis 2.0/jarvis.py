@@ -1,6 +1,6 @@
 # Author: Tracy Vierra
 # Date Created: 4/5/2022
-# Date Modified: 4/5/2022
+# Date Modified: 4/6/2022
 
 # Description: Jarvis 2.0 personal assistant in python.
 
@@ -27,6 +27,8 @@ import urllib.parse 		# url parse
 import urllib.error 		# url error
 import urllib.request 		# url request
 import pyjokes
+import pyautogui
+from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd
 
@@ -100,6 +102,12 @@ def sendEmail(receiver, subject, content):
 	server_ssl.send_message(email)
 	server_ssl.close()
 	print('successfully sent the mail')
+
+def sendWhatsApp_msg(phone_num, msg):
+	url = "https://api.whatsapp.com/send?phone={}&text={}".format(phone_num, msg)
+	webbrowser.open(url)
+	sleep(8)
+	pyautogui.press('enter')
 
 def wishme():
 	speak("Welcome back sir!")
@@ -179,17 +187,21 @@ if __name__ == '__main__':
 				print(e)
 				speak("Sorry my friend email is not responding")
 		elif 'weather' in query:
-			speak("What is the city?")
-			city = takeCommandMIC()
-			speak("What is the country?")
-			country = takeCommandMIC()
-			url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=271d1234d3f497eed5b1d80a07b3fcd1"
-			json_data = requests.get(url).json()
-			temp = json_data['main']['temp']
-			temp = temp - 273.15
-			temp = (temp * (9/5)) + 32
-			temp = round(temp, 2)
-			speak("The temperature in " + city + " is " + str(temp) + " degrees farenheit")
+			try:
+				speak("What is the city?")
+				city = takeCommandMIC()
+				speak("What is the country?")
+				country = takeCommandMIC()
+				url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=271d1234d3f497eed5b1d80a07b3fcd1"
+				json_data = requests.get(url).json()
+				temp = json_data['main']['temp']
+				temp = temp - 273.15
+				temp = (temp * (9/5)) + 32
+				temp = round(temp, 2)
+				speak("The temperature in " + city + " is " + str(temp) + " degrees farenheit")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend weather API is not responding")
 		elif 'create list' in query:
 			speak("What is the name of the list?")
 			name = takeCommandMIC()
@@ -246,6 +258,22 @@ if __name__ == '__main__':
 			name = takeCommandMIC()
 			os.rmdir(name)
 			speak("Folder has been deleted")
+		elif 'whatsapp message' in query:
+			user_name = {'Tracy': '+15093934105', 'Nicole': '+15094211558'}
+			try:
+				speak("Who should I send the message to?")
+				name = takeCommandMIC()
+				phone_num = user_name[name]
+				speak("What should I say?")
+				content = takeCommandMIC()
+				sendWhatsApp_msg(phone_num, content)
+				speak("Message has been sent")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend whatsapp is not responding")
+		
+
+		
 		
 		
 		

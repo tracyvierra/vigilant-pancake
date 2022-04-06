@@ -129,45 +129,81 @@ if __name__ == '__main__':
 		elif 'date' in query:
 			date()
 		elif 'wiki' in query:
-			speak("Searching Wikipedia...")
-			query = query.replace("wikipedia", "")
-			results = wikipedia.summary(query, sentences=2)
-			speak("According to Wikipedia")
-			print(results)
-			speak(results)
+			try:
+				speak("Searching Wikipedia...")
+				query = query.replace("wikipedia", "")
+				results = wikipedia.summary(query, sentences=2)
+				speak("According to Wikipedia")
+				print(results)
+				speak(results)
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not find any results")
 		elif 'open youtube' in query:
-			webbrowser.open("youtube.com")
+			try:
+				webbrowser.open("youtube.com")
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not open youtube")
 		elif 'open google' in query:
-			webbrowser.open("google.com")
+			try:
+				webbrowser.open("google.com")
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not open google")
 		elif 'open stackoverflow' in query:
-			webbrowser.open("stackoverflow.com")
+			try:
+				webbrowser.open("stackoverflow.com")
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not open stackoverflow")
 		elif 'play music' in query:
-			music_dir = 'D:\\music\\Tracy Vierra\\420'
-			songs = os.listdir(music_dir)
-			print(songs)
-			os.startfile(os.path.join(music_dir, songs[0]))
+			try:
+				music_dir = 'D:\\music\\Tracy Vierra\\420'
+				songs = os.listdir(music_dir)
+				print(songs)
+				os.startfile(os.path.join(music_dir, songs[0]))
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not play music")
 		elif 'open code' in query:
-			codePath = 'D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
-			os.startfile(codePath)
+			try:
+				codePath = 'D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
+				os.startfile(codePath)
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not open code")
 		elif 'percentile' in query:
-			speak("Rolling the percentile die...")
-			roll = random.randint(1, 100)
-			speak("The result is " + str(roll) + "%")
+			try:
+				speak("Rolling the percentile die...")
+				roll = random.randint(1, 100)
+				speak("The result is " + str(roll) + "%")
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not roll the percentile die")
 		elif 'search' in query:
-			query = query.replace("search", "")
-			query = query.replace("for", "")
-			query = query.replace("on", "")
-			query = query.replace("google", "")
-			query = query.replace("youtube", "")
-			query = query.replace("stackoverflow", "")
-			query = query.replace(" ", "+")
-			webbrowser.open("https://www.google.com/search?q=" + query)
+			try:
+				query = query.replace("search", "")
+				query = query.replace("for", "")
+				query = query.replace("on", "")
+				query = query.replace("google", "")
+				query = query.replace("youtube", "")
+				query = query.replace("stackoverflow", "")
+				query = query.replace(" ", "+")
+				webbrowser.open("https://www.google.com/search?q=" + query)
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not search for " + query)
 		elif 'who are you' in query:
 			speak("I am Jarvis, your personal assistant. I am here to make your life easier!")
 		elif 'who made you' in query:
 			speak("I have been created by Tracy")
 		elif 'tell me a joke' in query:
-			speak(pyjokes.get_joke())
+			try:
+				speak(pyjokes.get_joke())
+			except Exception as e:
+				print(e)
+				speak("Sorry sir, I could not tell you a joke")
 		elif 'offline' in query:
 			speak("Jarvis is going offline")
 			exit()
@@ -203,61 +239,102 @@ if __name__ == '__main__':
 				print(e)
 				speak("Sorry my friend weather API is not responding")
 		elif 'create list' in query:
-			speak("What is the name of the list?")
-			name = takeCommandMIC()
-			speak("What should I put in the list?")
-			content = takeCommandMIC()
-			list_name = name + ".txt"
-			with open(list_name, 'w') as f:
-				f.write(content)
-			speak("List has been created")
+			try:
+				speak("What is the name of the list?")
+				name = takeCommandMIC()
+				speak("What should I put in the list?")
+				content = takeCommandMIC()
+				list_name = name + ".txt"
+				with open(list_name, 'w') as f:
+					f.write(content)
+				speak("List has been created")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend list is not responding")
 		elif 'read list' in query:
-			speak("What is the name of the list?")
-			name = takeCommandMIC()
-			list_name = name + ".txt"
-			with open(list_name, 'r') as f:
-				content = f.read()
-				print(content)
-				speak(content)
+			try:
+				speak("What is the name of the list?")
+				name = takeCommandMIC()
+				list_name = name + ".txt"
+				with open(list_name, 'r') as f:
+					content = f.read()
+					print(content)
+					speak(content)
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend list is not responding")
 		elif 'delete list' in query:
-			speak("What is the name of the list?")
-			name = takeCommandMIC()
-			list_name = name + ".txt"
-			os.remove(list_name)
-			speak("List has been deleted")
+			try:
+				speak("What is the name of the list?")
+				name = takeCommandMIC()
+				list_name = name + ".txt"
+				os.remove(list_name)
+				speak("List has been deleted")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend list is not responding")
 		elif 'create text file' in query:
-			speak("What is the name of the file?")
-			name = takeCommandMIC()
-			speak("What should I put in the file?")
-			content = takeCommandMIC()
-			file_name = name + ".txt"
-			with open(file_name, 'w') as f:
-				f.write(content)
-			speak("File has been created")
+			try:
+				speak("What is the name of the file?")
+				name = takeCommandMIC()
+				speak("What should I put in the file?")
+				content = takeCommandMIC()
+				file_name = name + ".txt"
+				with open(file_name, 'w') as f:
+					f.write(content)
+				speak("File has been created")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend file is not responding")
 		elif 'read text file' in query:
-			speak("What is the name of the file?")
-			name = takeCommandMIC()
-			file_name = name + ".txt"
-			with open(file_name, 'r') as f:
-				content = f.read()
-				print(content)
-				speak(content)
+			try:
+				speak("What is the name of the file?")
+				name = takeCommandMIC()
+				file_name = name + ".txt"
+				with open(file_name, 'r') as f:
+					content = f.read()
+					print(content)
+					speak(content)
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend file is not responding")
 		elif 'delete text file' in query:
-			speak("What is the name of the file?")
-			name = takeCommandMIC()
-			file_name = name + ".txt"
-			os.remove(file_name)
-			speak("File has been deleted")
+			try:
+				speak("What is the name of the file?")
+				name = takeCommandMIC()
+				file_name = name + ".txt"
+				os.remove(file_name)
+				speak("File has been deleted")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend file is not responding")
 		elif 'create folder' in query:
-			speak("What is the name of the folder?")
-			name = takeCommandMIC()
-			os.mkdir(name)
-			speak("Folder has been created")
+			try:
+				speak("What is the name of the folder?")
+				name = takeCommandMIC()
+				os.mkdir(name)
+				speak("Folder has been created")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend folder is not responding")
 		elif 'delete folder' in query:
-			speak("What is the name of the folder?")
-			name = takeCommandMIC()
-			os.rmdir(name)
-			speak("Folder has been deleted")
+			try:
+				speak("What is the name of the folder?")
+				name = takeCommandMIC()
+				os.rmdir(name)
+				speak("Folder has been deleted")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend folder is not responding")
+		elif 'open folder' in query:
+			try:
+				speak("What is the name of the folder?")
+				name = takeCommandMIC()
+				os.chdir(name)
+				speak("Folder has been opened")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend folder is not responding")
 		elif 'whatsapp message' in query:
 			user_name = {'Tracy': '+15093934105', 'Nicole': '+15094211558'}
 			try:

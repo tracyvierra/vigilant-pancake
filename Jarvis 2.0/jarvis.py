@@ -28,7 +28,7 @@ import urllib.error 		# url error
 import urllib.request 		# url request
 import pyjokes
 from email.message import EmailMessage
-from secrets import senderemail, epwd, to, gmail_user, gmail_pwd
+from secrets import senderemail, gmail_user, gmail_pwd
 
 
 engine = pyttsx3.init()

@@ -348,6 +348,17 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry my friend whatsapp is not responding")
+		elif 'news' in query:
+			try:
+				url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=37ac9a803d7b4f509cae0d11b6c40365"
+				json_data = requests.get(url).json()
+				articles = json_data['articles']
+				for article in articles:
+					print(article['title'])
+					speak(article['title'])
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend news API is not responding")
 		
 
 		

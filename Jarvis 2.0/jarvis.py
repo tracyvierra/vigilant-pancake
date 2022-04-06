@@ -7,6 +7,7 @@
 # Usage:
 
 
+from unicodedata import name
 import speech_recognition as sr # speech recognition
 import pyttsx3 			# text to speech
 import datetime 		# date and time	
@@ -26,6 +27,7 @@ import urllib.parse 		# url parse
 import urllib.error 		# url error
 import urllib.request 		# url request
 import pyjokes
+from email.message import EmailMessage
 from secrets import senderemail, epwd, to, gmail_user, gmail_pwd
 
 
@@ -84,14 +86,18 @@ def takeCommandMIC():
 
 
 
-def sendEmail():
+def sendEmail(receiver, subject, content):
 	# SMTP_SSL Example
 	server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 	server_ssl.ehlo() # optional, called by login()
 	server_ssl.login(gmail_user, gmail_pwd)  
 	# ssl server doesn't support or need tls, so don't call server_ssl.starttls() 
-	server_ssl.sendmail(senderemail, to, content)
-	#server_ssl.quit()
+	email = EmailMessage()
+	email['From'] = senderemail
+	email['To'] = receiver
+	email['Subject'] = subject
+	email.set_content(content)
+	server_ssl.send_message(email)
 	server_ssl.close()
 	print('successfully sent the mail')
 
@@ -128,33 +134,13 @@ if __name__ == '__main__':
 		elif 'open stackoverflow' in query:
 			webbrowser.open("stackoverflow.com")
 		elif 'play music' in query:
-			music_dir = 'D:\\Non Critical\\songs\\Favorite Songs2'
+			music_dir = 'D:\\music\\Tracy Vierra\\420'
 			songs = os.listdir(music_dir)
 			print(songs)
 			os.startfile(os.path.join(music_dir, songs[0]))
 		elif 'open code' in query:
 			codePath = 'D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
 			os.startfile(codePath)
-		elif 'email tracy' in query:
-			try:
-				speak("What should I say?")
-				content = takeCommandMIC()
-				to = "tracyvierra@yahoo.com"
-				sendEmail()
-				speak("Email has been sent!")
-			except Exception as e:
-				print(e)
-				speak("Sorry my friend email is not responding")
-		elif 'email nicole' in query:
-			try:
-				speak("What should I say?")
-				content = takeCommandMIC()
-				to = "buggirl_2057@yahoo.com"
-				sendEmail()
-				speak("Email has been sent!")
-			except Exception as e:
-				print(e)
-				speak("Sorry my friend email is not responding")
 		elif 'percentile' in query:
 			speak("Rolling the percentile die...")
 			roll = random.randint(1, 100)
@@ -177,16 +163,23 @@ if __name__ == '__main__':
 		elif 'offline' in query:
 			speak("Jarvis is going offline")
 			exit()
-		elif 'mail to' in query:
+		elif 'email' in query:
+			email_list = {'Tracy': 'tracyvierra@yahoo.com', 'Nicole': 'buggirl_2057@yahoo.com'}
 			try:
+				speak("Who should I send the email to?")
+				name = takeCommandMIC()
+				receiver = email_list[name]
+				speak("what is the subject?")
+				subject = takeCommandMIC()
 				speak("What should I say?")
 				content = takeCommandMIC()
-				to = query.replace("mail to", "")
-				sendEmail()
+				sendEmail(receiver, subject, content)
 				speak("Email has been sent!")
 			except Exception as e:
 				print(e)
 				speak("Sorry my friend email is not responding")
+		
+		
 		
 		
 		

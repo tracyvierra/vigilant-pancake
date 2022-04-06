@@ -28,10 +28,12 @@ import urllib.error 		# url error
 import urllib.request 		# url request
 import pyjokes
 import pyautogui
+import pywhatkit as kit
 from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd
 
+OPENWEATHER_APP_ID = "cce9b0c81b54033cc50f4e071fc11360"
 
 engine = pyttsx3.init()
 
@@ -108,6 +110,29 @@ def sendWhatsApp_msg(phone_num, msg):
 	webbrowser.open(url)
 	sleep(8)
 	pyautogui.press('enter')
+
+def get_random_advice():
+	res = requests.get("https://api.adviceslip.com/advice").json()
+	return res['slip']['advice']
+
+def get_trending_movies():
+	trending_movies = []
+	res = requests.get(f"https://api.themoviedb.org/3/trending/movie/day?api_key=a300e27e1b4a17e70eee7745e3e1da69").json()
+	results = res["results"]
+	for r in results:
+        	trending_movies.append(r["original_title"])
+	return trending_movies[:10]
+
+def get_trending_tv_shows():
+	trending_tv_shows = []
+	res = requests.get(f"https://api.themoviedb.org/3/trending/tv/day?api_key=a300e27e1b4a17e70eee7745e3e1da69").json()
+	results = res["results"]
+	for r in results:
+        	trending_tv_shows.append(r["original_title"])
+	return trending_tv_shows[:10]
+
+def play_on_youtube(video):
+	kit.playonyt(video)
 
 def wishme():
 	speak("Welcome back sir!")
@@ -221,14 +246,14 @@ if __name__ == '__main__':
 				speak("Email has been sent!")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend email is not responding")
-		elif 'weather' in query:
+				speak("Sorry the email is not responding")
+		elif 'temperature' in query:
 			try:
 				speak("What is the city?")
 				city = takeCommandMIC()
 				speak("What is the country?")
 				country = takeCommandMIC()
-				url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=271d1234d3f497eed5b1d80a07b3fcd1"
+				url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=cce9b0c81b54033cc50f4e071fc11360"
 				json_data = requests.get(url).json()
 				temp = json_data['main']['temp']
 				temp = temp - 273.15
@@ -237,7 +262,7 @@ if __name__ == '__main__':
 				speak("The temperature in " + city + " is " + str(temp) + " degrees farenheit")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend weather API is not responding")
+				speak("Sorry the weather API is not responding")
 		elif 'create list' in query:
 			try:
 				speak("What is the name of the list?")
@@ -250,7 +275,7 @@ if __name__ == '__main__':
 				speak("List has been created")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend list is not responding")
+				speak("Sorry the list is not responding")
 		elif 'read list' in query:
 			try:
 				speak("What is the name of the list?")
@@ -262,7 +287,7 @@ if __name__ == '__main__':
 					speak(content)
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend list is not responding")
+				speak("Sorry the list is not responding")
 		elif 'delete list' in query:
 			try:
 				speak("What is the name of the list?")
@@ -272,7 +297,7 @@ if __name__ == '__main__':
 				speak("List has been deleted")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend list is not responding")
+				speak("Sorry the list is not responding")
 		elif 'create text file' in query:
 			try:
 				speak("What is the name of the file?")
@@ -285,7 +310,7 @@ if __name__ == '__main__':
 				speak("File has been created")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend file is not responding")
+				speak("Sorry the file is not responding")
 		elif 'read text file' in query:
 			try:
 				speak("What is the name of the file?")
@@ -297,7 +322,7 @@ if __name__ == '__main__':
 					speak(content)
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend file is not responding")
+				speak("Sorry the file is not responding")
 		elif 'delete text file' in query:
 			try:
 				speak("What is the name of the file?")
@@ -307,7 +332,7 @@ if __name__ == '__main__':
 				speak("File has been deleted")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend file is not responding")
+				speak("Sorry the file is not responding")
 		elif 'create folder' in query:
 			try:
 				speak("What is the name of the folder?")
@@ -316,7 +341,7 @@ if __name__ == '__main__':
 				speak("Folder has been created")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend folder is not responding")
+				speak("Sorry the folder is not responding")
 		elif 'delete folder' in query:
 			try:
 				speak("What is the name of the folder?")
@@ -325,7 +350,7 @@ if __name__ == '__main__':
 				speak("Folder has been deleted")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend folder is not responding")
+				speak("Sorry the folder is not responding")
 		elif 'open folder' in query:
 			try:
 				speak("What is the name of the folder?")
@@ -334,7 +359,7 @@ if __name__ == '__main__':
 				speak("Folder has been opened")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend folder is not responding")
+				speak("Sorry the folder is not responding")
 		elif 'whatsapp message' in query:
 			user_name = {'Tracy': '+15093934105', 'Nicole': '+15094211558'}
 			try:
@@ -347,7 +372,7 @@ if __name__ == '__main__':
 				speak("Message has been sent")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend whatsapp is not responding")
+				speak("Sorry the whatsapp service is not responding")
 		elif 'news' in query:
 			try:
 				url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=37ac9a803d7b4f509cae0d11b6c40365"
@@ -358,10 +383,67 @@ if __name__ == '__main__':
 					speak(article['title'])
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend news API is not responding")
-		
-
-		
+				speak("Sorry the news API is not responding")
+		# elif 'movies' in query:
+		# 	try:
+		# 		url = "https://api.themoviedb.org/3/movie/popular?api_key=a300e27e1b4a17e70eee7745e3e1da69&language=en-US&page=1"
+		# 		json_data = requests.get(url).json()
+		# 		movies = json_data['results']
+		# 		for movie in movies:
+		# 			print(movie['title'])
+		# 			speak(movie['title'])
+		# 	except Exception as e:
+		# 		print(e)
+		# 		speak("Sorry the movies API is not responding")
+		elif 'forecast' in query:
+			try:
+				speak("What is the name of the city?")
+				city = takeCommandMIC()
+				speak("What is the name of the country?")
+				country = takeCommandMIC()
+				url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=cce9b0c81b54033cc50f4e071fc11360"
+				json_data = requests.get(url).json()
+				weather = json_data['weather']
+				for w in weather:
+					print(w['description'])
+					speak(w['description'])
+			except Exception as e:
+				print(e)
+				speak("Sorry the weather API is not responding")
+		elif "advice" in query:
+			try:
+				speak(f"Here's some advice for you, sir")
+				advice = get_random_advice()
+				speak(advice)
+				speak("For your convenience, I am printing it on the screen sir.")
+				print(advice)
+			except Exception as e:
+				print(e)
+				speak("Sorry the advice API is not responding")
+		elif "trending movies" in query:
+			try:
+				speak(f"Some of the trending movies are: {get_trending_movies()}")
+				speak("For your convenience, I am printing it on the screen sir.")
+				print(*get_trending_movies(), sep='\n')
+			except Exception as e:
+				print(e)
+				speak("Sorry the trending movies API is not responding")
+		elif "trending tv shows" in query:
+			try:
+				speak(f"Some of the trending tv shows are: {get_trending_tv_shows()}")
+				speak("For your convenience, I am printing it on the screen sir.")
+				print(*get_trending_tv_shows(), sep='\n')
+			except Exception as e:
+				print(e)
+				speak("Sorry the trending tv shows API is not responding")
+		elif 'youtube' in query:
+			try:
+				speak('What do you want to play on Youtube?')
+				video = takeCommandMIC().lower()
+				play_on_youtube(video)
+			except Exception as e:
+				print(e)
+				speak("Sorry the youtube API is not responding")
 		
 		
 		

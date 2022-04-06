@@ -135,17 +135,26 @@ if __name__ == '__main__':
 		elif 'open code' in query:
 			codePath = 'D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
 			os.startfile(codePath)
-		elif 'email to nicole' in query:
+		elif 'email tracy' in query:
 			try:
 				speak("What should I say?")
 				content = takeCommandMIC()
-				to = "buggirl_2057@yahoo.com"
-				subject = "My Swee!"
+				to = "tracyvierra@yahoo.com"
 				sendEmail()
 				speak("Email has been sent!")
 			except Exception as e:
 				print(e)
-				speak("Sorry my friend Nicole is not responding")
+				speak("Sorry my friend email is not responding")
+		elif 'email nicole' in query:
+			try:
+				speak("What should I say?")
+				content = takeCommandMIC()
+				to = "buggirl_2057@yahoo.com"
+				sendEmail()
+				speak("Email has been sent!")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend email is not responding")
 		elif 'percentile' in query:
 			speak("Rolling the percentile die...")
 			roll = random.randint(1, 100)
@@ -168,6 +177,17 @@ if __name__ == '__main__':
 		elif 'offline' in query:
 			speak("Jarvis is going offline")
 			exit()
+		elif 'mail to' in query:
+			try:
+				speak("What should I say?")
+				content = takeCommandMIC()
+				to = query.replace("mail to", "")
+				sendEmail()
+				speak("Email has been sent!")
+			except Exception as e:
+				print(e)
+				speak("Sorry my friend email is not responding")
+		
 		
 		
 		

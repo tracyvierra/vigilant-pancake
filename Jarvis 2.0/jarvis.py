@@ -25,13 +25,12 @@ import urllib.request		# url request
 import urllib.parse 		# url parse
 import urllib.error 		# url error
 import urllib.request 		# url request
+import pyjokes
+from secrets import senderemail, epwd, to, gmail_user, gmail_pwd
+
 
 engine = pyttsx3.init()
 
-
-# print("Hello, I am Jarvis. How can I help you?")
-# engine.say("Hello, I am Jarvis. How can I help you?")
-# engine.runAndWait()
 
 
 def speak(audio):
@@ -51,7 +50,7 @@ def time():
 	speak("The current time is " + time)
 
 def date():
-	date = datetime.datetime.now().strftime("%d-%m-%Y")
+	date = datetime.datetime.now().strftime("%m-%d-%Y")
 	speak("The current date is " + date)
 
 def greeting():
@@ -84,11 +83,17 @@ def takeCommandMIC():
 	return query
 
 
-def sendEmail(to, content):
-	server = smtplib.SMTP('smtp.gmail.com', 587)
-	server.ehlo()
-	server.starttls()
-	
+
+def sendEmail():
+	# SMTP_SSL Example
+	server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+	server_ssl.ehlo() # optional, called by login()
+	server_ssl.login(gmail_user, gmail_pwd)  
+	# ssl server doesn't support or need tls, so don't call server_ssl.starttls() 
+	server_ssl.sendmail(senderemail, to, content)
+	#server_ssl.quit()
+	server_ssl.close()
+	print('successfully sent the mail')
 
 def wishme():
 	speak("Welcome back sir!")
@@ -101,8 +106,6 @@ voice = int(input('Enter number to select voice for Jarvis: \n1. Male \n2. Femal
 getvoices(voice)
 
 
-
-
 if __name__ == '__main__':
 	wishme()
 	while True:
@@ -111,7 +114,7 @@ if __name__ == '__main__':
 			time()
 		elif 'date' in query:
 			date()
-		elif 'wikipedia' in query:
+		elif 'wiki' in query:
 			speak("Searching Wikipedia...")
 			query = query.replace("wikipedia", "")
 			results = wikipedia.summary(query, sentences=2)
@@ -138,39 +141,34 @@ if __name__ == '__main__':
 				content = takeCommandMIC()
 				to = "buggirl_2057@yahoo.com"
 				subject = "My Swee!"
-				sendEmail(to, content)
+				sendEmail()
 				speak("Email has been sent!")
 			except Exception as e:
 				print(e)
 				speak("Sorry my friend Nicole is not responding")
-		elif 'roll a six sided' in query:
-			speak("Rolling the six sided die...")
-			roll = random.randint(1, 6)
-			speak("The result is " + str(roll))
-		elif 'roll a eight sided' in query:
-			speak("Rolling the eight sided die...")
-			roll = random.randint(1, 8)
-			speak("The result is " + str(roll))
-		elif 'roll a ten sided' in query:
-			speak("Rolling the ten sided die...")
-			roll = random.randint(1, 10)
-			speak("The result is " + str(roll))
-		elif 'roll a twelve sided' in query:
-			speak("Rolling the twelve sided die...")
-			roll = random.randint(1, 12)
-			speak("The result is " + str(roll))
-		elif 'roll a twenty sided' in query:
-			speak("Rolling the twenty sided die...")
-			roll = random.randint(1, 20)
-			speak("The result is " + str(roll))
-		elif 'roll a hundred sided' in query:
-			speak("Rolling the one hundred sided die...")
-			roll = random.randint(1, 100)
-			speak("The result is " + str(roll))
-		elif 'roll a percentile' in query:
+		elif 'percentile' in query:
 			speak("Rolling the percentile die...")
 			roll = random.randint(1, 100)
 			speak("The result is " + str(roll) + "%")
+		elif 'search' in query:
+			query = query.replace("search", "")
+			query = query.replace("for", "")
+			query = query.replace("on", "")
+			query = query.replace("google", "")
+			query = query.replace("youtube", "")
+			query = query.replace("stackoverflow", "")
+			query = query.replace(" ", "+")
+			webbrowser.open("https://www.google.com/search?q=" + query)
+		elif 'who are you' in query:
+			speak("I am Jarvis, your personal assistant. I am here to make your life easier!")
+		elif 'who made you' in query:
+			speak("I have been created by Tracy")
+		elif 'tell me a joke' in query:
+			speak(pyjokes.get_joke())
+		elif 'offline' in query:
+			speak("Jarvis is going offline")
+			exit()
+		
 		
 		
 			

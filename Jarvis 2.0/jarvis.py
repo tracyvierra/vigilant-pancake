@@ -135,10 +135,10 @@ if __name__ == '__main__':
 		elif 'email to nicole' in query:
 			try:
 				speak("What should I say?")
-				content = takeCommandCMD()
+				content = takeCommandMIC()
 				to = "buggirl_2057@yahoo.com"
 				subject = "My Swee!"
-				sendEmail(to, subject, content)
+				sendEmail(to, content)
 				speak("Email has been sent!")
 			except Exception as e:
 				print(e)

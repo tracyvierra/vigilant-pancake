@@ -204,9 +204,6 @@ def open_calculator():
 def open_steam():
 	try:
 		speak("Opening Steam")
-		# sp.Popen('C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe')
-		# sp.run('start steam', shell=True)
-		# os.system("Steam")
 		os.startfile("C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.lnk")
 	except Exception as e:
 		print(e)
@@ -239,7 +236,6 @@ def open_firefox():
 def open_cmd():
 	try:
 		speak("Opening Command Prompt")
-		# sp.Popen('C:\\Windows\\System32\\cmd.exe')
 		sp.run('start cmd', shell=True)
 	except Exception as e:
 		print(e)
@@ -248,7 +244,6 @@ def open_cmd():
 def open_office():
 	try:
 		speak("Opening Libre Office")
-		# sp.run('start libreoffice:', shell=True)
 		sp.Popen('C:\\Program Files\\LibreOffice\\program\\soffice.exe')
 	except Exception as e:
 		print(e)

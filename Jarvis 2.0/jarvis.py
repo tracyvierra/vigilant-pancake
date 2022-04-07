@@ -266,6 +266,14 @@ def append_list(list_name, item):
 		print(e)
 		print("Failed to append to list")
 
+def open_calendar():
+	try:
+		sp.run('start outlookcal:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open calendar")
+	
+
 def wishme():
 	try:
 		speak("Welcome back sir!")
@@ -659,6 +667,14 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Reason is not responding")
+		elif 'calendar' in query:
+			try:
+				speak("Opening Calendar")
+				open_calendar()
+			except Exception as e:
+				print(e)
+				speak("Sorry Calendar is not responding")
+		
 		
 		
 		

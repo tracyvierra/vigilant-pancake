@@ -136,27 +136,31 @@ def get_trending_tv_shows():
 	return trending_tv_shows[:10]
 
 def play_on_youtube(video):
+	speak("Opening youtube")
 	kit.playonyt(video)
 
 def open_notepad():
-    	# os.startfile(paths['notepad'])
-	os.startfile("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Notepad++")
+	speak("Opening notepad")
+    	os.startfile("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Notepad++")
 
 def open_discord():
-	# webbrowser.open("https://discordapp.com/")
-   	# os.startfile("C:\\Users\\tracy\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe")
+	speak("Opening Discord")
 	sp.run('C:\\Users\\tracy\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe', shell=True)
 
 def open_camera():
+	speak("Opening camera")
 	sp.run('start microsoft.windows.camera:', shell=True)
 
 def open_wordpad():
+	speak("Opening Wordpad")
 	sp.Popen('C:\\Windows\\System32\\write.exe')
 
 def open_calculator():
+	speak("Opening calculator")
 	sp.run('start calc', shell=True)
 
 def open_steam():
+	speak("Opening Steam")
 	sp.run('start steam', shell=True)
 
 

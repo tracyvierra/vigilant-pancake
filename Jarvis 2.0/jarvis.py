@@ -33,11 +33,8 @@ from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd
 
-# from functions.online_ops import find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, search_on_wikipedia, send_email, send_whatsapp_message
-# from os_ops import open_calculator, open_camera, open_cmd, open_notepad, open_discord
-# from pprint import pprint
 
-OPENWEATHER_APP_ID = "cce9b0c81b54033cc50f4e071fc11360"
+
 
 engine = pyttsx3.init()
 
@@ -95,105 +92,178 @@ def takeCommandMIC():
 
 
 def sendEmail(receiver, subject, content):
-	# SMTP_SSL Example
-	server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-	server_ssl.ehlo() # optional, called by login()
-	server_ssl.login(gmail_user, gmail_pwd)  
-	# ssl server doesn't support or need tls, so don't call server_ssl.starttls() 
-	email = EmailMessage()
-	email['From'] = senderemail
-	email['To'] = receiver
-	email['Subject'] = subject
-	email.set_content(content)
-	server_ssl.send_message(email)
-	server_ssl.close()
-	print('successfully sent the mail')
+	try:
+
+		# SMTP_SSL Example
+		server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+		server_ssl.ehlo() # optional, called by login()
+		server_ssl.login(gmail_user, gmail_pwd)  
+		# ssl server doesn't support or need tls, so don't call server_ssl.starttls() 
+		email = EmailMessage()
+		email['From'] = senderemail
+		email['To'] = receiver
+		email['Subject'] = subject
+		email.set_content(content)
+		server_ssl.send_message(email)
+		server_ssl.close()
+		print('successfully sent the mail')
+	except Exception as e:
+		print(e)
+		print("Failed to send mail")
 
 def sendWhatsApp_msg(phone_num, msg):
-	url = "https://api.whatsapp.com/send?phone={}&text={}".format(phone_num, msg)
-	webbrowser.open(url)
-	sleep(8)
-	pyautogui.press('enter')
+	try:
+		url = "https://api.whatsapp.com/send?phone={}&text={}".format(phone_num, msg)
+		webbrowser.open(url)
+		sleep(8)
+		pyautogui.press('enter')
+	except Exception as e:
+		print(e)
+		print("Failed to send message")
 
 def get_random_advice():
-	res = requests.get("https://api.adviceslip.com/advice").json()
-	return res['slip']['advice']
+	try:
+		res = requests.get("https://api.adviceslip.com/advice").json()
+		return res['slip']['advice']
+	except Exception as e:
+		print(e)
+		print("Failed to get advice")
 
 def get_trending_movies():
-	trending_movies = []
-	res = requests.get(f"https://api.themoviedb.org/3/trending/movie/day?api_key=a300e27e1b4a17e70eee7745e3e1da69").json()
-	results = res["results"]
-	for r in results:
-        	trending_movies.append(r["original_title"])
-	return trending_movies[:10]
+	try:
+		trending_movies = []
+		res = requests.get(f"https://api.themoviedb.org/3/trending/movie/day?api_key=a300e27e1b4a17e70eee7745e3e1da69").json()
+		results = res["results"]
+		for r in results:
+ 		       	trending_movies.append(r["original_title"])
+		return trending_movies[:10]
+	except Exception as e:
+		print(e)
+		print("Failed to get trending movies")
 
 def get_trending_tv_shows():
-	trending_tv_shows = []
-	res = requests.get(f"https://api.themoviedb.org/3/trending/tv/day?api_key=a300e27e1b4a17e70eee7745e3e1da69").json()
-	results = res["results"]
-	for r in results:
-        	trending_tv_shows.append(r["original_title"])
-	return trending_tv_shows[:10]
+	try:
+		trending_tv_shows = []
+		res = requests.get(f"https://api.themoviedb.org/3/trending/tv/day?api_key=a300e27e1b4a17e70eee7745e3e1da69").json()
+		results = res["results"]
+		for r in results:
+ 		       	trending_tv_shows.append(r["original_title"])
+		return trending_tv_shows[:10]
+	except Exception as e:
+		print(e)
+		print("Failed to get trending tv shows")
 
 def play_on_youtube(video):
-	speak("Opening youtube")
-	kit.playonyt(video)
+	try:
+		speak("Opening youtube")
+		kit.playonyt(video)
+	except Exception as e:
+		print(e)
+		print("Failed to play on youtube")
 
 def open_notepad():
-	speak("Opening notepad")
-	os.startfile("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Notepad++")
+	try:
+		speak("Opening notepad")
+		os.startfile("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Notepad++")
+	except Exception as e:
+		print(e)
+		print("Failed to open notepad")
 
 def open_discord():
-	speak("Opening Discord")
-	sp.run('C:\\Users\\tracy\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe', shell=True)
+	try:
+		speak("Opening Discord")
+		sp.run('C:\\Users\\tracy\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open Discord")
 
 def open_camera():
-	speak("Opening camera")
-	sp.run('start microsoft.windows.camera:', shell=True)
+	try:
+		speak("Opening camera")
+		sp.run('start microsoft.windows.camera:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open camera")
 
 def open_wordpad():
-	speak("Opening Wordpad")
-	sp.Popen('C:\\Windows\\System32\\write.exe')
+	try:
+		speak("Opening Wordpad")
+		sp.Popen('C:\\Windows\\System32\\write.exe')
+	except Exception as e:
+		print(e)
+		print("Failed to open Wordpad")
 
 def open_calculator():
-	speak("Opening calculator")
-	sp.run('start calc', shell=True)
+	try:
+		speak("Opening calculator")
+		sp.run('start calc', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open calculator")
 
 def open_steam():
-	speak("Opening Steam")
-	# sp.Popen('C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe')
-	# sp.run('start steam', shell=True)
-	# os.system("Steam")
-	os.startfile("C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.lnk")
+	try:
+		speak("Opening Steam")
+		# sp.Popen('C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe')
+		# sp.run('start steam', shell=True)
+		# os.system("Steam")
+		os.startfile("C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.lnk")
+	except Exception as e:
+		print(e)
+		print("Failed to open Steam")
 
 def open_edge():
-	speak("Opening Edge")
-	sp.run('start microsoft-edge:', shell=True)
+	try:
+		speak("Opening Edge")
+		sp.run('start microsoft-edge:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open Edge")
 
 def open_chrome():
-	speak("Opening Chrome")
-	sp.run('start chrome', shell=True)
+	try:
+		speak("Opening Chrome")
+		sp.run('start chrome', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open Chrome")
 
 def open_firefox():
-	speak("Opening FireFox")
-	sp.run('start firefox', shell=True)
+	try:
+		speak("Opening FireFox")
+		sp.run('start firefox', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open FireFox")
 
 def open_cmd():
-	speak("Opening Command Prompt")
-	# sp.Popen('C:\\Windows\\System32\\cmd.exe')
-	sp.run('start cmd', shell=True)
+	try:
+		speak("Opening Command Prompt")
+		# sp.Popen('C:\\Windows\\System32\\cmd.exe')
+		sp.run('start cmd', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open Command Prompt")
 
 def open_office():
-	speak("Opening Libre Office")
-	# sp.run('start libreoffice:', shell=True)
-	sp.Popen('C:\\Program Files\\LibreOffice\\program\\soffice.exe')
+	try:
+		speak("Opening Libre Office")
+		# sp.run('start libreoffice:', shell=True)
+		sp.Popen('C:\\Program Files\\LibreOffice\\program\\soffice.exe')
+	except Exception as e:
+		print(e)
+		print("Failed to open Libre Office")
 
 def wishme():
-	speak("Welcome back sir!")
-	greeting()
-	time()
-	date()
-	speak("Jarvis at your service, please tell me how I can help?")
+	try:
+		speak("Welcome back sir!")
+		greeting()
+		time()
+		date()
+		speak("Jarvis at your service, please tell me how I can help?")
+	except Exception as e:
+		print(e)
+		print("Failed to wish me")
 
 voice = int(input('Enter number to select voice for Jarvis: \n1. Male \n2. Female \n'))
 getvoices(voice)

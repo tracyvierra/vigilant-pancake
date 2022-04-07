@@ -141,7 +141,7 @@ def play_on_youtube(video):
 
 def open_notepad():
 	speak("Opening notepad")
-    	os.startfile("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Notepad++")
+	os.startfile("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Notepad++")
 
 def open_discord():
 	speak("Opening Discord")

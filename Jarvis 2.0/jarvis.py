@@ -161,7 +161,8 @@ def open_calculator():
 
 def open_steam():
 	speak("Opening Steam")
-	sp.run('start steam', shell=True)
+	sp.Popen('C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe')
+	# sp.run('start steam', shell=True)
 
 def open_chrome():
 	speak("Opening Chrome")

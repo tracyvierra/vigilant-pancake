@@ -183,6 +183,11 @@ def open_cmd():
 	# sp.Popen('C:\\Windows\\System32\\cmd.exe')
 	sp.run('start cmd', shell=True)
 
+def open_office():
+	speak("Opening Libre Office")
+	# sp.run('start libreoffice:', shell=True)
+	sp.Popen('C:\\Program Files\\LibreOffice\\program\\soffice.exe')
+
 def wishme():
 	speak("Welcome back sir!")
 	greeting()
@@ -547,6 +552,13 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry command prompt is not responding")
+		elif 'office' in query:
+			try:
+				open_office()
+			except Exception as e:
+				print(e)
+				speak("Sorry office is not responding")
+		
 		
 		
 		

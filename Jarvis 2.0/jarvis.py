@@ -163,7 +163,13 @@ def open_steam():
 	speak("Opening Steam")
 	sp.run('start steam', shell=True)
 
+def open_chrome():
+	speak("Opening Chrome")
+	sp.run('start chrome', shell=True)
 
+def open_firefox():
+	speak("Opening FireFox")
+	sp.run('start firefox', shell=True)
 
 def wishme():
 	speak("Welcome back sir!")
@@ -481,6 +487,16 @@ if __name__ == '__main__':
 			open_notepad()
 		elif 'calculator' in query:
 			open_calculator()
+		elif 'wordpad' in query:
+			open_wordpad()
+		elif 'chrome' in query:
+			open_chrome()
+		elif 'firefox' in query:
+			open_firefox()
+		elif 'steam' in query:
+			open_steam()
+		
+		
 		
 		
 		

@@ -161,8 +161,14 @@ def open_calculator():
 
 def open_steam():
 	speak("Opening Steam")
-	sp.Popen('C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe')
+	# sp.Popen('C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe')
 	# sp.run('start steam', shell=True)
+	# os.system("Steam")
+	os.startfile("C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe")
+
+def open_edge():
+	speak("Opening Edge")
+	sp.run('start microsoft-edge:', shell=True)
 
 def open_chrome():
 	speak("Opening Chrome")
@@ -481,21 +487,56 @@ if __name__ == '__main__':
 				play_on_youtube(video)
 			except Exception as e:
 				print(e)
-				speak("Sorry the youtube API is not responding")
+				speak("Sorry youtube is not responding")
 		elif 'discord' in query:
-			open_discord()
+			try:
+				open_discord()
+			except Exception as e:
+				print(e)
+				speak("Sorry discord is not responding")
 		elif 'notepad' in query:
-			open_notepad()
+			try:
+				open_notepad()
+			except Exception as e:
+				print(e)
+				speak("Sorry notepad is not responding")
 		elif 'calculator' in query:
-			open_calculator()
+			try:
+				open_calculator()
+			except Exception as e:
+				print(e)
+				speak("Sorry calculator is not responding")
 		elif 'wordpad' in query:
-			open_wordpad()
+			try:
+				open_wordpad()
+			except Exception as e:
+				print(e)
+				speak("Sorry wordpad is not responding")
 		elif 'chrome' in query:
-			open_chrome()
+			try:
+				open_chrome()
+			except Exception as e:
+				print(e)
+				speak("Sorry chrome is not responding")
 		elif 'firefox' in query:
-			open_firefox()
+			try:
+				open_firefox()
+			except Exception as e:
+				print(e)
+				speak("Sorry firefox is not responding")
 		elif 'steam' in query:
-			open_steam()
+			try:
+				open_steam()
+			except Exception as e:
+				print(e)
+				speak("Sorry Steam is not responding")
+		elif 'edge' in query:
+			try:
+				open_edge()
+			except Exception as e:
+				print(e)
+				speak("Sorry Microsoft Edge is not responding")
+		
 		
 		
 		

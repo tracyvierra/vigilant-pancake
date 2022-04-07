@@ -180,7 +180,8 @@ def open_firefox():
 
 def open_cmd():
 	speak("Opening Command Prompt")
-	sp.Popen('C:\\Windows\\System32\\cmd.exe')
+	# sp.Popen('C:\\Windows\\System32\\cmd.exe')
+	sp.run('start cmd', shell=True)
 
 def wishme():
 	speak("Welcome back sir!")

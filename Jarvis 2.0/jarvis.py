@@ -272,6 +272,13 @@ def open_calendar():
 	except Exception as e:
 		print(e)
 		print("Failed to open calendar")
+
+def open_maps():
+	try:
+		sp.run('start maps:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open maps")
 	
 
 def wishme():
@@ -335,6 +342,7 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry sir, I could not play music")
+
 		elif 'open code' in query:
 			try:
 				codePath = 'D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'
@@ -342,6 +350,7 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry sir, I could not open code")
+		
 		elif 'percentile' in query:
 			try:
 				speak("Rolling the percentile die...")
@@ -350,6 +359,7 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry sir, I could not roll the percentile die")
+
 		elif 'search' in query:
 			try:
 				query = query.replace("search", "")
@@ -674,6 +684,14 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Calendar is not responding")
+		elif 'maps' in query:
+			try:
+				speak("Opening Maps")
+				open_maps()
+			except Exception as e:
+				print(e)
+				speak("Sorry Maps is not responding")
+		
 		
 		
 		

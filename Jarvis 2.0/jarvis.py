@@ -249,6 +249,23 @@ def open_office():
 		print(e)
 		print("Failed to open Libre Office")
 
+def open_reason():
+	try:
+		sp.Popen('C:\\Program Files\\Propellerhead\\Reason 10\\Reason.exe')
+		sleep(4)
+		pyautogui.press('enter')
+	except Exception as e:
+		print(e)
+		print("Failed to open Reason")
+
+def append_list(list_name, item):
+	try:
+		with open(list_name, 'a') as f:
+			f.write('\n' + item + '\n')
+	except Exception as e:
+		print(e)
+		print("Failed to append to list")
+
 def wishme():
 	try:
 		speak("Welcome back sir!")
@@ -407,6 +424,18 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry the list is not responding")
+		elif 'append list' in query:
+			try:
+				speak("Which list do you want to append?")
+				name = takeCommandMIC().lower()
+				list_name = name + ".txt"
+				speak("What do you want to append?")
+				append = takeCommandMIC().lower()
+				append_list(list_name, append)				
+			except Exception as e:
+				print(e)
+				speak("Sorry the list is not responding")
+		
 		elif 'delete list' in query:
 			try:
 				speak("What is the name of the list?")
@@ -503,7 +532,7 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry the news API is not responding")
-		elif 'top ten' in query:
+		elif 'top 20' in query:
 			try:
 				url = "https://api.themoviedb.org/3/movie/popular?api_key=a300e27e1b4a17e70eee7745e3e1da69&language=en-US&page=1"
 				json_data = requests.get(url).json()
@@ -542,7 +571,7 @@ if __name__ == '__main__':
 		elif "trending movies" in query:
 			try:
 				speak(f"Some of the trending movies are: {get_trending_movies()}")
-				speak("For your convenience, I am printing it on the screen sir.")
+				speak("For your convenience, I am printing it on the screen.")
 				print(*get_trending_movies(), sep='\n')
 			except Exception as e:
 				print(e)
@@ -550,7 +579,7 @@ if __name__ == '__main__':
 		elif "trending tv shows" in query:
 			try:
 				speak(f"Some of the trending tv shows are: {get_trending_tv_shows()}")
-				speak("For your convenience, I am printing it on the screen sir.")
+				speak("For your convenience, I am printing it on the screen.")
 				print(*get_trending_tv_shows(), sep='\n')
 			except Exception as e:
 				print(e)
@@ -623,6 +652,15 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry office is not responding")
+		elif 'reason' in query:
+			try:
+				speak("Opening Reason")
+				open_reason()
+			except Exception as e:
+				print(e)
+				speak("Sorry Reason is not responding")
+		
+		
 		
 		
 		

@@ -20,7 +20,7 @@ import requests			# request
 import json 			# json
 import time 			# time
 import sys 			# system
-import subprocess 		# subprocess
+import subprocess as sp		# subprocess
 import re 			# regular expression
 import urllib.request		# url request
 import urllib.parse 		# url parse
@@ -32,6 +32,10 @@ import pywhatkit as kit
 from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd
+
+# from functions.online_ops import find_my_ip, get_latest_news, get_random_advice, get_random_joke, get_trending_movies, get_weather_report, play_on_youtube, search_on_google, search_on_wikipedia, send_email, send_whatsapp_message
+# from os_ops import open_calculator, open_camera, open_cmd, open_notepad, open_discord
+# from pprint import pprint
 
 OPENWEATHER_APP_ID = "cce9b0c81b54033cc50f4e071fc11360"
 
@@ -133,6 +137,29 @@ def get_trending_tv_shows():
 
 def play_on_youtube(video):
 	kit.playonyt(video)
+
+def open_notepad():
+    	# os.startfile(paths['notepad'])
+	os.startfile("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Notepad++")
+
+def open_discord():
+	# webbrowser.open("https://discordapp.com/")
+   	# os.startfile("C:\\Users\\tracy\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe")
+	sp.run('C:\\Users\\tracy\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe', shell=True)
+
+def open_camera():
+	sp.run('start microsoft.windows.camera:', shell=True)
+
+def open_wordpad():
+	sp.Popen('C:\\Windows\\System32\\write.exe')
+
+def open_calculator():
+	sp.run('start calc', shell=True)
+
+def open_steam():
+	sp.run('start steam', shell=True)
+
+
 
 def wishme():
 	speak("Welcome back sir!")
@@ -384,17 +411,17 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry the news API is not responding")
-		# elif 'movies' in query:
-		# 	try:
-		# 		url = "https://api.themoviedb.org/3/movie/popular?api_key=a300e27e1b4a17e70eee7745e3e1da69&language=en-US&page=1"
-		# 		json_data = requests.get(url).json()
-		# 		movies = json_data['results']
-		# 		for movie in movies:
-		# 			print(movie['title'])
-		# 			speak(movie['title'])
-		# 	except Exception as e:
-		# 		print(e)
-		# 		speak("Sorry the movies API is not responding")
+		elif 'top ten' in query:
+			try:
+				url = "https://api.themoviedb.org/3/movie/popular?api_key=a300e27e1b4a17e70eee7745e3e1da69&language=en-US&page=1"
+				json_data = requests.get(url).json()
+				movies = json_data['results']
+				for movie in movies:
+					print(movie['title'])
+					speak(movie['title'])
+			except Exception as e:
+				print(e)
+				speak("Sorry the movies API is not responding")
 		elif 'forecast' in query:
 			try:
 				speak("What is the name of the city?")
@@ -444,6 +471,12 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry the youtube API is not responding")
+		elif 'discord' in query:
+			open_discord()
+		elif 'notepad' in query:
+			open_notepad()
+		elif 'calculator' in query:
+			open_calculator()
 		
 		
 		

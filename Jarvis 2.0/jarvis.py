@@ -164,7 +164,7 @@ def open_steam():
 	# sp.Popen('C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe')
 	# sp.run('start steam', shell=True)
 	# os.system("Steam")
-	os.startfile("C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.exe")
+	os.startfile("C:\\Users\\tracy\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Steam\\Steam.lnk")
 
 def open_edge():
 	speak("Opening Edge")
@@ -177,6 +177,10 @@ def open_chrome():
 def open_firefox():
 	speak("Opening FireFox")
 	sp.run('start firefox', shell=True)
+
+def open_cmd():
+	speak("Opening Command Prompt")
+	sp.Popen('C:\\Windows\\System32\\cmd.exe')
 
 def wishme():
 	speak("Welcome back sir!")
@@ -536,6 +540,13 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Microsoft Edge is not responding")
+		elif 'prompt' in query:
+			try:
+				open_cmd()
+			except Exception as e:
+				print(e)
+				speak("Sorry command prompt is not responding")
+		
 		
 		
 		

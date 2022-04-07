@@ -4,7 +4,7 @@
 
 # Description: Jarvis 2.0 personal assistant in python.
 
-# Usage:
+# Usage: jarvis.py
 
 
 from unicodedata import name

@@ -77,7 +77,7 @@ def takeCommandMIC():
 	r = sr.Recognizer()
 	with sr.Microphone() as source:
 		print("Listening...")
-		r.pause_threshold = 3
+		r.pause_threshold = 1
 		audio = r.listen(source)
 	try:
 		print("Recognizing...")
@@ -329,6 +329,15 @@ def open_windscribe():
 	except Exception as e:
 		print(e)
 		print("Failed to open windscribe")
+
+def open_screenshot():
+	try:
+		image = pyautogui.screenshot()
+		image.save('screenshot.png')
+		speak('Screenshot taken.')
+	except Exception as e:
+		print(e)
+		print("Failed to open screenshot")
 	
 
 def wishme():
@@ -791,6 +800,14 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Windscribe is not responding")
+		elif 'screenshot' in query:
+			try:
+				speak("Opening Screenshot")
+				open_screenshot()
+			except Exception as e:
+				print(e)
+				speak("Sorry Screenshot is not responding")
+		
 		
 		
 		

@@ -301,6 +301,13 @@ def open_microsoft_store():
 		print(e)
 		print("Failed to open microsoft store")
 
+def open_snipping_tool():
+	try:
+		sp.run('start shell:appsfolder\\Microsoft.SnippingTool_8wekyb3d8bbwe!App:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open snipping tool")
+
 	
 
 def wishme():
@@ -734,6 +741,15 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Microsoft Store is not responding")
+		
+		elif 'snipping tool' in query:
+			try:
+				speak("Opening Snipping Tool")
+				open_snipping_tool()
+			except Exception as e:
+				print(e)
+				speak("Sorry Snipping Tool is not responding")
+		
 		
 		
 		

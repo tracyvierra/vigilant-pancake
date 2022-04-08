@@ -356,6 +356,26 @@ def open_take_a_note():
 		print(e)
 		print("Failed to take a note")
 
+def open_send_sms_text():
+	try:
+		speak("What number please?")
+		number = takeCommandMIC()
+		number = number.replace(' ','')
+		if(number!=None):
+			speak("What message would you like to send?")
+			text = takeCommandMIC()
+			if(text!=None):
+				# sp.Popen('C:\\Program Files (x86)\\Windows Phone\\Windows Phone 10\\App\\10.0.17763.1\\Phone\\bin\\SMS.exe ' + number + ' ' + text)
+				server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+				server_ssl.ehlo() # optional, called by login()
+				server_ssl.login(gmail_user, gmail_pwd)  
+				server_ssl.sendmail( 'Jarvis', number + '@mms.att.net', text ) # using the address for AT&T Wireless, for Verizon, use 'vtext.com', for T-Mobile, use 'tmomail.net'.
+				speak("Text message sent")
+				print("Text message sent")
+	except Exception as e:
+		print(e)
+		print("Failed to send a text message")
+
 def wishme():
 	try:
 		speak("Welcome back sir!")
@@ -845,6 +865,14 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Take a Note is not responding")
+		elif 'send sms text' in query:
+			try:
+				speak("Opening Send SMS Text")
+				open_send_sms_text()
+			except Exception as e:
+				print(e)
+				speak("Sorry Send SMS Text is not responding")
+		
 		
 		
 		

@@ -275,10 +275,32 @@ def open_calendar():
 
 def open_maps():
 	try:
-		sp.run('start maps:', shell=True)
+		sp.run('start explorer shell:appsfolder\\Microsoft.WindowsMaps_8wekyb3d8bbwe!App:', shell=True)
 	except Exception as e:
 		print(e)
 		print("Failed to open maps")
+
+def open_voice_recorder():
+	try:
+		sp.run('start shell:appsfolder\\Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe!App:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open voice recorder")
+
+def open_snip_sketch():
+	try:
+		sp.run('start shell:appsfolder\\Microsoft.ScreenSketch_8wekyb3d8bbwe!App:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open snip sketch")
+
+def open_microsoft_store():
+	try:
+		sp.run('start shell:appsfolder\\Microsoft.WindowsStore_8wekyb3d8bbwe!App:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open microsoft store")
+
 	
 
 def wishme():
@@ -691,6 +713,28 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Maps is not responding")
+		elif 'voice recorder' in query:
+			try:
+				speak("Opening Voice Recorder")
+				open_voice_recorder()
+			except Exception as e:
+				print(e)
+				speak("Sorry Voice Recorder is not responding")
+		elif 'snip and sketch' in query:
+			try:
+				speak("Opening Snip and Sketch")
+				open_snip_sketch()
+			except Exception as e:
+				print(e)
+				speak("Sorry Snip and Sketch is not responding")
+		elif 'microsoft store' in query:
+			try:
+				speak("Opening Microsoft Store")
+				open_microsoft_store()
+			except Exception as e:
+				print(e)
+				speak("Sorry Microsoft Store is not responding")
+		
 		
 		
 		

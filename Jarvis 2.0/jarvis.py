@@ -77,7 +77,7 @@ def takeCommandMIC():
 	r = sr.Recognizer()
 	with sr.Microphone() as source:
 		print("Listening...")
-		r.pause_threshold = 1
+		r.pause_threshold = 3
 		audio = r.listen(source)
 	try:
 		print("Recognizing...")

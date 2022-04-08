@@ -338,7 +338,23 @@ def open_screenshot():
 	except Exception as e:
 		print(e)
 		print("Failed to open screenshot")
-	
+
+def open_take_a_note():	
+	try:
+		speak("Taking a note")
+		note_text = takeCommandMIC()
+		if(note_text!=None):
+			f = open('notes.txt','a')
+			timestamp = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+			f.write(timestamp + '\n')
+			note = note_text + '\n\n'
+			f.write(note)
+			f.close()
+			speak("Note taken")
+			print("Note taken.")
+	except Exception as e:
+		print(e)
+		print("Failed to take a note")
 
 def wishme():
 	try:
@@ -807,6 +823,14 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Screenshot is not responding")
+		elif 'take a note' in query:
+			try:
+				speak("Opening Take a Note")
+				open_take_a_note()
+			except Exception as e:
+				print(e)
+				speak("Sorry Take a Note is not responding")
+		
 		
 		
 		

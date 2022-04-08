@@ -29,6 +29,7 @@ import urllib.request 		# url request
 import pyjokes
 import pyautogui
 import pywhatkit as kit
+import logging
 from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd
@@ -43,8 +44,22 @@ FOLDER_NAME_QUESTION = "What is the name of the folder?"
 FOLDER_NOT_RESPONDING = "Sorry the folder is not responding"
 
 
-# SMTP mail gateway:
+# SMTP mail gateway constant:
 SMTP_GATEWAY = "smtp.gmail.com"
+
+# start logging file for session:
+x = datetime.datetime.now()
+file_name = x.strftime("%Y-%m-%d-%H-%M-%S")
+file_handler = logging.FileHandler(filename='jarvis_error_log-' + file_name + '.log', mode='w')
+handlers = [file_handler]
+
+logging.basicConfig(
+    level=logging.WARN, 
+    format='[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s',
+    handlers=handlers
+)
+
+logger = logging.getLogger('LOGGER_NAME')
 
 
 engine = pyttsx3.init()

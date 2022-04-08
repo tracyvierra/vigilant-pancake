@@ -1,6 +1,6 @@
 # Author: Tracy Vierra
 # Date Created: 4/5/2022
-# Date Modified: 4/7/2022
+# Date Modified: 4/8/2022
 
 # Description: Jarvis 2.0 personal assistant in python.
 
@@ -598,6 +598,21 @@ if __name__ == '__main__':
 				name = takeCommandMIC()
 				os.chdir(name)
 				speak("Folder has been opened")
+			except Exception as e:
+				print(e)
+				speak("Sorry the folder is not responding")
+		elif 'back one folder' in query:
+			try:
+				os.chdir('..')
+				print(os.getcwd())
+				speak("Folder has been opened")
+			except Exception as e:
+				print(e)
+				speak("Sorry the folder is not responding")
+		elif 'what folder' in query:
+			try:
+				print(os.getcwd())
+				speak(os.getcwd())
 			except Exception as e:
 				print(e)
 				speak("Sorry the folder is not responding")

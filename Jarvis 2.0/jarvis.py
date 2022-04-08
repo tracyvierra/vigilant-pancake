@@ -309,6 +309,12 @@ def open_snipping_tool():
 		print(e)
 		print("Failed to open snipping tool")
 
+def open_check_for_updates():
+	try:
+		sp.run('start shell:appsfolder\\Microsoft.WindowsUpdate_8wekyb3d8bbwe!App:', shell=True)
+	except Exception as e:
+		print(e)
+		print("Failed to open check for updates")
 	
 
 def wishme():
@@ -330,9 +336,9 @@ if __name__ == '__main__':
 	wishme()
 	while True:
 		query = takeCommandMIC().lower()
-		if 'time' in query:
+		if 'current time' in query:
 			time()
-		elif 'date' in query:
+		elif 'current date' in query:
 			date()
 		elif 'wiki' in query:
 			try:
@@ -750,6 +756,15 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Snipping Tool is not responding")
+		elif 'check for updates' in query:
+			try:
+				speak("Checking for updates")
+				open_check_for_updates()
+			except Exception as e:
+				print(e)
+				speak("Sorry Check for updates is not responding")
+		
+		
 		
 		
 		

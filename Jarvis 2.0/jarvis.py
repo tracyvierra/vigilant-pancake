@@ -381,8 +381,6 @@ def open_send_text_to():
 		text_list = {'Tracy' : '5093934105' , 'Nicole' : '5094211558'}
 		speak("Who would you like to send to?")
 		number = text_list[takeCommandMIC()]
-		# number = takeCommandMIC()
-		# number = number.replace(' ','')
 		if(number!=None):
 			speak("What message would you like to send?")
 			text = takeCommandMIC()

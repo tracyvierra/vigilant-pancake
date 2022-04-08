@@ -315,6 +315,20 @@ def open_check_for_updates():
 	except Exception as e:
 		print(e)
 		print("Failed to open check for updates")
+
+def open_vnc_viewer():
+	try:
+		sp.Popen('"C:\\Program Files\\RealVNC\\VNC Viewer\\vncviewer.exe"')
+	except Exception as e:
+		print(e)
+		print("Failed to open vnc viewer")
+
+def open_windscribe():
+	try:
+		sp.Popen('C:\\Program Files (x86)\\Windscribe\\WindscribeLauncher.exe')
+	except Exception as e:
+		print(e)
+		print("Failed to open windscribe")
 	
 
 def wishme():
@@ -763,6 +777,22 @@ if __name__ == '__main__':
 			except Exception as e:
 				print(e)
 				speak("Sorry Check for updates is not responding")
+		elif 'vnc viewer' in query:
+			try:
+				speak("Opening VNC Viewer")
+				open_vnc_viewer()
+			except Exception as e:
+				print(e)
+				speak("Sorry VNC Viewer is not responding")
+		elif 'windscribe' in query:
+			try:
+				speak("Opening Windscribe")
+				open_windscribe()
+			except Exception as e:
+				print(e)
+				speak("Sorry Windscribe is not responding")
+		
+		
 		
 		
 		

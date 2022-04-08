@@ -48,20 +48,20 @@ FOLDER_NOT_RESPONDING = "Sorry the folder is not responding"
 SMTP_GATEWAY = "smtp.gmail.com"
 
 # start logging file for session:
-x = datetime.datetime.now()
-file_name = x.strftime("%Y-%m-%d-%H-%M-%S")
-file_handler = logging.FileHandler(
-    filename="jarvis_error_log-" + file_name + ".log", mode="w"
-)
-handlers = [file_handler]
+# x = datetime.datetime.now()
+# file_name = x.strftime("%Y-%m-%d-%H-%M-%S")
+# file_handler = logging.FileHandler(
+#     filename="jarvis_error_log-" + file_name + ".log", mode="w"
+# )
+# handlers = [file_handler]
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s",
-    handlers=handlers,
-)
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s",
+#     handlers=handlers,
+# )
 
-logger = logging.getLogger("LOGGER_NAME")
+# logger = logging.getLogger("LOGGER_NAME")
 
 
 engine = pyttsx3.init()
@@ -488,6 +488,32 @@ def open_send_text_to():
         print(e)
         print("Failed to send a text message")
 
+def open_check_weather():
+    try:
+        speak("What is your zip code?")
+        zip_code = takeCommandMIC()
+        url = (
+                    "http://api.openweathermap.org/data/2.5/weather?q="
+                    + zip_code
+                    + "&appid=cce9b0c81b54033cc50f4e071fc11360"
+                    + "&units=imperial"
+                )
+        res = requests.get(url)
+        data = res.json()
+        weather = data['weather'][0]['main']
+        temp = data['main']['temp']
+        temp = round(temp, 2)
+        description = data['weather'][0]['description']
+        print(temp)
+        print(weather)
+        speak("The temperature is" + str(temp) + " degrees")
+        speak("The weather is " + description)
+    except Exception as e:
+        print(e)
+        print("Failed to check weather")
+    
+
+
 
 def wishme():
     try:
@@ -627,11 +653,11 @@ if __name__ == "__main__":
                     + ","
                     + country
                     + "&appid=cce9b0c81b54033cc50f4e071fc11360"
+                    + "&units=metric"
                 )
                 json_data = requests.get(url).json()
                 temp = json_data["main"]["temp"]
-                temp = temp - 273.15
-                temp = (temp * (9 / 5)) + 32
+                temp = (temp * 9 / 5) + 32  # convert to fahrenheit
                 temp = round(temp, 2)
                 speak(
                     "The temperature in "
@@ -1015,3 +1041,11 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Text to is not responding")
+        elif 'check weather' in query:
+            try:
+                speak("Preparing to check weather")
+                open_check_weather()
+            except Exception as e:
+                print(e)
+                speak("Sorry Check weather is not responding")
+        

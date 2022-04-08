@@ -303,7 +303,8 @@ def open_microsoft_store():
 
 def open_snipping_tool():
 	try:
-		sp.run('start shell:appsfolder\\Microsoft.SnippingTool_8wekyb3d8bbwe!App:', shell=True)
+		sp.Popen('C:\\windows\\system32\\SnippingTool.exe')
+		# sp.run('start shell:appsfolder\\Microsoft.SnippingTool_8wekyb3d8bbwe!App:', shell=True)
 	except Exception as e:
 		print(e)
 		print("Failed to open snipping tool")

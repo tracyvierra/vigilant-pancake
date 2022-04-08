@@ -33,7 +33,18 @@ from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd
 
+# Some responses as constants:
+TEXT_SENT_RESPONSE = "Text message sent"
+LIST_NAME_QUESTION = "What is the name of the list?"
+LIST_NOT_RESPONDING = "Sorry the list is not responding"
+FILE_NAME_QUESTION = "What is the name of the file?"
+FILE_NOT_RESPONDING = "Sorry the file is not responding"
+FOLDER_NAME_QUESTION = "What is the name of the folder?"
+FOLDER_NOT_RESPONDING = "Sorry the folder is not responding"
 
+
+# SMTP mail gateway:
+SMTP_GATEWAY = "smtp.gmail.com"
 
 
 engine = pyttsx3.init()
@@ -95,7 +106,7 @@ def sendEmail(receiver, subject, content):
 	try:
 
 		# SMTP_SSL Example
-		server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+		server_ssl = smtplib.SMTP_SSL(SMTP_GATEWAY, 465)
 		server_ssl.ehlo() # optional, called by login()
 		server_ssl.login(gmail_user, gmail_pwd)  
 		# ssl server doesn't support or need tls, so don't call server_ssl.starttls() 
@@ -366,12 +377,12 @@ def open_send_sms_text():
 			text = takeCommandMIC()
 			if(text!=None):
 				# sp.Popen('C:\\Program Files (x86)\\Windows Phone\\Windows Phone 10\\App\\10.0.17763.1\\Phone\\bin\\SMS.exe ' + number + ' ' + text)
-				server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+				server_ssl = smtplib.SMTP_SSL(SMTP_GATEWAY, 465)
 				server_ssl.ehlo() # optional, called by login()
 				server_ssl.login(gmail_user, gmail_pwd)  
 				server_ssl.sendmail( 'Jarvis', number + '@mms.att.net', text ) # using the address for AT&T Wireless, for Verizon, use 'vtext.com', for T-Mobile, use 'tmomail.net'.
-				speak("Text message sent")
-				print("Text message sent")
+				speak(TEXT_SENT_RESPONSE)
+				print(TEXT_SENT_RESPONSE)
 	except Exception as e:
 		print(e)
 		print("Failed to send a text message")
@@ -385,13 +396,12 @@ def open_send_text_to():
 			speak("What message would you like to send?")
 			text = takeCommandMIC()
 			if(text!=None):
-				# sp.Popen('C:\\Program Files (x86)\\Windows Phone\\Windows Phone 10\\App\\10.0.17763.1\\Phone\\bin\\SMS.exe ' + number + ' ' + text)
-				server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+				server_ssl = smtplib.SMTP_SSL(SMTP_GATEWAY, 465)
 				server_ssl.ehlo() # optional, called by login()
 				server_ssl.login(gmail_user, gmail_pwd)  
 				server_ssl.sendmail( 'Jarvis', number + '@mms.att.net', text ) # using the address for AT&T Wireless, for Verizon, use 'vtext.com', for T-Mobile, use 'tmomail.net'.
-				speak("Text message sent")
-				print("Text message sent")
+				speak(TEXT_SENT_RESPONSE)
+				print(TEXT_SENT_RESPONSE)
 	except Exception as e:
 		print(e)
 		print("Failed to send a text message")
@@ -534,7 +544,7 @@ if __name__ == '__main__':
 				speak("Sorry the weather API is not responding")
 		elif 'create list' in query:
 			try:
-				speak("What is the name of the list?")
+				speak(LIST_NAME_QUESTION)
 				name = takeCommandMIC()
 				speak("What should I put in the list?")
 				content = takeCommandMIC()
@@ -544,10 +554,10 @@ if __name__ == '__main__':
 				speak("List has been created")
 			except Exception as e:
 				print(e)
-				speak("Sorry the list is not responding")
+				speak(LIST_NOT_RESPONDING)
 		elif 'read list' in query:
 			try:
-				speak("What is the name of the list?")
+				speak(LIST_NAME_QUESTION)
 				name = takeCommandMIC()
 				list_name = name + ".txt"
 				with open(list_name, 'r') as f:
@@ -556,7 +566,7 @@ if __name__ == '__main__':
 					speak(content)
 			except Exception as e:
 				print(e)
-				speak("Sorry the list is not responding")
+				speak(LIST_NOT_RESPONDING)
 		elif 'append list' in query:
 			try:
 				speak("Which list do you want to append?")
@@ -567,21 +577,21 @@ if __name__ == '__main__':
 				append_list(list_name, append)				
 			except Exception as e:
 				print(e)
-				speak("Sorry the list is not responding")
+				speak(LIST_NOT_RESPONDING)
 		
 		elif 'delete list' in query:
 			try:
-				speak("What is the name of the list?")
+				speak(LIST_NAME_QUESTION)
 				name = takeCommandMIC()
 				list_name = name + ".txt"
 				os.remove(list_name)
 				speak("List has been deleted")
 			except Exception as e:
 				print(e)
-				speak("Sorry the list is not responding")
+				speak(LIST_NOT_RESPONDING)
 		elif 'create text file' in query:
 			try:
-				speak("What is the name of the file?")
+				speak(FILE_NAME_QUESTION)
 				name = takeCommandMIC()
 				speak("What should I put in the file?")
 				content = takeCommandMIC()
@@ -591,10 +601,10 @@ if __name__ == '__main__':
 				speak("File has been created")
 			except Exception as e:
 				print(e)
-				speak("Sorry the file is not responding")
+				speak(FILE_NOT_RESPONDING)
 		elif 'read text file' in query:
 			try:
-				speak("What is the name of the file?")
+				speak(FILE_NAME_QUESTION)
 				name = takeCommandMIC()
 				file_name = name + ".txt"
 				with open(file_name, 'r') as f:
@@ -603,44 +613,44 @@ if __name__ == '__main__':
 					speak(content)
 			except Exception as e:
 				print(e)
-				speak("Sorry the file is not responding")
+				speak(FILE_NOT_RESPONDING)
 		elif 'delete text file' in query:
 			try:
-				speak("What is the name of the file?")
+				speak(FILE_NAME_QUESTION)
 				name = takeCommandMIC()
 				file_name = name + ".txt"
 				os.remove(file_name)
 				speak("File has been deleted")
 			except Exception as e:
 				print(e)
-				speak("Sorry the file is not responding")
+				speak(FILE_NOT_RESPONDING)
 		elif 'create folder' in query:
 			try:
-				speak("What is the name of the folder?")
+				speak(FOLDER_NAME_QUESTION)
 				name = takeCommandMIC()
 				os.mkdir(name)
 				speak("Folder has been created")
 			except Exception as e:
 				print(e)
-				speak("Sorry the folder is not responding")
+				speak(FOLDER_NOT_RESPONDING)
 		elif 'delete folder' in query:
 			try:
-				speak("What is the name of the folder?")
+				speak(FOLDER_NAME_QUESTION)
 				name = takeCommandMIC()
 				os.rmdir(name)
 				speak("Folder has been deleted")
 			except Exception as e:
 				print(e)
-				speak("Sorry the folder is not responding")
+				speak(FOLDER_NOT_RESPONDING)
 		elif 'open folder' in query:
 			try:
-				speak("What is the name of the folder?")
+				speak(FOLDER_NAME_QUESTION)
 				name = takeCommandMIC()
 				os.chdir(name)
 				speak("Folder has been opened")
 			except Exception as e:
 				print(e)
-				speak("Sorry the folder is not responding")
+				speak(FOLDER_NOT_RESPONDING)
 		elif 'back one folder' in query:
 			try:
 				os.chdir('..')
@@ -648,14 +658,14 @@ if __name__ == '__main__':
 				speak("Folder has been opened")
 			except Exception as e:
 				print(e)
-				speak("Sorry the folder is not responding")
+				speak(FOLDER_NOT_RESPONDING)
 		elif 'what folder' in query:
 			try:
 				print(os.getcwd())
 				speak(os.getcwd())
 			except Exception as e:
 				print(e)
-				speak("Sorry the folder is not responding")
+				speak(FOLDER_NOT_RESPONDING)
 		elif 'whatsapp message' in query:
 			user_name = {'Tracy': '+15093934105', 'Nicole': '+15094211558'}
 			try:

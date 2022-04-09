@@ -51,7 +51,6 @@ APPID = "&appid=cce9b0c81b54033cc50f4e071fc11360"
 OW_API_LINK = "http://api.openweathermap.org/data/2.5/weather?q="
 
 
-
 engine = pyttsx3.init()
 
 

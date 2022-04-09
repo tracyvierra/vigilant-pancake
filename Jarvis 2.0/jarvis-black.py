@@ -47,6 +47,9 @@ FOLDER_NOT_RESPONDING = "Sorry the folder is not responding"
 # SMTP mail gateway constant:
 SMTP_GATEWAY = "smtp.gmail.com"
 
+# OpenWeather API:
+APPID = "&appid=cce9b0c81b54033cc50f4e071fc11360"
+
 # start logging file for session:
 # x = datetime.datetime.now()
 # file_name = x.strftime("%Y-%m-%d-%H-%M-%S")
@@ -495,7 +498,7 @@ def open_check_weather():
         url = (
                     "http://api.openweathermap.org/data/2.5/weather?q="
                     + zip_code
-                    + "&appid=cce9b0c81b54033cc50f4e071fc11360"
+                    + APPID
                     + "&units=imperial"
                 )
         res = requests.get(url)
@@ -652,13 +655,14 @@ if __name__ == "__main__":
                     + city
                     + ","
                     + country
-                    + "&appid=cce9b0c81b54033cc50f4e071fc11360"
+                    + APPID
                     + "&units=metric"
                 )
                 json_data = requests.get(url).json()
                 temp = json_data["main"]["temp"]
                 temp = (temp * 9 / 5) + 32  # convert to fahrenheit
                 temp = round(temp, 2)
+                print("The temperature is " + str(temp) + " degrees")
                 speak(
                     "The temperature in "
                     + city
@@ -839,7 +843,7 @@ if __name__ == "__main__":
                     + city
                     + ","
                     + country
-                    + "&appid=cce9b0c81b54033cc50f4e071fc11360"
+                    + APPID
                 )
                 json_data = requests.get(url).json()
                 weather = json_data["weather"]

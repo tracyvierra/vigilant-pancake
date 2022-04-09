@@ -596,6 +596,7 @@ if __name__ == "__main__":
                 speak("Rolling the percentile die...")
                 roll = random.randint(1, 100)
                 speak("The result is " + str(roll) + "%")
+                print("The result is " + str(roll) + "%")
             except Exception as e:
                 print(e)
                 speak("Sorry sir, I could not roll the percentile die")
@@ -617,8 +618,10 @@ if __name__ == "__main__":
             speak(
                 "I am Jarvis, your personal assistant. I am here to make your life easier!"
             )
+            print("I am Jarvis, your personal assistant. I am here to make your life easier!")
         elif "who made you" in query:
             speak("I have been created by Tracy")
+            print("I have been created by Tracy")
         elif "tell me a joke" in query:
             try:
                 speak(pyjokes.get_joke())
@@ -627,6 +630,7 @@ if __name__ == "__main__":
                 speak("Sorry sir, I could not tell you a joke")
         elif "offline" in query:
             speak("Jarvis is going offline")
+            print("Jarvis is going offline")
             exit()
         elif "email" in query:
             email_list = {
@@ -643,6 +647,7 @@ if __name__ == "__main__":
                 content = takeCommandMIC()
                 sendEmail(receiver, subject, content)
                 speak("Email has been sent!")
+                print("Email has been sent!")
             except Exception as e:
                 print(e)
                 speak("Sorry the email is not responding")

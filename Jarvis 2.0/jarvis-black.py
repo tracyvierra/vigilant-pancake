@@ -49,6 +49,8 @@ SMTP_GATEWAY = "smtp.gmail.com"
 
 # OpenWeather API:
 APPID = "&appid=cce9b0c81b54033cc50f4e071fc11360"
+OW_API_LINK = "http://api.openweathermap.org/data/2.5/weather?q="
+
 
 # start logging file for session:
 # x = datetime.datetime.now()
@@ -496,7 +498,7 @@ def open_check_weather():
         speak("What is your zip code?")
         zip_code = takeCommandMIC()
         url = (
-                    "http://api.openweathermap.org/data/2.5/weather?q="
+                    OW_API_LINK
                     + zip_code
                     + APPID
                     + "&units=imperial"
@@ -651,7 +653,7 @@ if __name__ == "__main__":
                 speak("What is the country?")
                 country = takeCommandMIC()
                 url = (
-                    "http://api.openweathermap.org/data/2.5/weather?q="
+                    OW_API_LINK
                     + city
                     + ","
                     + country
@@ -839,7 +841,7 @@ if __name__ == "__main__":
                 speak("What is the name of the country?")
                 country = takeCommandMIC()
                 url = (
-                    "http://api.openweathermap.org/data/2.5/weather?q="
+                    OW_API_LINK
                     + city
                     + ","
                     + country

@@ -5,6 +5,7 @@ import speech_recognition as sr
 # obtain audio from the microphone
 r = sr.Recognizer()
 with sr.Microphone() as source:
+    r.adjust_for_ambient_noise(source, duration=1)
     print("Say something!")
     audio = r.listen(source)
 

@@ -493,22 +493,18 @@ def open_send_text_to():
         print(e)
         print("Failed to send a text message")
 
+
 def open_check_weather():
     try:
         speak("What is your zip code?")
         zip_code = takeCommandMIC()
-        url = (
-                    OW_API_LINK
-                    + zip_code
-                    + APPID
-                    + "&units=imperial"
-                )
+        url = OW_API_LINK + zip_code + APPID + "&units=imperial"
         res = requests.get(url)
         data = res.json()
-        weather = data['weather'][0]['main']
-        temp = data['main']['temp']
+        weather = data["weather"][0]["main"]
+        temp = data["main"]["temp"]
         temp = round(temp, 2)
-        description = data['weather'][0]['description']
+        description = data["weather"][0]["description"]
         print(temp)
         print(weather)
         speak("The temperature is" + str(temp) + " degrees")
@@ -516,8 +512,6 @@ def open_check_weather():
     except Exception as e:
         print(e)
         print("Failed to check weather")
-    
-
 
 
 def wishme():
@@ -618,7 +612,9 @@ if __name__ == "__main__":
             speak(
                 "I am Jarvis, your personal assistant. I am here to make your life easier!"
             )
-            print("I am Jarvis, your personal assistant. I am here to make your life easier!")
+            print(
+                "I am Jarvis, your personal assistant. I am here to make your life easier!"
+            )
         elif "who made you" in query:
             speak("I have been created by Tracy")
             print("I have been created by Tracy")
@@ -657,14 +653,7 @@ if __name__ == "__main__":
                 city = takeCommandMIC()
                 speak("What is the country?")
                 country = takeCommandMIC()
-                url = (
-                    OW_API_LINK
-                    + city
-                    + ","
-                    + country
-                    + APPID
-                    + "&units=metric"
-                )
+                url = OW_API_LINK + city + "," + country + APPID + "&units=metric"
                 json_data = requests.get(url).json()
                 temp = json_data["main"]["temp"]
                 temp = (temp * 9 / 5) + 32  # convert to fahrenheit
@@ -845,13 +834,7 @@ if __name__ == "__main__":
                 city = takeCommandMIC()
                 speak("What is the name of the country?")
                 country = takeCommandMIC()
-                url = (
-                    OW_API_LINK
-                    + city
-                    + ","
-                    + country
-                    + APPID
-                )
+                url = OW_API_LINK + city + "," + country + APPID
                 json_data = requests.get(url).json()
                 weather = json_data["weather"]
                 for w in weather:
@@ -1052,11 +1035,10 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Text to is not responding")
-        elif 'check weather' in query:
+        elif "check weather" in query:
             try:
                 speak("Preparing to check weather")
                 open_check_weather()
             except Exception as e:
                 print(e)
                 speak("Sorry Check weather is not responding")
-        

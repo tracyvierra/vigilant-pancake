@@ -24,7 +24,9 @@ import speech_recognition as sr
 # obtain audio from the microphone
 r = sr.Recognizer()
 with sr.Microphone() as source:
-    r.adjust_for_ambient_noise(source)  # listen for 1 second to calibrate the energy threshold for ambient noise levels
+    r.adjust_for_ambient_noise(
+        source
+    )  # listen for 1 second to calibrate the energy threshold for ambient noise levels
     print("Say something!")
     audio = r.listen(source)
 
@@ -37,4 +39,8 @@ try:
 except sr.UnknownValueError:
     print("Google Speech Recognition could not understand audio")
 except sr.RequestError as e:
-    print("Could not request results from Google Speech Recognition service; {0}".format(e))
+    print(
+        "Could not request results from Google Speech Recognition service; {0}".format(
+            e
+        )
+    )

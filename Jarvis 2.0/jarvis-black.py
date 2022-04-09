@@ -29,7 +29,6 @@ import urllib.request  # url request
 import pyjokes
 import pyautogui
 import pywhatkit as kit
-import logging
 from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd

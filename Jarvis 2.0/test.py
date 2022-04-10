@@ -44,3 +44,6 @@ except sr.RequestError as e:
             e
         )
     )
+
+
+# python code to use openweatherAPI to get current weather and temperature in Fahrenheit:

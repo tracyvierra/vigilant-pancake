@@ -509,8 +509,12 @@ def wishme():
         print("Failed to wish me")
 
 
-voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
-getvoices(voice)
+try:
+    voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
+    getvoices(voice)
+except Exception as e:
+    print(e)
+    print("failed to set voice.")
 
 
 if __name__ == "__main__":

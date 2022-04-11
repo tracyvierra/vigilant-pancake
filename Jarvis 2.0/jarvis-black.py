@@ -491,7 +491,7 @@ def open_check_weather():
         print(temp)
         print(weather)
         speak("The temperature is" + str(temp) + " degrees")
-        speak("The weather is " + description)
+        speak("The forcast is " + description)
     except Exception as e:
         print(e)
         print("Failed to check weather")

@@ -50,6 +50,10 @@ SMTP_GATEWAY = "smtp.gmail.com"
 APPID = "&appid=cce9b0c81b54033cc50f4e071fc11360"
 OW_API_LINK = "http://api.openweathermap.org/data/2.5/weather?q="
 
+# newsapi.org
+NEWS_API_KEY = 37ac9a803d7b4f509cae0d11b6c40365
+NEWS_API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey="
+
 
 engine = pyttsx3.init()
 

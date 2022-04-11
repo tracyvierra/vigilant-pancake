@@ -511,21 +511,6 @@ def open_read_selected_text():
         print(e)
         print("Failed to read selected text")
 
-# def open_news():
-#     try:
-#         speak("What is the topic?")
-#         topic = takeCommandMIC()
-#         url = (f'https://newsapi.org/v2/everything?' + 
-#        'q={topic}&sortBy=relevancy&pageSize=7&apiKey=37ac9a803d7b4f509cae0d11b6c40365')
-#         res = requests.get(url)
-#         data = res.json()
-#         news = data["articles"]
-#         for i in range(len(news)):
-#             speak(news[i]["title"])
-#             print(news[i]["title"])
-#     except Exception as e:
-#         print(e)
-#         print("Failed to get local news")
 
 def open_check_news():
     try:
@@ -1079,13 +1064,6 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Read selected text is not responding")
-        # elif 'news' in query:
-        #     try:
-        #         speak("Preparing to read news")
-        #         open_news()
-        #     except Exception as e:
-        #         print(e)
-        #         speak("Sorry news API is not responding")
         elif 'check news' in query:
             try:
                 speak("Preparing to check news")

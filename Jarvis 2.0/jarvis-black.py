@@ -381,7 +381,6 @@ def open_microsoft_store():
 def open_snipping_tool():
     try:
         sp.Popen("C:\\windows\\system32\\SnippingTool.exe")
-        # sp.run('start shell:appsfolder\\Microsoft.SnippingTool_8wekyb3d8bbwe!App:', shell=True)
     except Exception as e:
         print(e)
         print("Failed to open snipping tool")
@@ -389,11 +388,6 @@ def open_snipping_tool():
 
 def open_check_for_updates():
     try:
-        # sp.run(
-        #     "start shell:appsfolder\\Microsoft.WindowsUpdate_8wekyb3d8bbwe!App:",
-        #     shell=True,
-        # )
-        # sp.Popen("C:\\Windows\\System32\\WindowsUpdate.exe")
         os.system("control update")
         sleep(3)
         pyautogui.press("tab")

@@ -19,3 +19,17 @@
 #     except Exception as e:
 #         print(e)
 #         print("Failed to check weather")
+
+# import nltk
+
+# nltk.download() # download the necessary packages
+
+from nltk.tokenize import word_tokenize
+
+sentence = "Hello Jarvis, how are you doing today? what is the current date?"
+
+output = word_tokenize(sentence)
+print(output)
+
+
+

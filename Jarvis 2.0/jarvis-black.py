@@ -32,6 +32,7 @@ import pywhatkit as kit
 import clipboard
 import string
 import psutil
+from nltk.tokenize import word_tokenize
 from newsapi import NewsApiClient
 from time import sleep
 from email.message import EmailMessage
@@ -654,6 +655,9 @@ def open_check_internet_connection():
         print(e)
         print("Failed to check internet connection")
 
+
+
+
 try:
     voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
     getvoices(voice)
@@ -664,600 +668,603 @@ except Exception as e:
 
 if __name__ == "__main__":
     wishme()
+    wake_word = "jarvis"
     while True:
         query = takeCommandMIC().lower()
-        if "current time" in query:
-            time()
-        elif "current date" in query:
-            date()
-        elif "wiki" in query:
-            try:
-                speak("Searching Wikipedia...")
-                query = query.replace("wikipedia", "")
-                results = wikipedia.summary(query, sentences=2)
-                speak("According to Wikipedia")
-                print(results)
-                speak(results)
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not find any results")
-        elif "open youtube" in query:
-            try:
-                webbrowser.open("youtube.com")
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not open youtube")
-        elif "open google" in query:
-            try:
-                webbrowser.open("google.com")
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not open google")
-        elif "open stackoverflow" in query:
-            try:
-                webbrowser.open("stackoverflow.com")
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not open stackoverflow")
-        elif "play music" in query:
-            try:
-                music_dir = "D:\\music\\Tracy Vierra\\420"
-                songs = os.listdir(music_dir)
-                print(songs)
-                os.startfile(os.path.join(music_dir, songs[0]))
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not play music")
+        query = word_tokenize(query)
+        if wake_word in query:
+            if "current time" in query:
+                time()
+            elif "current date" in query:
+                date()
+            elif "wiki" in query:
+                try:
+                    speak("Searching Wikipedia...")
+                    query = query.replace("wikipedia", "")
+                    results = wikipedia.summary(query, sentences=2)
+                    speak("According to Wikipedia")
+                    print(results)
+                    speak(results)
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not find any results")
+            elif "open youtube" in query:
+                try:
+                    webbrowser.open("youtube.com")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not open youtube")
+            elif "open google" in query:
+                try:
+                    webbrowser.open("google.com")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not open google")
+            elif "open stackoverflow" in query:
+                try:
+                    webbrowser.open("stackoverflow.com")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not open stackoverflow")
+            elif "play music" in query:
+                try:
+                    music_dir = "D:\\music\\Tracy Vierra\\420"
+                    songs = os.listdir(music_dir)
+                    print(songs)
+                    os.startfile(os.path.join(music_dir, songs[0]))
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not play music")
 
-        elif "open code" in query:
-            try:
-                codePath = "D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
-                os.startfile(codePath)
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not open code")
+            elif "open code" in query:
+                try:
+                    codePath = "D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+                    os.startfile(codePath)
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not open code")
 
-        elif "percentile" in query:
-            try:
-                speak("Rolling the percentile die...")
-                roll = random.randint(1, 100)
-                speak("The result is " + str(roll) + "%")
-                print("The result is " + str(roll) + "%")
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not roll the percentile die")
+            elif "percentile" in query:
+                try:
+                    speak("Rolling the percentile die...")
+                    roll = random.randint(1, 100)
+                    speak("The result is " + str(roll) + "%")
+                    print("The result is " + str(roll) + "%")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not roll the percentile die")
 
-        elif "search" in query:
-            try:
-                query = query.replace("search", "")
-                query = query.replace("for", "")
-                query = query.replace("on", "")
-                query = query.replace("google", "")
-                query = query.replace("youtube", "")
-                query = query.replace("stackoverflow", "")
-                query = query.replace(" ", "+")
-                webbrowser.open("https://www.google.com/search?q=" + query)
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not search for " + query)
-        elif "who are you" in query:
-            speak(
-                "I am Jarvis, your personal assistant. I am here to make your life easier!"
-            )
-            print(
-                "I am Jarvis, your personal assistant. I am here to make your life easier!"
-            )
-        elif "who made you" in query:
-            speak("I have been created by Tracy")
-            print("I have been created by Tracy")
-        elif "tell me a joke" in query:
-            try:
-                speak(pyjokes.get_joke())
-            except Exception as e:
-                print(e)
-                speak("Sorry sir, I could not tell you a joke")
-        elif "offline" in query:
-            speak("Jarvis is going offline")
-            print("Jarvis is going offline")
-            exit()
-        elif "email" in query:
-            email_list = {
-                "Tracy": "tracyvierra@yahoo.com",
-                "Nicole": "buggirl_2057@yahoo.com",
-            }
-            try:
-                speak("Who should I send the email to?")
-                name = takeCommandMIC()
-                receiver = email_list[name]
-                speak("what is the subject?")
-                subject = takeCommandMIC()
-                speak("What should I say?")
-                content = takeCommandMIC()
-                sendEmail(receiver, subject, content)
-                speak("Email has been sent!")
-                print("Email has been sent!")
-            except Exception as e:
-                print(e)
-                speak("Sorry the email is not responding")
-        elif "temperature" in query:
-            try:
-                speak("What is the city?")
-                city = takeCommandMIC()
-                speak("What is the country?")
-                country = takeCommandMIC()
-                url = OW_API_LINK + city + "," + country + APPID + "&units=metric"
-                json_data = requests.get(url).json()
-                temp = json_data["main"]["temp"]
-                temp = (temp * 9 / 5) + 32  # convert to fahrenheit
-                temp = round(temp, 2)
-                print("The temperature is " + str(temp) + " degrees")
+            elif "search" in query:
+                try:
+                    query = query.replace("search", "")
+                    query = query.replace("for", "")
+                    query = query.replace("on", "")
+                    query = query.replace("google", "")
+                    query = query.replace("youtube", "")
+                    query = query.replace("stackoverflow", "")
+                    query = query.replace(" ", "+")
+                    webbrowser.open("https://www.google.com/search?q=" + query)
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not search for " + query)
+            elif "who are you" in query:
                 speak(
-                    "The temperature in "
-                    + city
-                    + " is "
-                    + str(temp)
-                    + " degrees farenheit"
+                    "I am Jarvis, your personal assistant. I am here to make your life easier!"
                 )
-            except Exception as e:
-                print(e)
-                speak("Sorry the weather API is not responding")
-        elif "create list" in query:
-            try:
-                speak(LIST_NAME_QUESTION)
-                name = takeCommandMIC()
-                speak("What should I put in the list?")
-                content = takeCommandMIC()
-                list_name = name + ".txt"
-                with open(list_name, "w") as f:
-                    f.write(content)
-                speak("List has been created")
-            except Exception as e:
-                print(e)
-                speak(LIST_NOT_RESPONDING)
-        elif "read list" in query:
-            try:
-                speak(LIST_NAME_QUESTION)
-                name = takeCommandMIC()
-                list_name = name + ".txt"
-                with open(list_name, "r") as f:
-                    content = f.read()
-                    print(content)
-                    speak(content)
-            except Exception as e:
-                print(e)
-                speak(LIST_NOT_RESPONDING)
-        elif "append list" in query:
-            try:
-                speak("Which list do you want to append?")
-                name = takeCommandMIC().lower()
-                list_name = name + ".txt"
-                speak("What do you want to append?")
-                append = takeCommandMIC().lower()
-                append_list(list_name, append)
-            except Exception as e:
-                print(e)
-                speak(LIST_NOT_RESPONDING)
+                print(
+                    "I am Jarvis, your personal assistant. I am here to make your life easier!"
+                )
+            elif "who made you" in query:
+                speak("I have been created by Tracy")
+                print("I have been created by Tracy")
+            elif "tell me a joke" in query:
+                try:
+                    speak(pyjokes.get_joke())
+                except Exception as e:
+                    print(e)
+                    speak("Sorry sir, I could not tell you a joke")
+            elif "offline" in query:
+                speak("Jarvis is going offline")
+                print("Jarvis is going offline")
+                exit()
+            elif "email" in query:
+                email_list = {
+                    "Tracy": "tracyvierra@yahoo.com",
+                    "Nicole": "buggirl_2057@yahoo.com",
+                }
+                try:
+                    speak("Who should I send the email to?")
+                    name = takeCommandMIC()
+                    receiver = email_list[name]
+                    speak("what is the subject?")
+                    subject = takeCommandMIC()
+                    speak("What should I say?")
+                    content = takeCommandMIC()
+                    sendEmail(receiver, subject, content)
+                    speak("Email has been sent!")
+                    print("Email has been sent!")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the email is not responding")
+            elif "temperature" in query:
+                try:
+                    speak("What is the city?")
+                    city = takeCommandMIC()
+                    speak("What is the country?")
+                    country = takeCommandMIC()
+                    url = OW_API_LINK + city + "," + country + APPID + "&units=metric"
+                    json_data = requests.get(url).json()
+                    temp = json_data["main"]["temp"]
+                    temp = (temp * 9 / 5) + 32  # convert to fahrenheit
+                    temp = round(temp, 2)
+                    print("The temperature is " + str(temp) + " degrees")
+                    speak(
+                        "The temperature in "
+                        + city
+                        + " is "
+                        + str(temp)
+                        + " degrees farenheit"
+                    )
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the weather API is not responding")
+            elif "create list" in query:
+                try:
+                    speak(LIST_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    speak("What should I put in the list?")
+                    content = takeCommandMIC()
+                    list_name = name + ".txt"
+                    with open(list_name, "w") as f:
+                        f.write(content)
+                    speak("List has been created")
+                except Exception as e:
+                    print(e)
+                    speak(LIST_NOT_RESPONDING)
+            elif "read list" in query:
+                try:
+                    speak(LIST_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    list_name = name + ".txt"
+                    with open(list_name, "r") as f:
+                        content = f.read()
+                        print(content)
+                        speak(content)
+                except Exception as e:
+                    print(e)
+                    speak(LIST_NOT_RESPONDING)
+            elif "append list" in query:
+                try:
+                    speak("Which list do you want to append?")
+                    name = takeCommandMIC().lower()
+                    list_name = name + ".txt"
+                    speak("What do you want to append?")
+                    append = takeCommandMIC().lower()
+                    append_list(list_name, append)
+                except Exception as e:
+                    print(e)
+                    speak(LIST_NOT_RESPONDING)
 
-        elif "delete list" in query:
-            try:
-                speak(LIST_NAME_QUESTION)
-                name = takeCommandMIC()
-                list_name = name + ".txt"
-                os.remove(list_name)
-                speak("List has been deleted")
-            except Exception as e:
-                print(e)
-                speak(LIST_NOT_RESPONDING)
-        elif "create text file" in query:
-            try:
-                speak(FILE_NAME_QUESTION)
-                name = takeCommandMIC()
-                speak("What should I put in the file?")
-                content = takeCommandMIC()
-                file_name = name + ".txt"
-                with open(file_name, "w") as f:
-                    f.write(content)
-                speak("File has been created")
-            except Exception as e:
-                print(e)
-                speak(FILE_NOT_RESPONDING)
-        elif "read text file" in query:
-            try:
-                speak(FILE_NAME_QUESTION)
-                name = takeCommandMIC()
-                file_name = name + ".txt"
-                with open(file_name, "r") as f:
-                    content = f.read()
-                    print(content)
-                    speak(content)
-            except Exception as e:
-                print(e)
-                speak(FILE_NOT_RESPONDING)
-        elif "delete text file" in query:
-            try:
-                speak(FILE_NAME_QUESTION)
-                name = takeCommandMIC()
-                file_name = name + ".txt"
-                os.remove(file_name)
-                speak("File has been deleted")
-            except Exception as e:
-                print(e)
-                speak(FILE_NOT_RESPONDING)
-        elif "create folder" in query:
-            try:
-                speak(FOLDER_NAME_QUESTION)
-                name = takeCommandMIC()
-                os.mkdir(name)
-                speak("Folder has been created")
-            except Exception as e:
-                print(e)
-                speak(FOLDER_NOT_RESPONDING)
-        elif "delete folder" in query:
-            try:
-                speak(FOLDER_NAME_QUESTION)
-                name = takeCommandMIC()
-                os.rmdir(name)
-                speak("Folder has been deleted")
-            except Exception as e:
-                print(e)
-                speak(FOLDER_NOT_RESPONDING)
-        elif "open folder" in query:
-            try:
-                speak(FOLDER_NAME_QUESTION)
-                name = takeCommandMIC()
-                os.chdir(name)
-                speak("Folder has been opened")
-            except Exception as e:
-                print(e)
-                speak(FOLDER_NOT_RESPONDING)
-        elif "back one folder" in query:
-            try:
-                os.chdir("..")
-                print(os.getcwd())
-                speak("Folder has been opened")
-            except Exception as e:
-                print(e)
-                speak(FOLDER_NOT_RESPONDING)
-        elif "what folder" in query:
-            try:
-                print(os.getcwd())
-                speak(os.getcwd())
-            except Exception as e:
-                print(e)
-                speak(FOLDER_NOT_RESPONDING)
-        elif "whatsapp message" in query:
-            user_name = {"Tracy": "+15093934105", "Nicole": "+15094211558"}
-            try:
-                speak("Who should I send the message to?")
-                name = takeCommandMIC()
-                phone_num = user_name[name]
-                speak("What should I say?")
-                content = takeCommandMIC()
-                sendWhatsApp_msg(phone_num, content)
-                speak("Message has been sent")
-            except Exception as e:
-                print(e)
-                speak("Sorry the whatsapp service is not responding")
-        elif "headlines" in query:
-            try:
-                url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=37ac9a803d7b4f509cae0d11b6c40365"
-                json_data = requests.get(url).json()
-                articles = json_data["articles"]
-                for article in articles:
-                    print(article["title"])
-                    speak(article["title"])
-            except Exception as e:
-                print(e)
-                speak("Sorry the headlines API is not responding")
-        elif "top 20" in query:
-            try:
-                url = "https://api.themoviedb.org/3/movie/popular?api_key=a300e27e1b4a17e70eee7745e3e1da69&language=en-US&page=1"
-                json_data = requests.get(url).json()
-                movies = json_data["results"]
-                for movie in movies:
-                    print(movie["title"])
-                    speak(movie["title"])
-            except Exception as e:
-                print(e)
-                speak("Sorry the movies API is not responding")
-        elif "forecast" in query:
-            try:
-                speak("What is the name of the city?")
-                city = takeCommandMIC()
-                speak("What is the name of the country?")
-                country = takeCommandMIC()
-                url = OW_API_LINK + city + "," + country + APPID
-                json_data = requests.get(url).json()
-                weather = json_data["weather"]
-                for w in weather:
-                    print(w["description"])
-                    speak(w["description"])
-            except Exception as e:
-                print(e)
-                speak("Sorry the weather API is not responding")
-        elif "advice" in query:
-            try:
-                speak(f"Here's some advice for you, sir")
-                advice = get_random_advice()
-                speak(advice)
-                speak("For your convenience, I am printing it on the screen sir.")
-                print(advice)
-            except Exception as e:
-                print(e)
-                speak("Sorry the advice API is not responding")
-        elif "trending movies" in query:
-            try:
-                speak(f"Some of the trending movies are: {get_trending_movies()}")
-                speak("For your convenience, I am printing it on the screen.")
-                print(*get_trending_movies(), sep="\n")
-            except Exception as e:
-                print(e)
-                speak("Sorry the trending movies API is not responding")
-        elif "trending tv shows" in query:
-            try:
-                speak(f"Some of the trending tv shows are: {get_trending_tv_shows()}")
-                speak("For your convenience, I am printing it on the screen.")
-                print(*get_trending_tv_shows(), sep="\n")
-            except Exception as e:
-                print(e)
-                speak("Sorry the trending tv shows API is not responding")
-        elif "youtube" in query:
-            try:
-                speak("What do you want to play on Youtube?")
-                video = takeCommandMIC().lower()
-                play_on_youtube(video)
-            except Exception as e:
-                print(e)
-                speak("Sorry youtube is not responding")
-        elif "discord" in query:
-            try:
-                open_discord()
-            except Exception as e:
-                print(e)
-                speak("Sorry discord is not responding")
-        elif "notepad" in query:
-            try:
-                open_notepad()
-            except Exception as e:
-                print(e)
-                speak("Sorry notepad is not responding")
-        elif "calculator" in query:
-            try:
-                open_calculator()
-            except Exception as e:
-                print(e)
-                speak("Sorry calculator is not responding")
-        elif "wordpad" in query:
-            try:
-                open_wordpad()
-            except Exception as e:
-                print(e)
-                speak("Sorry wordpad is not responding")
-        elif "chrome" in query:
-            try:
-                open_chrome()
-            except Exception as e:
-                print(e)
-                speak("Sorry chrome is not responding")
-        elif "firefox" in query:
-            try:
-                open_firefox()
-            except Exception as e:
-                print(e)
-                speak("Sorry firefox is not responding")
-        elif "steam" in query:
-            try:
-                open_steam()
-            except Exception as e:
-                print(e)
-                speak("Sorry Steam is not responding")
-        elif "edge" in query:
-            try:
-                open_edge()
-            except Exception as e:
-                print(e)
-                speak("Sorry Microsoft Edge is not responding")
-        elif "prompt" in query:
-            try:
-                open_cmd()
-            except Exception as e:
-                print(e)
-                speak("Sorry command prompt is not responding")
-        elif "office" in query:
-            try:
-                open_office()
-            except Exception as e:
-                print(e)
-                speak("Sorry office is not responding")
-        elif "reason" in query:
-            try:
-                speak("Opening Reason")
-                open_reason()
-            except Exception as e:
-                print(e)
-                speak("Sorry Reason is not responding")
-        elif "calendar" in query:
-            try:
-                speak("Opening Calendar")
-                open_calendar()
-            except Exception as e:
-                print(e)
-                speak("Sorry Calendar is not responding")
-        elif "maps" in query:
-            try:
-                speak("Opening Maps")
-                open_maps()
-            except Exception as e:
-                print(e)
-                speak("Sorry Maps is not responding")
-        elif "voice recorder" in query:
-            try:
-                speak("Opening Voice Recorder")
-                open_voice_recorder()
-            except Exception as e:
-                print(e)
-                speak("Sorry Voice Recorder is not responding")
-        elif "snip and sketch" in query:
-            try:
-                speak("Opening Snip and Sketch")
-                open_snip_sketch()
-            except Exception as e:
-                print(e)
-                speak("Sorry Snip and Sketch is not responding")
-        elif "microsoft store" in query:
-            try:
-                speak("Opening Microsoft Store")
-                open_microsoft_store()
-            except Exception as e:
-                print(e)
-                speak("Sorry Microsoft Store is not responding")
+            elif "delete list" in query:
+                try:
+                    speak(LIST_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    list_name = name + ".txt"
+                    os.remove(list_name)
+                    speak("List has been deleted")
+                except Exception as e:
+                    print(e)
+                    speak(LIST_NOT_RESPONDING)
+            elif "create text file" in query:
+                try:
+                    speak(FILE_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    speak("What should I put in the file?")
+                    content = takeCommandMIC()
+                    file_name = name + ".txt"
+                    with open(file_name, "w") as f:
+                        f.write(content)
+                    speak("File has been created")
+                except Exception as e:
+                    print(e)
+                    speak(FILE_NOT_RESPONDING)
+            elif "read text file" in query:
+                try:
+                    speak(FILE_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    file_name = name + ".txt"
+                    with open(file_name, "r") as f:
+                        content = f.read()
+                        print(content)
+                        speak(content)
+                except Exception as e:
+                    print(e)
+                    speak(FILE_NOT_RESPONDING)
+            elif "delete text file" in query:
+                try:
+                    speak(FILE_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    file_name = name + ".txt"
+                    os.remove(file_name)
+                    speak("File has been deleted")
+                except Exception as e:
+                    print(e)
+                    speak(FILE_NOT_RESPONDING)
+            elif "create folder" in query:
+                try:
+                    speak(FOLDER_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    os.mkdir(name)
+                    speak("Folder has been created")
+                except Exception as e:
+                    print(e)
+                    speak(FOLDER_NOT_RESPONDING)
+            elif "delete folder" in query:
+                try:
+                    speak(FOLDER_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    os.rmdir(name)
+                    speak("Folder has been deleted")
+                except Exception as e:
+                    print(e)
+                    speak(FOLDER_NOT_RESPONDING)
+            elif "open folder" in query:
+                try:
+                    speak(FOLDER_NAME_QUESTION)
+                    name = takeCommandMIC()
+                    os.chdir(name)
+                    speak("Folder has been opened")
+                except Exception as e:
+                    print(e)
+                    speak(FOLDER_NOT_RESPONDING)
+            elif "back one folder" in query:
+                try:
+                    os.chdir("..")
+                    print(os.getcwd())
+                    speak("Folder has been opened")
+                except Exception as e:
+                    print(e)
+                    speak(FOLDER_NOT_RESPONDING)
+            elif "what folder" in query:
+                try:
+                    print(os.getcwd())
+                    speak(os.getcwd())
+                except Exception as e:
+                    print(e)
+                    speak(FOLDER_NOT_RESPONDING)
+            elif "whatsapp message" in query:
+                user_name = {"Tracy": "+15093934105", "Nicole": "+15094211558"}
+                try:
+                    speak("Who should I send the message to?")
+                    name = takeCommandMIC()
+                    phone_num = user_name[name]
+                    speak("What should I say?")
+                    content = takeCommandMIC()
+                    sendWhatsApp_msg(phone_num, content)
+                    speak("Message has been sent")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the whatsapp service is not responding")
+            elif "headlines" in query:
+                try:
+                    url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=37ac9a803d7b4f509cae0d11b6c40365"
+                    json_data = requests.get(url).json()
+                    articles = json_data["articles"]
+                    for article in articles:
+                        print(article["title"])
+                        speak(article["title"])
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the headlines API is not responding")
+            elif "top 20" in query:
+                try:
+                    url = "https://api.themoviedb.org/3/movie/popular?api_key=a300e27e1b4a17e70eee7745e3e1da69&language=en-US&page=1"
+                    json_data = requests.get(url).json()
+                    movies = json_data["results"]
+                    for movie in movies:
+                        print(movie["title"])
+                        speak(movie["title"])
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the movies API is not responding")
+            elif "forecast" in query:
+                try:
+                    speak("What is the name of the city?")
+                    city = takeCommandMIC()
+                    speak("What is the name of the country?")
+                    country = takeCommandMIC()
+                    url = OW_API_LINK + city + "," + country + APPID
+                    json_data = requests.get(url).json()
+                    weather = json_data["weather"]
+                    for w in weather:
+                        print(w["description"])
+                        speak(w["description"])
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the weather API is not responding")
+            elif "advice" in query:
+                try:
+                    speak(f"Here's some advice for you, sir")
+                    advice = get_random_advice()
+                    speak(advice)
+                    speak("For your convenience, I am printing it on the screen sir.")
+                    print(advice)
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the advice API is not responding")
+            elif "trending movies" in query:
+                try:
+                    speak(f"Some of the trending movies are: {get_trending_movies()}")
+                    speak("For your convenience, I am printing it on the screen.")
+                    print(*get_trending_movies(), sep="\n")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the trending movies API is not responding")
+            elif "trending tv shows" in query:
+                try:
+                    speak(f"Some of the trending tv shows are: {get_trending_tv_shows()}")
+                    speak("For your convenience, I am printing it on the screen.")
+                    print(*get_trending_tv_shows(), sep="\n")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry the trending tv shows API is not responding")
+            elif "youtube" in query:
+                try:
+                    speak("What do you want to play on Youtube?")
+                    video = takeCommandMIC().lower()
+                    play_on_youtube(video)
+                except Exception as e:
+                    print(e)
+                    speak("Sorry youtube is not responding")
+            elif "discord" in query:
+                try:
+                    open_discord()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry discord is not responding")
+            elif "notepad" in query:
+                try:
+                    open_notepad()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry notepad is not responding")
+            elif "calculator" in query:
+                try:
+                    open_calculator()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry calculator is not responding")
+            elif "wordpad" in query:
+                try:
+                    open_wordpad()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry wordpad is not responding")
+            elif "chrome" in query:
+                try:
+                    open_chrome()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry chrome is not responding")
+            elif "firefox" in query:
+                try:
+                    open_firefox()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry firefox is not responding")
+            elif "steam" in query:
+                try:
+                    open_steam()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Steam is not responding")
+            elif "edge" in query:
+                try:
+                    open_edge()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Microsoft Edge is not responding")
+            elif "prompt" in query:
+                try:
+                    open_cmd()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry command prompt is not responding")
+            elif "office" in query:
+                try:
+                    open_office()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry office is not responding")
+            elif "reason" in query:
+                try:
+                    speak("Opening Reason")
+                    open_reason()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Reason is not responding")
+            elif "calendar" in query:
+                try:
+                    speak("Opening Calendar")
+                    open_calendar()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Calendar is not responding")
+            elif "maps" in query:
+                try:
+                    speak("Opening Maps")
+                    open_maps()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Maps is not responding")
+            elif "voice recorder" in query:
+                try:
+                    speak("Opening Voice Recorder")
+                    open_voice_recorder()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Voice Recorder is not responding")
+            elif "snip and sketch" in query:
+                try:
+                    speak("Opening Snip and Sketch")
+                    open_snip_sketch()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Snip and Sketch is not responding")
+            elif "microsoft store" in query:
+                try:
+                    speak("Opening Microsoft Store")
+                    open_microsoft_store()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Microsoft Store is not responding")
 
-        elif "snipping tool" in query:
-            try:
-                speak("Opening Snipping Tool")
-                open_snipping_tool()
-            except Exception as e:
-                print(e)
-                speak("Sorry Snipping Tool is not responding")
-        elif "check for updates" in query:
-            try:
-                speak("Checking for updates")
-                open_check_for_updates()
-            except Exception as e:
-                print(e)
-                speak("Sorry Check for updates is not responding")
-        elif "vnc viewer" in query:
-            try:
-                speak("Opening VNC Viewer")
-                open_vnc_viewer()
-            except Exception as e:
-                print(e)
-                speak("Sorry VNC Viewer is not responding")
-        elif "windscribe" in query:
-            try:
-                speak("Opening Windscribe")
-                open_windscribe()
-            except Exception as e:
-                print(e)
-                speak("Sorry Windscribe is not responding")
-        elif "screenshot" in query:
-            try:
-                speak("Opening Screenshot")
-                open_screenshot()
-            except Exception as e:
-                print(e)
-                speak("Sorry Screenshot is not responding")
-        elif "take a note" in query:
-            try:
-                open_take_a_note()
-            except Exception as e:
-                print(e)
-                speak("Sorry Take a Note is not responding")
-        elif "send sms text" in query:
-            try:
-                speak("Preparing to send SMS text")
-                open_send_sms_text()
-            except Exception as e:
-                print(e)
-                speak("Sorry SMS Text is not responding")
-        elif "send text to" in query:
-            try:
-                speak("Preparing to Send Text")
-                open_send_text_to()
-            except Exception as e:
-                print(e)
-                speak("Sorry Text to is not responding")
-        elif "check weather" in query:
-            try:
-                speak("Preparing to check weather")
-                open_check_weather()
-            except Exception as e:
-                print(e)
-                speak("Sorry Check weather is not responding")
-        elif 'read selected text' in query:
-            try:
-                speak("Preparing to read selected text")
-                open_read_selected_text()
-            except Exception as e:
-                print(e)
-                speak("Sorry Read selected text is not responding")
-        elif 'check news' in query:
-            try:
-                speak("Preparing to check news")
-                open_check_news()
-            except Exception as e:
-                print(e)
-                speak("Sorry news API is not responding")
-        elif 'my documents' in query:
-            try:
-                speak("Preparing to open My Documents")
-                open_my_documents()
-            except Exception as e:
-                print(e)
-                speak("Sorry My Documents is not responding")
-        elif 'remember' in query:
-            try:
-                speak("Preparing to remember")
-                open_remember()
-            except Exception as e:
-                print(e)
-                speak("Sorry Remember is not responding")
-        elif 'generate a password' in query:
-            try:
-                speak("Preparing to generate a password")
-                open_generate_password()
-            except Exception as e:
-                print(e)
-                speak("Sorry Generate a password is not responding")
-        elif 'flip a coin' in query:
-            try:
-                speak("Preparing to flip a coin")
-                open_flip_a_coin()
-            except Exception as e:
-                print(e)
-                speak("Sorry Flip a coin is not responding")
-        elif 'roll dice' in query:
-            try:
-                speak("Preparing to roll dice")
-                open_roll_dice()
-            except Exception as e:
-                print(e)
-                speak("Sorry Roll dice is not responding")
-        elif 'cpu usage' in query:
-            try:
-                speak("Preparing to check CPU usage")
-                open_cpu_usage()
-            except Exception as e:
-                print(e)
-                speak("Sorry CPU usage is not responding")
-        elif 'ram usage' in query:
-            try:
-                speak("Preparing to check RAM usage")
-                open_ram_usage()
-            except Exception as e:
-                print(e)
-                speak("Sorry RAM usage is not responding")
-        elif 'disk usage' in query:
-            try:
-                speak("Preparing to check disk usage")
-                open_disk_usage()
-            except Exception as e:
-                print(e)
-                speak("Sorry disk usage is not responding")
-        elif 'battery status' in query:
-            try:
-                speak("Preparing to check battery status")
-                open_battery_status()
-            except Exception as e:
-                print(e)
-                speak("Sorry battery status is not responding")
-        elif 'check internet connection' in query:
-            try:
-                speak("Preparing to check internet connection")
-                open_check_internet_connection()
-            except Exception as e:
-                print(e)
-                speak("Sorry internet connection is not responding")
-        
-        
-        
+            elif "snipping tool" in query:
+                try:
+                    speak("Opening Snipping Tool")
+                    open_snipping_tool()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Snipping Tool is not responding")
+            elif "check for updates" in query:
+                try:
+                    speak("Checking for updates")
+                    open_check_for_updates()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Check for updates is not responding")
+            elif "vnc viewer" in query:
+                try:
+                    speak("Opening VNC Viewer")
+                    open_vnc_viewer()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry VNC Viewer is not responding")
+            elif "windscribe" in query:
+                try:
+                    speak("Opening Windscribe")
+                    open_windscribe()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Windscribe is not responding")
+            elif "screenshot" in query:
+                try:
+                    speak("Opening Screenshot")
+                    open_screenshot()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Screenshot is not responding")
+            elif "take a note" in query:
+                try:
+                    open_take_a_note()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Take a Note is not responding")
+            elif "send sms text" in query:
+                try:
+                    speak("Preparing to send SMS text")
+                    open_send_sms_text()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry SMS Text is not responding")
+            elif "send text to" in query:
+                try:
+                    speak("Preparing to Send Text")
+                    open_send_text_to()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Text to is not responding")
+            elif "check weather" in query:
+                try:
+                    speak("Preparing to check weather")
+                    open_check_weather()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Check weather is not responding")
+            elif 'read selected text' in query:
+                try:
+                    speak("Preparing to read selected text")
+                    open_read_selected_text()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Read selected text is not responding")
+            elif 'check news' in query:
+                try:
+                    speak("Preparing to check news")
+                    open_check_news()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry news API is not responding")
+            elif 'my documents' in query:
+                try:
+                    speak("Preparing to open My Documents")
+                    open_my_documents()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry My Documents is not responding")
+            elif 'remember' in query:
+                try:
+                    speak("Preparing to remember")
+                    open_remember()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Remember is not responding")
+            elif 'generate a password' in query:
+                try:
+                    speak("Preparing to generate a password")
+                    open_generate_password()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Generate a password is not responding")
+            elif 'flip a coin' in query:
+                try:
+                    speak("Preparing to flip a coin")
+                    open_flip_a_coin()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Flip a coin is not responding")
+            elif 'roll dice' in query:
+                try:
+                    speak("Preparing to roll dice")
+                    open_roll_dice()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Roll dice is not responding")
+            elif 'cpu usage' in query:
+                try:
+                    speak("Preparing to check CPU usage")
+                    open_cpu_usage()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry CPU usage is not responding")
+            elif 'ram usage' in query:
+                try:
+                    speak("Preparing to check RAM usage")
+                    open_ram_usage()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry RAM usage is not responding")
+            elif 'disk usage' in query:
+                try:
+                    speak("Preparing to check disk usage")
+                    open_disk_usage()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry disk usage is not responding")
+            elif 'battery status' in query:
+                try:
+                    speak("Preparing to check battery status")
+                    open_battery_status()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry battery status is not responding")
+            elif 'check internet connection' in query:
+                try:
+                    speak("Preparing to check internet connection")
+                    open_check_internet_connection()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry internet connection is not responding")
+            
+            
+            

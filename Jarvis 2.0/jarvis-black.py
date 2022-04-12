@@ -29,7 +29,8 @@ import urllib.request  # url request
 import pyjokes
 import pyautogui
 import pywhatkit as kit
-import clipboard 
+import clipboard
+import string
 from newsapi import NewsApiClient
 from time import sleep
 from email.message import EmailMessage
@@ -564,6 +565,20 @@ def open_remember():
     except Exception as e:
         print(e)
         print("Failed to take a note")
+
+def open_generate_password():
+    try:
+        speak("How many characters would you like your password to be?")
+        length = int(takeCommandMIC())
+        if length != None:
+            password = ""
+            for i in range(length):
+                password += random.choice(string.ascii_letters + string.digits)
+            speak("Your password is " + password)
+            print("Your password is " + password)
+    except Exception as e:
+        print(e)
+        print("Failed to generate password")
 
 try:
     voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
@@ -1113,6 +1128,13 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Remember is not responding")
+        elif 'generate a password' in query:
+            try:
+                speak("Preparing to generate a password")
+                open_generate_password()
+            except Exception as e:
+                print(e)
+                speak("Sorry Generate a password is not responding")
         
         
         

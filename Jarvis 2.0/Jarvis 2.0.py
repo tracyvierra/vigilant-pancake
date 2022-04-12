@@ -1,6 +1,6 @@
 # Author: Tracy Vierra
 # Date Created: 4/5/2022
-# Date Modified: 4/9/2022
+# Date Modified: 4/12/2022
 
 # Description: Jarvis 2.0 personal assistant in python.
 
@@ -29,6 +29,10 @@ import urllib.request  # url request
 import pyjokes
 import pyautogui
 import pywhatkit as kit
+import clipboard
+import string
+import psutil
+from newsapi import NewsApiClient
 from time import sleep
 from email.message import EmailMessage
 from secrets import senderemail, gmail_user, gmail_pwd
@@ -49,6 +53,14 @@ SMTP_GATEWAY = "smtp.gmail.com"
 # OpenWeather API:
 APPID = "&appid=cce9b0c81b54033cc50f4e071fc11360"
 OW_API_LINK = "http://api.openweathermap.org/data/2.5/weather?q="
+
+# newsapi.org
+NEWS_API_KEY = "37ac9a803d7b4f509cae0d11b6c40365"
+NEWS_API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey="
+
+# My Documents user:
+MY_DOCUMENTS = os.path.expanduser("~/Documents")
+USERNAME = "tracy"
 
 
 engine = pyttsx3.init()
@@ -371,7 +383,6 @@ def open_microsoft_store():
 def open_snipping_tool():
     try:
         sp.Popen("C:\\windows\\system32\\SnippingTool.exe")
-        # sp.run('start shell:appsfolder\\Microsoft.SnippingTool_8wekyb3d8bbwe!App:', shell=True)
     except Exception as e:
         print(e)
         print("Failed to open snipping tool")
@@ -379,10 +390,11 @@ def open_snipping_tool():
 
 def open_check_for_updates():
     try:
-        sp.run(
-            "start shell:appsfolder\\Microsoft.WindowsUpdate_8wekyb3d8bbwe!App:",
-            shell=True,
-        )
+        os.system("control update")
+        sleep(3)
+        pyautogui.press("tab")
+        pyautogui.press("tab")
+        pyautogui.press("enter")
     except Exception as e:
         print(e)
         print("Failed to open check for updates")
@@ -407,11 +419,12 @@ def open_windscribe():
 def open_screenshot():
     try:
         image = pyautogui.screenshot()
-        image.save("screenshot.png")
+        timestamp = datetime.datetime.now().strftime("%m_%d_%Y-%H_%M_%S")
+        image.save('screenshot-{}.png'.format(timestamp))
         speak("Screenshot taken.")
     except Exception as e:
         print(e)
-        print("Failed to open screenshot")
+        print("Failed to take a screenshot")
 
 
 def open_take_a_note():
@@ -491,26 +504,165 @@ def open_check_weather():
         print(temp)
         print(weather)
         speak("The temperature is" + str(temp) + " degrees")
-        speak("The weather is " + description)
+        speak("The forcast is " + description)
     except Exception as e:
         print(e)
         print("Failed to check weather")
 
+def open_read_selected_text():
+    try:
+        text = clipboard.paste()
+        speak(text)
+        print(text)
+    except Exception as e:
+        print(e)
+        print("Failed to read selected text")
 
+
+def open_check_news():
+    try:
+        speak("What is the topic?")
+        topic = takeCommandMIC().lower()
+        newsapi = NewsApiClient(api_key='37ac9a803d7b4f509cae0d11b6c40365')
+        data = newsapi.get_everything(q=topic, language='en', page_size=7)
+        for i in range(len(data["articles"])):
+            speak(data["articles"][i]["title"])
+            print(data["articles"][i]["title"])
+    except Exception as e:
+        print(e)
+        print("Failed to get news")
+
+def open_my_documents():
+    try:
+        sp.Popen("explorer C:\\Users\\" + USERNAME + "\\Documents")
+    except Exception as e:
+        print(e)
+        print("Failed to open my documents")
+        
 def wishme():
     try:
-        speak("Welcome back sir!")
+        speak("Welcome back Tracy!")
         greeting()
         time()
         date()
-        speak("Jarvis at your service, please tell me how I can help?")
+        speak("Jarvis at your service, what can I do for you?")
     except Exception as e:
         print(e)
         print("Failed to wish me")
 
+def open_remember():
+    try:
+        speak("What would you like to remember?")
+        text = takeCommandMIC()
+        if text != None:
+            f = open("remember.txt", "a")
+            timestamp = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+            f.write(timestamp + "\n")
+            note = text + "\n\n"
+            f.write(note)
+            f.close()
+            speak("Note taken")
+            print("Note taken.")
+    except Exception as e:
+        print(e)
+        print("Failed to take a note")
 
-voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
-getvoices(voice)
+def open_generate_password():
+    try:
+        speak("How many characters would you like your password to be?")
+        length = int(takeCommandMIC())
+        if length != None:
+            password = ""
+            for i in range(length):
+                password += random.choice(string.ascii_letters + string.digits)
+            speak("Your password is " + password)
+            print("Your password is " + password)
+    except Exception as e:
+        print(e)
+        print("Failed to generate password")
+
+def open_flip_a_coin():
+    try:
+        speak("Flipping a coin")
+        coin = random.choice(["heads", "tails"])
+        speak("The coin landed on " + coin)
+        print("The coin landed on " + coin)
+    except Exception as e:
+        print(e)
+        print("Failed to flip a coin")
+
+def open_roll_dice():
+    try:
+        speak("Rolling a dice")
+        dice = random.choice(["1", "2", "3", "4", "5", "6"])
+        speak("The dice landed on " + dice)
+        print("The dice landed on " + dice)
+    except Exception as e:
+        print(e)
+        print("Failed to roll a dice")
+
+def open_cpu_usage():
+    try:
+        cpu_usage = psutil.cpu_percent()
+        speak("The CPU usage is " + str(cpu_usage) + "%")
+        print("The CPU usage is " + str(cpu_usage) + "%")
+    except Exception as e:
+        print(e)
+        print("Failed to get CPU stats")
+
+def open_ram_usage():
+    try:
+        ram_usage = psutil.virtual_memory()[2]
+        speak("The RAM usage is " + str(ram_usage) + "%")
+        print("The RAM usage is " + str(ram_usage) + "%")
+    except Exception as e:
+        print(e)
+        print("Failed to get RAM usage")
+
+def open_disk_usage():
+    try:
+        disk_usage_c = psutil.disk_usage("C:")[3]
+        disk_usage_d = psutil.disk_usage("D:")[3]
+        speak("The C disk usage is " + str(disk_usage_c) + "%")
+        print("The C: disk usage is " + str(disk_usage_c) + "%")
+        speak("The D disk usage is " + str(disk_usage_d) + "%")
+        print("The D: disk usage is " + str(disk_usage_d) + "%")
+    except Exception as e:
+        print(e)
+        print("Failed to get disk usage")
+
+def open_battery_status():
+    try:
+        battery_status = psutil.sensors_battery()[0]
+        speak("The battery status is " + str(battery_status))
+        print("The battery status is " + str(battery_status))
+    except Exception as e:
+        print(e)
+        print("Failed to get battery status")
+
+def open_check_internet_connection():
+    try:
+        url = "http://google.com"
+        res = requests.get(url)
+        if res.status_code == 200:
+            speak("Internet connection is working")
+            print("Internet connection is working")
+        else:
+            speak("Internet connection is not working")
+            print("Internet connection is not working")
+    except Exception as e:
+        print(e)
+        print("Failed to check internet connection")
+
+
+
+
+try:
+    voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
+    getvoices(voice)
+except Exception as e:
+    print(e)
+    print("failed to set voice.")
 
 
 if __name__ == "__main__":
@@ -789,7 +941,7 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry the whatsapp service is not responding")
-        elif "news" in query:
+        elif "headlines" in query:
             try:
                 url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=37ac9a803d7b4f509cae0d11b6c40365"
                 json_data = requests.get(url).json()
@@ -799,7 +951,7 @@ if __name__ == "__main__":
                     speak(article["title"])
             except Exception as e:
                 print(e)
-                speak("Sorry the news API is not responding")
+                speak("Sorry the headlines API is not responding")
         elif "top 20" in query:
             try:
                 url = "https://api.themoviedb.org/3/movie/popular?api_key=a300e27e1b4a17e70eee7745e3e1da69&language=en-US&page=1"
@@ -1025,3 +1177,91 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Check weather is not responding")
+        elif 'read selected text' in query:
+            try:
+                speak("Preparing to read selected text")
+                open_read_selected_text()
+            except Exception as e:
+                print(e)
+                speak("Sorry Read selected text is not responding")
+        elif 'check news' in query:
+            try:
+                speak("Preparing to check news")
+                open_check_news()
+            except Exception as e:
+                print(e)
+                speak("Sorry news API is not responding")
+        elif 'my documents' in query:
+            try:
+                speak("Preparing to open My Documents")
+                open_my_documents()
+            except Exception as e:
+                print(e)
+                speak("Sorry My Documents is not responding")
+        elif 'remember' in query:
+            try:
+                speak("Preparing to remember")
+                open_remember()
+            except Exception as e:
+                print(e)
+                speak("Sorry Remember is not responding")
+        elif 'generate a password' in query:
+            try:
+                speak("Preparing to generate a password")
+                open_generate_password()
+            except Exception as e:
+                print(e)
+                speak("Sorry Generate a password is not responding")
+        elif 'flip a coin' in query:
+            try:
+                speak("Preparing to flip a coin")
+                open_flip_a_coin()
+            except Exception as e:
+                print(e)
+                speak("Sorry Flip a coin is not responding")
+        elif 'roll dice' in query:
+            try:
+                speak("Preparing to roll dice")
+                open_roll_dice()
+            except Exception as e:
+                print(e)
+                speak("Sorry Roll dice is not responding")
+        elif 'cpu usage' in query:
+            try:
+                speak("Preparing to check CPU usage")
+                open_cpu_usage()
+            except Exception as e:
+                print(e)
+                speak("Sorry CPU usage is not responding")
+        elif 'ram usage' in query:
+            try:
+                speak("Preparing to check RAM usage")
+                open_ram_usage()
+            except Exception as e:
+                print(e)
+                speak("Sorry RAM usage is not responding")
+        elif 'disk usage' in query:
+            try:
+                speak("Preparing to check disk usage")
+                open_disk_usage()
+            except Exception as e:
+                print(e)
+                speak("Sorry disk usage is not responding")
+        elif 'battery status' in query:
+            try:
+                speak("Preparing to check battery status")
+                open_battery_status()
+            except Exception as e:
+                print(e)
+                speak("Sorry battery status is not responding")
+        elif 'check internet connection' in query:
+            try:
+                speak("Preparing to check internet connection")
+                open_check_internet_connection()
+            except Exception as e:
+                print(e)
+                speak("Sorry internet connection is not responding")
+    
+    
+    
+            

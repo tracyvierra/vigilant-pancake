@@ -1,6 +1,6 @@
 # Author: Tracy Vierra
 # Date Created: 4/5/2022
-# Date Modified: 4/11/2022
+# Date Modified: 4/12/2022
 
 # Description: Jarvis 2.0 personal assistant in python.
 
@@ -580,6 +580,26 @@ def open_generate_password():
         print(e)
         print("Failed to generate password")
 
+def open_flip_a_coin():
+    try:
+        speak("Flipping a coin")
+        coin = random.choice(["heads", "tails"])
+        speak("The coin landed on " + coin)
+        print("The coin landed on " + coin)
+    except Exception as e:
+        print(e)
+        print("Failed to flip a coin")
+
+def open_roll_dice():
+    try:
+        speak("Rolling a dice")
+        dice = random.choice(["1", "2", "3", "4", "5", "6"])
+        speak("The dice landed on " + dice)
+        print("The dice landed on " + dice)
+    except Exception as e:
+        print(e)
+        print("Failed to roll a dice")
+
 try:
     voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
     getvoices(voice)
@@ -1135,6 +1155,18 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Generate a password is not responding")
-        
-        
+        elif 'flip a coin' in query:
+            try:
+                speak("Preparing to flip a coin")
+                open_flip_a_coin()
+            except Exception as e:
+                print(e)
+                speak("Sorry Flip a coin is not responding")
+        elif 'roll dice' in query:
+            try:
+                speak("Preparing to roll dice")
+                open_roll_dice()
+            except Exception as e:
+                print(e)
+                speak("Sorry Roll dice is not responding")
         

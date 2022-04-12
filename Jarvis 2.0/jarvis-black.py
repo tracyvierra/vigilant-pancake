@@ -548,6 +548,22 @@ def wishme():
         print(e)
         print("Failed to wish me")
 
+def open_remember():
+    try:
+        speak("What would you like to remember?")
+        text = takeCommandMIC()
+        if text != None:
+            f = open("remember.txt", "a")
+            timestamp = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+            f.write(timestamp + "\n")
+            note = text + "\n\n"
+            f.write(note)
+            f.close()
+            speak("Note taken")
+            print("Note taken.")
+    except Exception as e:
+        print(e)
+        print("Failed to take a note")
 
 try:
     voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
@@ -1090,5 +1106,13 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry My Documents is not responding")
+        elif 'remember' in query:
+            try:
+                speak("Preparing to remember")
+                open_remember()
+            except Exception as e:
+                print(e)
+                speak("Sorry Remember is not responding")
+        
         
         

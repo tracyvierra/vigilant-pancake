@@ -31,6 +31,7 @@ import pyautogui
 import pywhatkit as kit
 import clipboard
 import string
+import psutil
 from newsapi import NewsApiClient
 from time import sleep
 from email.message import EmailMessage
@@ -599,6 +600,59 @@ def open_roll_dice():
     except Exception as e:
         print(e)
         print("Failed to roll a dice")
+
+def open_cpu_usage():
+    try:
+        cpu_usage = psutil.cpu_percent()
+        speak("The CPU usage is " + str(cpu_usage) + "%")
+        print("The CPU usage is " + str(cpu_usage) + "%")
+    except Exception as e:
+        print(e)
+        print("Failed to get CPU stats")
+
+def open_ram_usage():
+    try:
+        ram_usage = psutil.virtual_memory()[2]
+        speak("The RAM usage is " + str(ram_usage) + "%")
+        print("The RAM usage is " + str(ram_usage) + "%")
+    except Exception as e:
+        print(e)
+        print("Failed to get RAM usage")
+
+def open_disk_usage():
+    try:
+        disk_usage_c = psutil.disk_usage("C:")[3]
+        disk_usage_d = psutil.disk_usage("D:")[3]
+        speak("The C disk usage is " + str(disk_usage_c) + "%")
+        print("The C: disk usage is " + str(disk_usage_c) + "%")
+        speak("The D disk usage is " + str(disk_usage_d) + "%")
+        print("The D: disk usage is " + str(disk_usage_d) + "%")
+    except Exception as e:
+        print(e)
+        print("Failed to get disk usage")
+
+def open_battery_status():
+    try:
+        battery_status = psutil.sensors_battery()[0]
+        speak("The battery status is " + str(battery_status))
+        print("The battery status is " + str(battery_status))
+    except Exception as e:
+        print(e)
+        print("Failed to get battery status")
+
+def open_check_internet_connection():
+    try:
+        url = "http://google.com"
+        res = requests.get(url)
+        if res.status_code == 200:
+            speak("Internet connection is working")
+            print("Internet connection is working")
+        else:
+            speak("Internet connection is not working")
+            print("Internet connection is not working")
+    except Exception as e:
+        print(e)
+        print("Failed to check internet connection")
 
 try:
     voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
@@ -1169,4 +1223,41 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry Roll dice is not responding")
+        elif 'cpu usage' in query:
+            try:
+                speak("Preparing to check CPU usage")
+                open_cpu_usage()
+            except Exception as e:
+                print(e)
+                speak("Sorry CPU usage is not responding")
+        elif 'ram usage' in query:
+            try:
+                speak("Preparing to check RAM usage")
+                open_ram_usage()
+            except Exception as e:
+                print(e)
+                speak("Sorry RAM usage is not responding")
+        elif 'disk usage' in query:
+            try:
+                speak("Preparing to check disk usage")
+                open_disk_usage()
+            except Exception as e:
+                print(e)
+                speak("Sorry disk usage is not responding")
+        elif 'battery status' in query:
+            try:
+                speak("Preparing to check battery status")
+                open_battery_status()
+            except Exception as e:
+                print(e)
+                speak("Sorry battery status is not responding")
+        elif 'check internet connection' in query:
+            try:
+                speak("Preparing to check internet connection")
+                open_check_internet_connection()
+            except Exception as e:
+                print(e)
+                speak("Sorry internet connection is not responding")
+        
+        
         

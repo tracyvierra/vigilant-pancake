@@ -32,7 +32,6 @@ import pywhatkit as kit
 import clipboard
 import string
 import psutil
-from nltk.tokenize import word_tokenize
 from newsapi import NewsApiClient
 from time import sleep
 from email.message import EmailMessage
@@ -670,7 +669,6 @@ if __name__ == "__main__":
     wishme()
     while True:
         query = takeCommandMIC().lower()
-        query = word_tokenize(query)
         if "current time" in query:
             time()
         elif "current date" in query:

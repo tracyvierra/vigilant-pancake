@@ -389,10 +389,16 @@ def open_snipping_tool():
 
 def open_check_for_updates():
     try:
-        sp.run(
-            "start shell:appsfolder\\Microsoft.WindowsUpdate_8wekyb3d8bbwe!App:",
-            shell=True,
-        )
+        # sp.run(
+        #     "start shell:appsfolder\\Microsoft.WindowsUpdate_8wekyb3d8bbwe!App:",
+        #     shell=True,
+        # )
+        # sp.Popen("C:\\Windows\\System32\\WindowsUpdate.exe")
+        os.system("control update")
+        sleep(3)
+        pyautogui.press("tab")
+        pyautogui.press("tab")
+        pyautogui.press("enter")
     except Exception as e:
         print(e)
         print("Failed to open check for updates")
@@ -417,11 +423,12 @@ def open_windscribe():
 def open_screenshot():
     try:
         image = pyautogui.screenshot()
-        image.save("screenshot.png")
+        timestamp = datetime.datetime.now().strftime("%m_%d_%Y-%H_%M_%S")
+        image.save('screenshot-{}.png'.format(timestamp))
         speak("Screenshot taken.")
     except Exception as e:
         print(e)
-        print("Failed to open screenshot")
+        print("Failed to take a screenshot")
 
 
 def open_take_a_note():

@@ -56,6 +56,10 @@ OW_API_LINK = "http://api.openweathermap.org/data/2.5/weather?q="
 NEWS_API_KEY = "37ac9a803d7b4f509cae0d11b6c40365"
 NEWS_API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey="
 
+# My Documents user:
+MY_DOCUMENTS = os.path.expanduser("~/Documents")
+USERNAME = "tracy"
+
 
 engine = pyttsx3.init()
 
@@ -524,6 +528,13 @@ def open_check_news():
     except Exception as e:
         print(e)
         print("Failed to get news")
+
+def open_my_documents():
+    try:
+        sp.Popen("explorer C:\\Users\\" + USERNAME + "\\Documents")
+    except Exception as e:
+        print(e)
+        print("Failed to open my documents")
         
 def wishme():
     try:
@@ -1071,4 +1082,12 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry news API is not responding")
+        elif 'my documents' in query:
+            try:
+                speak("Preparing to open My Documents")
+                open_my_documents()
+            except Exception as e:
+                print(e)
+                speak("Sorry My Documents is not responding")
+        
         

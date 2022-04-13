@@ -443,7 +443,7 @@ def open_take_a_note():
         speak("Taking a note")
         note_text = takeCommandMIC()
         if note_text != None:
-            f = open("notes.txt", "a")
+            f = open("C:\\Users\\tracy\\Documents\\notes.txt", "a")
             timestamp = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
             f.write(timestamp + "\n")
             note = note_text + "\n\n"
@@ -566,7 +566,7 @@ def open_remember():
         speak("What would you like to remember?")
         text = takeCommandMIC()
         if text != None:
-            f = open("remember.txt", "a")
+            f = open("C:\\Users\\tracy\\Documents\\remember.txt", "a")
             timestamp = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
             f.write(timestamp + "\n")
             note = text + "\n\n"

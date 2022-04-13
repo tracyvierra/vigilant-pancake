@@ -1,10 +1,10 @@
 # Author: Tracy Vierra
 # Date Created: 4/5/2022
-# Date Modified: 4/12/2022
+# Date Modified: 4/13/2022
 
-# Description: Jarvis 2.0 personal assistant in python.
+# Description: Jarvis 2.1 personal assistant in python.  Uses wake word 'Jarvis' to activate your query.
 
-# Usage: jarvis.py
+# Usage: jarvis 2.1.py
 
 
 from unicodedata import name

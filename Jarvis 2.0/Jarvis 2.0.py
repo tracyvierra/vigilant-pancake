@@ -32,10 +32,11 @@ import pywhatkit as kit
 import clipboard
 import string
 import psutil
+from pyfiglet import Figlet
 from newsapi import NewsApiClient
 from time import sleep
 from email.message import EmailMessage
-from secrets import senderemail, gmail_user, gmail_pwd
+# from secrets import senderemail, gmail_user, gmail_pwd
 
 # Some responses as constants:
 TEXT_SENT_RESPONSE = "Text message sent"
@@ -62,6 +63,12 @@ NEWS_API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey="
 MY_DOCUMENTS = os.path.expanduser("~/Documents")
 USERNAME = "tracy"
 
+# from secrets.py
+senderemail = "tracyv@gmail.com"
+epwd = "dcbv htkp kstv bclf"
+gmail_user = senderemail
+gmail_pwd = epwd
+OPENWEATHER_APP_ID = "cce9b0c81b54033cc50f4e071fc11360"
 
 engine = pyttsx3.init()
 
@@ -655,10 +662,11 @@ def open_check_internet_connection():
         print("Failed to check internet connection")
 
 
-
+f = Figlet(font='slant')
+print(f.renderText('Jarvis 2.0') + "\n")
 
 try:
-    voice = int(input("Enter number to select voice for Jarvis: \n1. Male \n2. Female \n"))
+    voice = int(input("Enter number to select voice for Jarvis: \n\n1. Male \n2. Female \n"))
     getvoices(voice)
 except Exception as e:
     print(e)

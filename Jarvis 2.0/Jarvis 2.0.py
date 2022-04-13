@@ -1276,7 +1276,7 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry internet connection is not responding")
-        elif 'ask' in query:
+        elif 'ask question' in query:
             try:
                 speak('what would you like to know?')
                 question=takeCommandMIC()

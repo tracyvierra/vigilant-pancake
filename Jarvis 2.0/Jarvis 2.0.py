@@ -32,6 +32,7 @@ import pywhatkit as kit
 import clipboard
 import string
 import psutil
+import wolframalpha
 from pyfiglet import Figlet
 from newsapi import NewsApiClient
 from time import sleep
@@ -62,6 +63,9 @@ NEWS_API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey="
 # My Documents user:
 MY_DOCUMENTS = os.path.expanduser("~/Documents")
 USERNAME = "tracy"
+
+# Wolfram Alpha API:
+WOLFRAM_API_KEY = "LU2HT9-4JUXPHGX8E"
 
 # from secrets.py
 senderemail = "tracyv@gmail.com"
@@ -660,6 +664,8 @@ def open_check_internet_connection():
     except Exception as e:
         print(e)
         print("Failed to check internet connection")
+
+
 
 # Banner for Jarvis 2.0
 f = Figlet(font='slant')
@@ -1270,6 +1276,21 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry internet connection is not responding")
+        elif 'ask' in query:
+            try:
+                speak('what would you like to know?')
+                question=takeCommandMIC()
+                app_id=WOLFRAM_API_KEY
+                client = wolframalpha.Client(app_id)
+                res = client.query(question)
+                answer = next(res.results).text
+                speak(answer)
+                print(answer)
+            except Exception as e:
+                print(e)
+                speak("Sorry Wolfram Alpha is not responding")
+        
+        
     
     
     

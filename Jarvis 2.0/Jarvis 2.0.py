@@ -661,10 +661,11 @@ def open_check_internet_connection():
         print(e)
         print("Failed to check internet connection")
 
-
+# Banner for Jarvis 2.0
 f = Figlet(font='slant')
 print(f.renderText('Jarvis 2.0') + "\n")
 
+# Select voice for Jarvis
 try:
     voice = int(input("Enter number to select voice for Jarvis: \n\n1. Male \n2. Female \n"))
     getvoices(voice)

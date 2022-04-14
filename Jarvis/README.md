@@ -132,6 +132,8 @@ remember				# creates a note with date time stamped entries to remember
 
 generate a password		# generates a complex password
 
+generate a project name		# generates a project name in the form of adj-noun
+
 flip a coin					# flips a coin and returns heads or tails
 
 roll dice					# rolls a six sided die

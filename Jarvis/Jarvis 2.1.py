@@ -33,6 +33,7 @@ import clipboard
 import string
 import psutil
 import wolframalpha
+import randomname
 from pyfiglet import Figlet
 from newsapi import NewsApiClient
 from time import sleep
@@ -665,9 +666,18 @@ def open_check_internet_connection():
         print(e)
         print("Failed to check internet connection")
 
+def open_generate_project_name():
+    try:
+        project_name = randomname.generate()
+        speak("The project name is " + project_name)
+        print("The project name is " + project_name)
+    except Exception as e:
+        print(e)
+        print("Failed to get project name")
 
 
-# Banner for Jarvis 2.0
+
+# Banner for Jarvis 2.1
 f = Figlet(font='slant')
 print(f.renderText('Jarvis 2.1') + "\n")
 
@@ -1286,6 +1296,14 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
                     speak("Sorry Wolfram Alpha is not responding")
+            elif 'generate a project name' in query:
+                try:
+                    speak("Preparing to generate a project name")
+                    open_generate_project_name()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Generate a project name is not responding")
+            
         
         
     

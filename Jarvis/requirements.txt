@@ -1,0 +1,25 @@
+pip install SpeechRecognition		# speech recognition
+pip install pyttsx3  			# text to speech
+pip install datetime  			# date and time
+pip install wikipedia  			# wikipedia search
+pip install webbrowser  		# open browser
+pip install os  			# operating system
+pip install smtplib  			# send email
+pip install random  			# random number
+pip install requests  			# request
+pip install json  			# json
+pip install time  			# time
+pip install sys  			# system
+pip install subprocess	 		# subprocess
+pip install re  			# regular expression
+pip install urllib 			# url
+pip install pyjokes			# jokes
+pip install pyautogui			# mouse and keyboard
+pip install pywhatkit			# send whatsapp	
+pip install clipboard			# clipboard	
+pip install string			# string			
+pip install psutil			# system info
+pip install wolframalpha		# wolframalpha
+pip install randomname			# random name generator
+pip install pyfiglet 			# figlet banner text
+pip install newsapi-python		# news api

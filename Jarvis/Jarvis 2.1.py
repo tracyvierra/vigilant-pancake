@@ -677,6 +677,7 @@ def open_generate_project_name():
 
 def open_blender():
     try:
+        speak("Opening Blender")
         sp.Popen("D:\\Program Files\\Blender Foundation\\Blender 3.1\\blender-launcher.exe")
     except Exception as e:
         print(e)
@@ -684,6 +685,7 @@ def open_blender():
 
 def open_tor_browser():
     try:
+        speak("Opening Tor Browser")
         sp.Popen("D:\\Users\\tracy\\Desktop\\Tor Browser\\Browser\\firefox.exe")
     except Exception as e:
         print(e)
@@ -1088,6 +1090,7 @@ if __name__ == "__main__":
                     speak("Sorry firefox is not responding")
             elif 'blender' in query:
                 try:
+                    speak("Preparing to open Blender")
                     open_blender()
                 except Exception as e:
                     print(e)

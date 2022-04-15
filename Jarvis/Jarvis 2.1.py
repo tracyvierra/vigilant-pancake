@@ -682,6 +682,14 @@ def open_blender():
         print(e)
         print("Failed to open blender")
 
+def open_tor_browser():
+    try:
+        sp.Popen("D:\\Users\\tracy\\Desktop\\Tor Browser\\Browser\\firefox.exe")
+    except Exception as e:
+        print(e)
+        print("Failed to open tor browser")
+
+
 
 
 # Banner for Jarvis 2.1
@@ -1316,6 +1324,14 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
                     speak("Sorry Generate a project name is not responding")
+            elif 'open tor browser' in query:
+                try:
+                    speak("Preparing to open Tor Browser")
+                    open_tor_browser()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry Tor Browser is not responding")
+            
             
         
         

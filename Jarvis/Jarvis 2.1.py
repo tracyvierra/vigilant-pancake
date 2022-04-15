@@ -675,6 +675,13 @@ def open_generate_project_name():
         print(e)
         print("Failed to get project name")
 
+def open_blender():
+    try:
+        sp.Popen("D:\\Program Files\\Blender Foundation\\Blender 3.1\\blender-launcher.exe")
+    except Exception as e:
+        print(e)
+        print("Failed to open blender")
+
 
 
 # Banner for Jarvis 2.1
@@ -1071,6 +1078,12 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
                     speak("Sorry firefox is not responding")
+            elif 'blender' in query:
+                try:
+                    open_blender()
+                except Exception as e:
+                    print(e)
+                    speak("Sorry blender is not responding")
             elif "steam" in query:
                 try:
                     open_steam()

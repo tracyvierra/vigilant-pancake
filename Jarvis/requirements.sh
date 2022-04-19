@@ -1,5 +1,5 @@
 #!/bin/bash
-
+/usr/bin/python3 -m pip install --upgrade pip	# Upgrade pip
 pip install SpeechRecognition		# speech recognition
 pip install pyttsx3  			# text to speech
 pip install datetime  			# date and time
@@ -14,4 +14,7 @@ pip install wolframalpha		# wolframalpha
 pip install randomname			# random name generator
 pip install pyfiglet 			# figlet banner text
 pip install newsapi-python		# news api
-pip install pyaudio
+sudo apt-get update			# update
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0	# install portaudio
+sudo apt-get install ffmpeg libav-tools	# install ffmpeg
+pip install pyaudio			# audio

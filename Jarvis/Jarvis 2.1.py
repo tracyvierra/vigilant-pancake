@@ -756,6 +756,7 @@ if __name__ == "__main__":
                     speak("Sorry sir, I could not play music")
             elif "open code" in query:
                 try:
+                    speak("Opening Visual Studio Code")
                     codePath = "D:\\Users\\tracy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
                     os.startfile(codePath)
                 except Exception as e:

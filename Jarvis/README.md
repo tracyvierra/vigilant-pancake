@@ -12,7 +12,7 @@ open youtube				# opens youtube in default browser
 
 open google				# opens google in default browser
 
-open stackoverflow			# opens stackiverflow in default browser
+open stackoverflow			# opens stackoverflow in default browser
 
 play music				# plays music from a pre-set directory
 
